@@ -230,7 +230,7 @@
       $('#client_content').html(html);
 
       // Re-run domain replacement now that content has changed
-      window.reloadMyOktaIFrame();
+      window.getMyOktaAccounts();
     });
     $.ajax({
       url: serverContentUrl
@@ -238,7 +238,7 @@
       $('#server_content').html( html );
 
       // Re-run domain replacement now that content has changed
-      window.reloadMyOktaIFrame();
+      window.getMyOktaAccounts();
 
       // Set the framework to active
       document.getElementById('framework-' + framework).setAttribute('class', 'active');
