@@ -9,6 +9,10 @@
 
     window.addEventListener('message', receiveMessage, false);
     document.addEventListener('visibilitychange', checkSuccess, false);
+
+    window.addEventListener('myOktaAccountFound', function (event) {
+      $('.is-signed-in').show();
+    }, false);
   });
 
   /**
@@ -49,7 +53,14 @@
       // Extract the first 'oktapreview' domain
       for (i = 0; i < accounts.length; i++) {
         if (accounts[i].origin.indexOf('.oktapreview.com') !== -1){
-          return accounts[i].origin;
+          var domain = accounts[i].origin;
+          var myOktaAccountFound = new CustomEvent('myOktaAccountFound', {
+            detail: {
+              domain: domain
+            }
+          });
+          window.dispatchEvent(myOktaAccountFound);
+          return domain;
         }
       }
       return 'https://{yourOktaDomain}';
