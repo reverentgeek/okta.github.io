@@ -174,9 +174,9 @@ Open the `Web.config` file and add these keys to the `<appSettings>` section:
 <add key="okta:PostLogoutRedirectUri" value="http://localhost:8080/Account/PostLogout" />
 ```
 
-Copy the client ID and client secret from your Okta application into the appropriate keys in `Web.config`, and replace `{yourOktaDomain}` with your Okta domain name.
+Copy the client ID and client secret from your Okta application into the appropriate keys in `Web.config`, and replace `{yourOktaDomain}` with your Okta domain name. You can find your Okta domain name in the top-right corner of the Dashboard page.
 
-{% include domain-admin-warning.html %}
+**Note**: The value of `{yourOktaDomain}` should be something like `dev-123456.oktapreview.com`. Make sure you don't include `-admin` in the value!
 
 ### Secure your application
 

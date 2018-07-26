@@ -99,7 +99,6 @@ The code that initializes the Widget looks like this:
   });
 </script>
 ~~~
-{% include domain-admin-warning.html %}
 
 #### Mobile Consideration
 

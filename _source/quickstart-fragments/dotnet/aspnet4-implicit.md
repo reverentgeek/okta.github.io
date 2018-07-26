@@ -39,7 +39,6 @@ using Owin;
 ```
 
 Add the following code to your `Configuration` method:
-{% include domain-admin-warning.html %}
 
 ```csharp
 public void Configuration(IAppBuilder app)

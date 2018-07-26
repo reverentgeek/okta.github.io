@@ -38,7 +38,6 @@ using Microsoft.IdentityModel.Tokens;
 ```
 
 In the `ConfigureServices` method, add this `UseAuthentication` block and configure it using the information from your Okta application:
-{% include domain-admin-warning.html %}
 
 ```csharp
 services.AddAuthentication(sharedOptions =>
@@ -66,6 +65,8 @@ services.AddAuthentication(sharedOptions =>
     };
 });
 ```
+
+**Note:** The value of `{yourOktaDomain}` should be something like dev-123456.oktapreview.com. Make sure you don't include `-admin` in the value!
 
 Then, in the `Configure` method, add this line **above** the `UseMvc` line:
 
