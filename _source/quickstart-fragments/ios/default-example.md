@@ -51,7 +51,6 @@ pod install && open project.xcworkspace
 
 ### Configuration
 Create a new `Okta.plist` file in your application's bundle with the following fields:
-
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">

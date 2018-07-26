@@ -229,7 +229,7 @@
     }).done(function( html ) {
       $('#client_content').html(html);
 
-      // Re-run domain replacement now that content has changed
+      // Re-run domain replacement now that content has changed. Defined in myOkta.js.
       window.getMyOktaAccounts();
     });
     $.ajax({
@@ -237,7 +237,7 @@
     }).done(function (html) {
       $('#server_content').html( html );
 
-      // Re-run domain replacement now that content has changed
+      // Re-run domain replacement now that content has changed. Defined in myOkta.js.
       window.getMyOktaAccounts();
 
       // Set the framework to active

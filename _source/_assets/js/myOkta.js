@@ -3,7 +3,7 @@
     var iframe = $('<iframe id="myOktaIFrame" src="https://login.okta.com" style="display:none"></iframe>');
     $('body').append(iframe);
 
-    $('#myOktaIFrame').on( 'load', function() {
+    $('#myOktaIFrame').on('load', function() {
       window.getMyOktaAccounts();
     });
 
