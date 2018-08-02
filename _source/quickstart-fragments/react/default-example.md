@@ -66,7 +66,6 @@ const config = {
   redirect_uri: window.location.origin + '/implicit/callback',
   client_id: '{clientId}'
 }
-
 ```
 
 ## Attach Components to the Secure Router
