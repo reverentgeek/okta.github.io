@@ -3,7 +3,6 @@ layout: docs_page
 weight: 2
 title: Event Type Mappings
 excerpt: Table describing the relationship between the Events and System Log API event types
-redirect_from: "/docs/guides/events-api-migration.html"
 ---
 
 # Event Type Mappings
