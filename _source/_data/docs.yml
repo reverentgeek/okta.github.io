@@ -56,7 +56,7 @@
     - okta_mobile_connect
     - okta_sign-in_widget
     - add_mfa
-    - events-api-migration
+    - events-api-deprecation
 
 - section: guides
   slug: guides
