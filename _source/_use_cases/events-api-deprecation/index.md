@@ -318,13 +318,13 @@ These were primarily used to log errors and create debug context. With `/logs`, 
 
 #### Filtering
 
-Syntactically, filtering between the two APIs is largely unchanged. For example, the `filter` parameter continues to use the [SCIM filter expressions](https://tools.ietf.org/html/rfc7644#section-3.4.2.2) for expressing which events to return by constraining attribute values by various operators. However, the allowable attribute that can be searched is now unrestricted. Any model attribute that exists can be queried. For example, the following filter expression queries the value of a sub-attribute:
+Syntactically, filtering between the two APIs is largely unchanged. For example, the `filter` parameter continues to use the [SCIM filter expressions](https://tools.ietf.org/html/rfc7644#section-3.4.2.2) for expressing which events to return by constraining attribute values by various operators. However, the allowable attribute that can be searched is now almost unrestricted. Outside of `published`, any model attribute that exists can be queried. The following filter illustrates an expression that constrains the value of a sub-attribute:
 
 ```
 filter=debugContext.debugData.requestUri eq "/login/do-login"
 ```
 
-This opens up many possibilities for selectively retrieving only the data of interest.
+This opens up many possibilities for selectively retrieving only the data of interest. However, as indicated above `published` is not supported in the `filter` parameter. To perform temporal filtering, `since` and `until` parameters must be used. Please see (Time Range)[#time-range] for details.
 
 Furthermore, the new API now supports the `co` "contains" operator where the specified value must be a substring of the attribute value.
 
