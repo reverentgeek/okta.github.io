@@ -3,28 +3,27 @@ layout: docs_page
 weight: 2
 title: Event API Deprecation
 excerpt: How to migrate from the deprecated Events API to its System Log API replacement.
-redirect_from: "/docs/guides/events-api-deprecation.html"
 ---
 
 # Event API Deprecation
 
 ## Introduction
 
-Okta has been working on the next version of the Events API. To allow customers to use a singular API for auditing / event data and to allow Okta to concentrates its efforts, Okta will be deprecating the Events API. 
+To enable customers to leverage a unified platform for enriched, auditable event data, Okta will be concentrating its efforts on the new and improved [System Log API](/docs/api/resources/system_log) while deprecating the legacy [Events API](/docs/api/resources/events). 
 
-This guide aims to help organizations migrate from the deprecated [Events API](/docs/api/resources/events) to its [System Log API](/docs/api/resources/system_log) replacement. It highlights some of the key semantic, structural, and operational similarities and differences between the two APIs to ease the transition process. Furthermore, it contains information about the timeline of the deprecation rollout.
+This guide aims to help organizations migrate from the deprecated Events API to its System Log API replacement. It highlights some of the key structural, semantic, and operational differences (and similarities) between the two APIs to  the transition process. Furthermore, it contains information about the timeline of the deprecation rollout.
 
-Note that this guide does not attempt to cover specific use cases, detailed patterns of interaction or the intricacies of particular query parameters. For that, it is suggested to see the corresponding sections in the [System Log API](/docs/api/resources/system_log) documentation.
+> This guide does not attempt to cover specific use cases, detailed patterns of interaction or the intricacies of particular query parameters. For that, it is suggested to see the corresponding sections in the [System Log API](/docs/api/resources/system_log) documentation.
 
 ## Timeline
 
 The following are the major dates relating to the Events API deprecation:
 
-| Date                   | Events API Status                                                              |
-| ---------------------- | ------------------------------------------------------------------------------ |
-| `XXX`                  | Events API is no longer available for new Okta organizations                   |
-| `XXX`                  | Events API will stop publishing new events                                     |
-| `XXX`                  | End of Life (EOL) - Events API will stop working and will HTTP 404 on requests |
+| Date           | Events API Status                                                              |
+| -------------- | ------------------------------------------------------------------------------ |
+| **TBA**        | Events API is no longer available for new Okta organizations                   |
+| **TBA**        | Events API will stop publishing new events                                     |
+| **TBA**        | End of Life (EOL) - Events API will stop working and will HTTP 404 on requests |
 
 ## Migration
 
@@ -48,9 +47,7 @@ For brevity, the Events API will often be referred to as `/events` and the Syste
 
 Each of the API resources has an associated data structure, also referred to as the resource "representation" or data model. The System Log API's representation is the [LogEvent object](/docs/api/resources/system_log#logevent-object). It captures the occurrence of notable system events. The Events API's representation is the [Event object](/docs/api/resources/events#event-model). LogEvent has more structure and a much richer set of data elements than Event. It is one of the principal improvements of the System Log API over the Events API.
 
-One of the most important attributes of an event in the Okta system is its "event type" designation. 
-
-In the Events API, the [`action.objectType` attribute](/docs/api/resources/events#action-object) attribute denotes the event type. In the Logs API, the [`eventType` attribute](/docs/api/resources/system_log#event-types) represents the event type. The values in each of these fields are generally different, although there is some overlap for historical purposes. In the interest of easing the transition from the Events API to the System Log API, LogEvent's [`legacyEventType` attribute](/docs/api/resources/system_log#attributes) identifies the equivalent Event `action.objectType` value. The [Event Type Mapping](#event-type-mapping) section of this guide provides a static mapping of Events API event types to System Log API event types.
+One of the most important attributes of an event in the Okta system is its "event type" designation. In the Events API, the [`action.objectType` attribute](/docs/api/resources/events#action-object) attribute denotes the event type. In the Logs API, the [`eventType` attribute](/docs/api/resources/system_log#event-types) represents the event type. The values in each of these fields are generally different, although there is some overlap for historical purposes. In the interest of easing the transition from the Events API to the System Log API, LogEvent's [`legacyEventType` attribute](/docs/api/resources/system_log#attributes) identifies the equivalent Event `action.objectType` value. The [Event Type Mapping](#event-type-mappings) section of this guide provides a static mapping of Events API event types to System Log API event types.
 
 Another essential difference between the two systems is the manner in which detailed information is encoded. The Events API textually encodes the specifics of a particular event instance into the [`action.message` attribute](/docs/api/resources/events#action-object). This encoding burdened consumers with having to correctly parse data themselves and led to brittleness in downstream systems when wording changed. The System Log API expands and enriches the data model to support storing these values as atomic, independent attributes. Context objects, such as the [AuthenticationContext object](/docs/api/resources/system_log#authenticationcontext-object) and [GeographicalContext objects](/docs/api/resources/system_log#geographicalcontext-object) objects, provide attributes that are common across event types. The [DebugContext object](/docs/api/resources/system_log#debugcontext-object) houses event-type-specific attributes.
 
@@ -320,7 +317,7 @@ These were primarily used to log errors and create debug context. With `/logs`, 
 
 Syntactically, filtering between the two APIs is largely unchanged. For example, the `filter` parameter continues to use the [SCIM filter expressions](https://tools.ietf.org/html/rfc7644#section-3.4.2.2) for expressing which events to return by constraining attribute values by various operators. However, the allowable attribute that can be searched is now almost unrestricted. Outside of `published`, any model attribute that exists can be queried. The following filter illustrates an expression that constrains the value of a sub-attribute:
 
-```
+```groovy
 filter=debugContext.debugData.requestUri eq "/login/do-login"
 ```
 
@@ -361,31 +358,28 @@ Please see [Transferring Data to a Separate System](/docs/api/resources/system_l
 
 ## Event Type Mappings
 
-The table in [Event Type Mappings](event-type-mappings) describes the complete relationship between the Events API and System Log API event types. This relationship is generally many-to-one, but there are a few exceptions. Note that there are currently some event types which do not have an Events API equivalent. **Going forward the Events API will not be tracking new event types added to the System Log API. For this reason we highly recommend upgrading to the System Log API.** 
+The table in [Event Types](/docs/api/resources/event-types#event-type-mappings) describes the complete relationship between the Events API and System Log API event type systems. This relationship is generally many-to-one, but there are a few exceptions. Note that there are currently some event types which do not have an Events API equivalent.
 
-# Resources
+> **Important:** Going forward the Events API will not be tracking new event types added to the System Log API. For this reason we highly recommend upgrading to the System Log API.
+
+## Resources
 
 This section contains a collection of useful resources that may help in making the switch from `/events` to `/logs`.
 
-## [developer.okta.com](http://developer.okta.com)
+### [developer.okta.com](http://developer.okta.com)
 
 The following are the formal developer documentation pages of each API:
 
 - [Events API](/docs/api/resources/events)
 - [Logs API](/docs/api/resources/system_log)
 
-## [splunkbase.splunk.com](http://splunkbase.splunk.com)
-The following is the add-on for Splunk that is capable of ingesting from Okta's System Log API into your Splunk instance for offline analysis:
-
-- [Logs Splunk Add-On](https://splunkbase.splunk.com/app/3682/)
-
-## [help.okta.com](http://help.okta.com)
+### [help.okta.com](http://help.okta.com)
 
 The following topic provides a list of possible System Log error events that can occur related to provisioning integrations:
 
 - [Provisioning Integration Error Events](https://help.okta.com/en/prod/Content/Topics/Reference/ref-apps-events.htm)
 
-## [support.okta.com](http://support.okta.com)
+### [support.okta.com](http://support.okta.com)
 The following are a collection of informational articles that dive into specifics of the System Log and its API:
 
 - [About the System Log](https://support.okta.com/help/Documentation/Knowledge_Article/About-the-System-Log-651903282)
@@ -396,12 +390,12 @@ The following are a collection of informational articles that dive into specific
 - [Using Session and Request ID Fields in the System Log](https://support.okta.com/help/Documentation/Knowledge_Article/65532538-Using-Session-and-Request-ID-Fields-in-the-System-Log)
 - [Useful System Log Queries](https://support.okta.com/help/Documentation/Knowledge_Article/Useful-System-Log-Queries)
 
-## [www.okta.com](http://www.okta.com)
+### [www.okta.com](http://www.okta.com)
 The following covers what the System Log is and where to find it, how to translate logs to actual user activity, and how you can leverage the System Log during a security incident. It also reviews some of the actions you can take to respond to an incident identified within the System Log:
 
 - [Okta Incident Response Guide](https://www.okta.com/incident-response-guide/)
 
-## [github.com/OktaSecurityLabs](https://github.com/OktaSecurityLabs)
+### [github.com/OktaSecurityLabs](https://github.com/OktaSecurityLabs)
 The following is a listing of Okta System Log event types of interest for security teams:
 
 - [Security Events](https://github.com/OktaSecurityLabs/CheatSheets/blob/master/SecurityEvents.md)

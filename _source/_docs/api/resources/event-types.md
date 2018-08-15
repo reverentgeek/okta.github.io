@@ -1,39 +1,22 @@
 ---
 layout: docs_page
 weight: 2
-title: Event Type Mappings
-excerpt: Table describing the relationship between the Events and System Log API event types
+title: Event Types
+excerpt: Catalogs the event type system for Events API and System Log API
 ---
 
-# Event Type Mappings
+# Event Types
 
-The following table describes the relationship between the Events API (1,076 total) and System Log API (541 total) event types. This relationship is generally many-to-one, but there are a few exceptions. Note that there are currently some event types which do not have an Events API equivalent. **Going forward the Events API will not be tracking new event types added to the System Log API. For this reason we highly recommend upgrading to the System Log API.** 
+This resource describes the two event type systems used by the Okta eventing platform. It includes information on how versioned event types relate to each other and their respective APIs.
+
+## Event Type Mappings
+
+The following table maps between the deprecated [Events API](/docs/api/resources/events) and its successor [System Log API](/docs/api/resources/system_log) event type systems. This relationship is generally many-to-one, but there are a few exceptions. Note that there are currently some event types which do not have an Events API equivalent. 
+
+> Important: Going forward the Events API will not be tracking new event types added to the System Log API. For this reason we highly recommend [migrating to the System Log API](/use_cases/events-api-deprecation).
 
 | Event API | System Log API |
 | --------- | -------------- |
-| `missing` | `app.ad.api.user_import.warn.skipped_user.missing_required_attribute` |
-| `missing` | `app.radius.agent.listener.failed` |
-| `missing` | `app.radius.agent.listener.succeeded` |
-| `missing` | `application.provision.group_membership.verify_exists` |
-| `missing` | `group.user_membership.rule.error` |
-| `missing` | `group.user_membership.rule.evaluation` |
-| `missing` | `mim.createEnrollment.ANDROID` |
-| `missing` | `mim.createEnrollment.IOS` |
-| `missing` | `mim.createEnrollment.OSX` |
-| `missing` | `mim.createEnrollment.UNKNOWN` |
-| `missing` | `mim.createEnrollment.WINDOWS` |
-| `missing` | `policy.evaluate_sign_on` |
-| `missing` | `scheduled_action.user_suspension.canceled` |
-| `missing` | `scheduled_action.user_suspension.completed` |
-| `missing` | `scheduled_action.user_suspension.scheduled` |
-| `missing` | `scheduled_action.user_suspension.updated` |
-| `missing` | `system.agent.ad.create` |
-| `missing` | `task.lifecycle.activate` |
-| `missing` | `task.lifecycle.create` |
-| `missing` | `task.lifecycle.deactivate` |
-| `missing` | `task.lifecycle.delete` |
-| `missing` | `task.lifecycle.update` |
-| `missing` | `user.authentication.verify` |
 | `agents.connector_agent.agent_deactivated` | `system.agent.connector.deactivate` |
 | `agents.connector_agent.agent_deleted` | `system.agent.connector.delete` |
 | `agents.connector_agent.agent_disconnected` | `system.agent.connector.connect` |
@@ -1120,3 +1103,33 @@ The following table describes the relationship between the Events API (1,076 tot
 | `zone.make_blacklist` | `zone.make_blacklist` |
 | `zone.remove_blacklist` | `zone.remove_blacklist` |
 | `zone.update` | `zone.update` |
+| **1,076 total** | **541 total** |
+
+
+# Missing Event Types
+
+The following System Log API event types do not currently have a Events API equivalent:
+
+- `app.ad.api.user_import.warn.skipped_user.missing_required_attribute` |
+- `app.radius.agent.listener.failed` |
+- `app.radius.agent.listener.succeeded` |
+- `application.provision.group_membership.verify_exists` |
+- `group.user_membership.rule.error` |
+- `group.user_membership.rule.evaluation` |
+- `mim.createEnrollment.ANDROID` |
+- `mim.createEnrollment.IOS` |
+- `mim.createEnrollment.OSX` |
+- `mim.createEnrollment.UNKNOWN` |
+- `mim.createEnrollment.WINDOWS` |
+- `policy.evaluate_sign_on` |
+- `scheduled_action.user_suspension.canceled` |
+- `scheduled_action.user_suspension.completed` |
+- `scheduled_action.user_suspension.scheduled` |
+- `scheduled_action.user_suspension.updated` |
+- `system.agent.ad.create` |
+- `task.lifecycle.activate` |
+- `task.lifecycle.create` |
+- `task.lifecycle.deactivate` |
+- `task.lifecycle.delete` |
+- `task.lifecycle.update` |
+- `user.authentication.verify` |
