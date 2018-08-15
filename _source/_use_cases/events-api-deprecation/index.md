@@ -10,7 +10,7 @@ redirect_from: "/docs/guides/events-api-deprecation.html"
 
 ## Introduction
 
-Over the years, Okta has been working on the next version of the Events API. To allow customers to use a singular API for auditing / event data and to allow Okta to concentrates its efforts, Okta will be deprecating the Events API. 
+Okta has been working on the next version of the Events API. To allow customers to use a singular API for auditing / event data and to allow Okta to concentrates its efforts, Okta will be deprecating the Events API. 
 
 This guide aims to help organizations migrate from the deprecated [Events API](/docs/api/resources/events) to its [System Log API](/docs/api/resources/system_log) replacement. It highlights some of the key semantic, structural, and operational similarities and differences between the two APIs to ease the transition process. Furthermore, it contains information about the timeline of the deprecation rollout.
 
