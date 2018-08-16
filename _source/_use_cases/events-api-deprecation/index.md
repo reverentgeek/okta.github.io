@@ -11,7 +11,7 @@ excerpt: How to migrate from the deprecated Events API to its System Log API rep
 
 To enable customers to leverage a unified platform for enriched, auditable event data, Okta will be concentrating its efforts on the new and improved [System Log API](/docs/api/resources/system_log) while deprecating the legacy [Events API](/docs/api/resources/events). 
 
-This guide aims to help organizations migrate from the deprecated Events API to its System Log API replacement. It highlights some of the key structural, semantic, and operational differences (and similarities) between the two APIs to  the transition process. Furthermore, it contains information about the timeline of the deprecation rollout.
+This guide aims to help organizations migrate from the deprecated Events API to its System Log API replacement. It highlights some of the key structural, semantic, and operational differences (and similarities) between the two APIs to  aid in the migration process. Furthermore, it contains information about the timeline of the deprecation rollout.
 
 > This guide does not attempt to cover specific use cases, detailed patterns of interaction or the intricacies of particular query parameters. For that, it is suggested to see the corresponding sections in the [System Log API](/docs/api/resources/system_log) documentation.
 
@@ -331,19 +331,19 @@ A new "keyword filtering" feature has been introduced via the [`q` parameter](/d
 
 In the Events API, there is only one formal query parameter that supports defining the temporal scope of the events returned: `startDate`. In the Logs API, there is now `since` (the equivalent of `startDate`) and a new [`until` parameter](/docs/api/resources/system_log#request-parameters) which defines the end time bound of the query interval. Both of these operate against the [`published ` attribute](/docs/api/resources/system_log#attributes). 
 
-A subtle difference between `stateDate` and `since`/`until` is that the former was very liberal in the format that was accepted. In the System Log API, `since`/`until` values are required to conform to [Internet Date/Time Format profile of ISO 8601](https://tools.ietf.org/html/rfc3339#page-8). This is to reduce the chance for format ambiguity (e.g. timezone offsets, etc.) and accidental misuse by consumers.
+A subtle difference between `startDate` and `since`/`until` is that the former was very liberal in the format that was accepted. In the System Log API, `since`/`until` values are required to conform to [Internet Date/Time Format profile of ISO 8601](https://tools.ietf.org/html/rfc3339#page-8). The intention of this requirement is to reduce the risk of format ambiguity (e.g., timezone offsets) causing accidental misuse by consumers.
 
 #### Sorting
 
-Limited sort ordering by `published` is now possible via the System Log API [`sortOrder` parameter](/docs/api/resources/system_log#request-parameters). When combined with the `after` parameter, this enables queries to paginate backwards through events in a lossless fashion. Iterating forward is possible in both systems.
+Sort ordering by `published` is now possible via the System Log API [`sortOrder` parameter](/docs/api/resources/system_log#request-parameters). When combined with the `after` parameter, this enables queries to paginate through events in reverse chronological order in a lossless fashion. Paginating in chronological order is possible in both systems.
 
-In order to ensure no loss of events while polling, sorting changes to become the "persisted time" of the LogEvent, rather than it's "published time". This is in contrast to the non-polling case where events are always sorted with respect to `published`. Please see [Polling Requests](/docs/api/resources/system_log#polling-requests) for details.
+Note that sort order for polling requests is only approximate. Sort order for non-polling requests is exact. Please see [Polling Requests](/docs/api/resources/system_log#polling-requests) for details.
 
 Note that the Events API does not support custom sorting.
 
 ### Limits
 
-Both APIs support a `limit` query parameter that governs the number of events per request to return. In the Events API, the both the maximum and default value is 1000 events. The System Log API shares the same maximum value, however, the default value is now `100` events. See [`limit` parameter](/docs/api/resources/system_log#request-parameters) for details.
+Both APIs support a `limit` query parameter that governs the number of events per request to return. In the Events API, the maximum and default value is 1,000 events. The System Log API shares the same maximum value. However, the default value is 100 events. See [`limit` parameter](/docs/api/resources/system_log#request-parameters) for details.
 
 ### Polling
 
@@ -380,6 +380,7 @@ The following topic provides a list of possible System Log error events that can
 - [Provisioning Integration Error Events](https://help.okta.com/en/prod/Content/Topics/Reference/ref-apps-events.htm)
 
 ### [support.okta.com](http://support.okta.com)
+
 The following are a collection of informational articles that dive into specifics of the System Log and its API:
 
 - [About the System Log](https://support.okta.com/help/Documentation/Knowledge_Article/About-the-System-Log-651903282)
@@ -391,11 +392,13 @@ The following are a collection of informational articles that dive into specific
 - [Useful System Log Queries](https://support.okta.com/help/Documentation/Knowledge_Article/Useful-System-Log-Queries)
 
 ### [www.okta.com](http://www.okta.com)
+
 The following covers what the System Log is and where to find it, how to translate logs to actual user activity, and how you can leverage the System Log during a security incident. It also reviews some of the actions you can take to respond to an incident identified within the System Log:
 
 - [Okta Incident Response Guide](https://www.okta.com/incident-response-guide/)
 
 ### [github.com/OktaSecurityLabs](https://github.com/OktaSecurityLabs)
+
 The following is a listing of Okta System Log event types of interest for security teams:
 
 - [Security Events](https://github.com/OktaSecurityLabs/CheatSheets/blob/master/SecurityEvents.md)
