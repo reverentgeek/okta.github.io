@@ -1,6 +1,6 @@
 ---
 layout: blog_post
-title: "Build a Simple CRUD App with ASP.NET Core 2.1 and Angular 6"
+title: "Upgrade your ASP.NET Core 2.1 App to Angular 6"
 author: leebrandt
 description: "This tutorial walks you through building a simple CRUD application in ASP.NET Core 2.1 and Angular 6."
 tags: [asp.net, dotnet, core, asp.net core, dotnet core, dot net core, angular, crud]
@@ -88,11 +88,12 @@ Dealing with user authentication in web apps is a massive pain for every develop
 ### Why Okta?
 
 At Okta, our goal is to make [identity management](https://developer.okta.com/product/user-management/) a lot easier, more secure, and more scalable than what you're used to. Okta is a cloud service that allows developers to create, edit, and securely store user accounts and user account data, and connect them with one or multiple applications. Our API enables you to:
-[Authenticate](https://developer.okta.com/product/authentication/) and [authorize](https://developer.okta.com/product/authorization/) your users
-Store data about your users
-Perform password-based and [social login](https://developer.okta.com/authentication-guide/social-login/)
-Secure your application with [multi-factor authentication](https://developer.okta.com/use_cases/mfa/)
-And much more! Check out our [product documentation](https://developer.okta.com/documentation/)
+
+- [Authenticate](https://developer.okta.com/product/authentication/) and [authorize](https://developer.okta.com/product/authorization/) your users
+- Store data about your users
+- Perform password-based and [social login](https://developer.okta.com/authentication-guide/social-login/)
+- Secure your application with [multi-factor authentication](https://developer.okta.com/use_cases/mfa/)
+- And much more! Check out our [product documentation](https://developer.okta.com/documentation/)
 
 ### Add Okta to Your ASP.NET Core + Angular App
 
@@ -150,7 +151,7 @@ Then, right below the import statements, add a config variable that will hold yo
 const config = {
   issuer: 'https://{yourOktaDomain}/oauth/default',
   redirectUri: 'http://localhost:5000/implicit/callback',
-  clientId: '{yourClientId}'
+  clientId: '{clientId}'
 };
 ```
 
@@ -186,7 +187,7 @@ import { ProfileComponent } from './profile/profile.component';
 const config = {
   issuer: 'https://{yourOktaDomain}/oauth/default',
   redirectUri: 'http://localhost:5000/implicit/callback',
-  clientId: '{yourClientId}'
+  clientId: '{clientId}'
 };
 
 @NgModule({
@@ -362,7 +363,7 @@ YAML is just a file format for configuration. The okta.yaml file looks like:
 ```yaml
 okta:
   client:
-    orgUrl: "https://dev-846291.oktapreview.com/"
+    orgUrl: "https://{yourOktaDomain}"
     token: "{yourApiToken}"
 ```
 
