@@ -11,10 +11,17 @@ This resource describes the two event type systems used by the Okta eventing pla
 
 ## Event Type Mappings
 
-The following table maps between the deprecated [Events API](/docs/api/resources/events) and its successor [System Log API](/docs/api/resources/system_log) event type systems. This relationship is generally many-to-one, but there are a few exceptions. Note that there are currently some event types which do not have an Events API equivalent. 
+The following table maps between the deprecated [Events API](/docs/api/resources/events) and its successor [System Log API](/docs/api/resources/system_log). This relationship is generally many-to-one, but there are a few exceptions. Note that there are currently some System Log event types which do not have an Events API equivalent.
 
-> Important: Going forward the Events API will not be tracking new event types added to the System Log API. For this reason we highly recommend [migrating to the System Log API](/use_cases/events-api-deprecation).
+> **Important:** Going forward the Events API will not be tracking new event types added to the System Log API. For this reason we highly recommend [migrating to the System Log API](/use_cases/events-api-deprecation).
 
+<style>
+#event-type-table code {
+  word-break: break-word;
+}
+</style>
+
+{:#event-type-table}
 | Event API | System Log API |
 | --------- | -------------- |
 | `agents.connector_agent.agent_deactivated` | `system.agent.connector.deactivate` |
