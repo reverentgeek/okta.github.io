@@ -54,7 +54,7 @@ In addition to the attributes discussed in the filtering guidelines above the Us
 
 ##### Users Profile
 
-A Universal Directory enabled Okta Org features an extensible schema with the ability to source and master data from many sources including Applications and Directories.  Information related to the user’s organizational role, hierarchy, geographic location and more can be found in the user profile.  The schema is extensible and the level of detail contained is based entirely on the customer’s implementation.
+A Universal Directory enabled Okta Org features an extensible schema with the ability to source and master data from many sources including Applications and Directories.  Information related to the user's organizational role, hierarchy, geographic location and more can be found in the user profile.  The schema is extensible and the level of detail contained is based entirely on the customer's implementation.
 
 The default attributes of a user are aligned with core SCIM attributes and [listed here](/docs/api/resources/users#default-profile-properties).
 
@@ -66,7 +66,7 @@ Request
 {:.api .api-request .api-request-example}
 
 ```sh
-GET https://{yourOktaDomain}.com/api/v1/users/?q=John
+GET https://{yourOktaDomain}/api/v1/users/?q=John
 ```
 
 Response
@@ -102,7 +102,7 @@ Request
 {:.api .api-request .api-request-example}
 
 ```sh
-GET https://{yourOktaDomain}.com/api/v1/users/?filter=(profile.firstName eq "John" AND profile.lastName eq "Doe")
+GET https://{yourOktaDomain}/api/v1/users/?filter=(profile.firstName eq "John" AND profile.lastName eq "Doe")
 ```
 
 Response
@@ -130,7 +130,7 @@ Response
 
 ##### Users - Get Single User
 
-Retrieve a single user based on the user’s:
+Retrieve a single user based on the user's:
 
 + username (short) _jdoe_
 + username (full) _jdoe@domain.tld_
@@ -143,11 +143,11 @@ Request(s)
 
 ```sh
 #by Short userName
-GET https://{yourOktaDomain}.com/api/v1/users/jdoe
+GET https://{yourOktaDomain}/api/v1/users/jdoe
 #by Full userName
-GET https://{yourOktaDomain}.com/api/v1/users/jdoe@domain.tld
+GET https://{yourOktaDomain}/api/v1/users/jdoe@domain.tld
 #by Okta id (uid)
-GET https://{yourOktaDomain}.com/api/v1/users/00u1aq5mpenI88ZEn1d8
+GET https://{yourOktaDomain}/api/v1/users/00u1aq5mpenI88ZEn1d8
 ```
 
 Response

@@ -96,7 +96,7 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         ValidAudience = "api://default",
         // Ensure the token was issued by a trusted authorization server (default true):
         ValidateIssuer = true,
-        ValidIssuer = "https://nate-example.oktapreview.com/oauth2/default"
+        ValidIssuer = "https://{yourOktaDomain}/oauth2/default"
     };
 });
 ```
@@ -185,7 +185,7 @@ private static JwtSecurityToken ValidateAndDecode(string jwt, IEnumerable<Securi
         ValidAudience = "api://default",
         // Ensure the token was issued by a trusted authorization server (default true):
         ValidateIssuer = true,
-        ValidIssuer = "https://nate-example.oktapreview.com/oauth2/default"
+        ValidIssuer = "https://{yourOktaDomain}/oauth2/default"
     };
 
     try
@@ -244,7 +244,7 @@ Since the authorization server Okta creates for you has a standard discovery doc
 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 .AddJwtBearer(options =>
 {
-    options.Authority = "https://{yourOktaDomain}.com/oauth2/default";
+    options.Authority = "https://{yourOktaDomain}/oauth2/default";
     options.Audience = "api://default";
 });
 ```

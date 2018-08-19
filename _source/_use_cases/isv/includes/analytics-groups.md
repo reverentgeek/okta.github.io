@@ -19,7 +19,7 @@ When using the API to sync group data and group membership information with an e
 
 Tightly tied to the interval used is the idea of doing date bound queries to retrieve delta datasets.  There are two Date fields available to determine changes to a group.
 
-+ `lastUpdated` is the timestamp when a group’s profile was last updated
++ `lastUpdated` is the timestamp when a group's profile was last updated
 + `lastMembershipUpdated` is the timestamp when a user was last added to or removed from that group
 
 These values change independently. Membership changes will not modify the lastUpdated timestamp.
@@ -60,11 +60,11 @@ Request
 
 ```sh
 # ALL groups
-GET https://{yourOktaDomain}.com/api/v1/groups?limit=100&expand=app,stats
+GET https://{yourOktaDomain}/api/v1/groups?limit=100&expand=app,stats
 # Groups matching filter criteria
-GET https://{yourOktaDomain}.com/api/v1/groups?filter=lastMembershipUpdated gt 2017-04-17T23:16:50.000Z &expand=app,stats
+GET https://{yourOktaDomain}/api/v1/groups?filter=lastMembershipUpdated gt 2017-04-17T23:16:50.000Z &expand=app,stats
 # Specific group based on Group ID (gid)
-GET https://{yourOktaDomain}.com/api/v1/groups/00gwy337uaRYJVHTHACG?expand=app,stats
+GET https://{yourOktaDomain}/api/v1/groups/00gwy337uaRYJVHTHACG?expand=app,stats
 ```
 
 Response
@@ -118,9 +118,9 @@ Request
 ```sh
 # ALL groups
 # Get members using Skinny Users endpoint
-GET https://{yourOktaDomain}.com/groups/00gwy337uaRYJVHTHACG/skinny_users
+GET https://{yourOktaDomain}/groups/00gwy337uaRYJVHTHACG/skinny_users
 # Get members using the regular Users endpoint
-GET https://{yourOktaDomain}.com/api/v1/groups/00gwy337uaRYJVHTHACG/users
+GET https://{yourOktaDomain}/api/v1/groups/00gwy337uaRYJVHTHACG/users
 ```
 
 Response
@@ -181,7 +181,7 @@ Request
 {:.api .api-request .api-request-example}
 
 ```sh
-GET https://{yourOktaDomain}.com/api/v1/groups/00gwy337uaRYJVHTHACG/apps
+GET https://{yourOktaDomain}/api/v1/groups/00gwy337uaRYJVHTHACG/apps
 ```
 
 Response
@@ -215,7 +215,7 @@ Response
 
 ##### Groups - Change Membership
 
-Methods of, and reasons to, manipulate Groups and Group membership are discussed in our “Write back to enforce policy in Okta” [Groups](security-enforcement#groups) section below.
+Methods of, and reasons to, manipulate Groups and Group membership are discussed in our "Write back to enforce policy in Okta" [Groups](security-enforcement#groups) section below.
 
 #### Groups More
 

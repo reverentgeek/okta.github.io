@@ -5,6 +5,8 @@ exampleDescription: Java Implicit Example
 
 ## Okta Java Quickstart
 
+Now that your clients can get tokens, let's validate those tokens on your server.
+
 ### Include the dependency
 
 For Apache Maven:
@@ -24,6 +26,7 @@ compile 'com.okta.jwt:okta-jwt-verifier:{{ site.versions.jwt_validator_java }}'
 ### Use the API
 
 We can create a simple Servlet example by creating a `Filter`:
+{% include domain-admin-warning.html %}
 
 ```java
 @WebFilter(urlPatterns = {"/api/*"})
@@ -36,7 +39,7 @@ public static class OktaAccessTokenFilter implements Filter {
 
         try {
             this.jwtVerifier = new JwtHelper()
-                    .setIssuerUrl("https://{yourOktaDomain}.com/oauth2/default"))
+                    .setIssuerUrl("https://{yourOktaDomain}/oauth2/default"))
                     .setAudience("api://default")
                     .build();
 

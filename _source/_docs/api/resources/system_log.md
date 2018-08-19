@@ -1,18 +1,17 @@
 ---
 layout: docs_page
 title: System Log
+category: management
 ---
 
 # System Log API
 
-{% api_lifecycle ea %}
-
 The Okta System Log records system events related to your organization in order to provide an audit trail that can be used to understand platform activity and to diagnose problems.
 
-The Okta System Log API provides near real-time read-only access to your organization's system log and is the programmatic counterpart of the [System Log UI](https://help.okta.com/en/prod/Content/Topics/Reports/Reports_SysLog.htm). 
+The Okta System Log API provides near real-time read-only access to your organization's system log and is the programmatic counterpart of the [System Log UI](https://help.okta.com/en/prod/Content/Topics/Reports/Reports_SysLog.htm).
 
-Often the terms "event" and "log event" are used interchangeably. In the context of this API, an "event" is an occurrence of interest within the system and "log" or "log event" is the recorded fact.  
- 
+Often the terms "event" and "log event" are used interchangeably. In the context of this API, an "event" is an occurrence of interest within the system and "log" or "log event" is the recorded fact.
+
 Notes on the System Log API:
 
 * It contains much more [structured data](#logevent-object) than the [Events API](/docs/api/resources/events#event-model).
@@ -22,7 +21,7 @@ Notes on the System Log API:
   * System monitoring.
   * Development debugging.
   * Event introspection and audit.
-* It is not intended to be used as a Database as a Service (DBaaS), or otherwise directly serve data to downstream consumers without an intermediate data store. 
+* It is not intended to be used as a Database as a Service (DBaaS), or otherwise directly serve data to downstream consumers without an intermediate data store.
 
 ## Getting Started
 
@@ -30,9 +29,9 @@ The System Log API has one endpoint:
 
 {% api_operation get /api/v1/logs %}
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/9cfb0dd661a5432a77c6){:target="_blank"}
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/54def5ab52f04b7e4011){:target="_blank"}
 
-This collection resource is backed by a [LogEvent object](#logevent-object) model and associated [event types](#event-types). 
+This collection resource is backed by a [LogEvent object](#logevent-object) model and associated [event types](#event-types).
 
 See [Examples](#examples) for ways you can use the System Log API. For common use cases see [Useful System Log Queries](https://support.okta.com/help/Documentation/Knowledge_Article/Useful-System-Log-Queries).
 
@@ -224,7 +223,7 @@ LogEvent objects are read-only. The following properties are available:
 
 > The actor and/or target of an event is dependent on the action performed. All events have actors but not all have targets.
 
-> The `authenticationContext.externalSessionId` identifies events that occurred in the same session. A single `transaction.id` identifies events that occurred together as part of an operation (e.g. a request to Okta's servers). Use `authenticationContext.externalSessionId` to link events that occurred in the same session, and the `transaction.id` to link events that occurred as part of the same operation.
+> See [Event Correlation](#event-correlation) for more on `authenticationContext.externalSessionId` and `transaction.id`.
 
 ### Actor Object
 
@@ -341,8 +340,11 @@ Describes the result of an action and the reason for that result.
 
 ### Transaction Object
 
-The `transaction` object contains metadata associated with the event. This is useful for sourcing and identifying events. For example, a transaction object such as
+The `transaction` field contains a Transaction Object.
 
+A Transaction Object comprises contextual information associated with its respective event. This information is useful for understanding sequences of correlated events (see [Event Correlation](#event-correlation) for more on this).
+
+For example, a Transaction Object such as:
 ```json
 {
     "id": "Wn4f-0RQ8D8lTSLkAmkKdQAADqo",
@@ -351,15 +353,15 @@ The `transaction` object contains metadata associated with the event. This is us
 }
 ```
 
-indicates that a single web request with requestId `Wn4f-0RQ8D8lTSLkAmkKdQAADqo` was responsible for creating this event.
+indicates that a `WEB` request with `id` `Wn4f-0RQ8D8lTSLkAmkKdQAADqo` created this event.
 
-|------------+----------------------------------------------------------------+-----------------+----------|
-| Property   | Description                                                    | DataType        | Nullable |
-| ---------- | -------------------------------------------------------------- | --------------- | -------- |
-| id         | Id of the transaction Object. When the `type` is `WEB`, this field will contain the requestId of the web request. | String | TRUE |
-| type       | Type of transaction. When the transaction is initiated from a single web request, this value is `WEB`. For jobs, this value is `JOB` | String | TRUE |
-| detail     | Details about the transaction                                  | Map[String → Object] | TRUE |
-|------------+----------------------------------------------------------------+-----------------+----------|
+|------------+---------------------------------------------------------------------------------------------------------+----------------------+----------|
+| Property   | Description                                                                                             | DataType             | Nullable |
+| ---------- | ------------------------------------------------------------------------------------------------------- | -------------------- | -------- |
+| id         | Unique identifier for this transaction.                                                                 | String               | TRUE     |
+| type       | Describes the kind of transaction. `WEB` indicates a web request. `JOB` indicates an asynchronous task. | String               | TRUE     |
+| detail     | Details for this transaction.                                                                           | Map[String → Object] | TRUE     |
+|------------+---------------------------------------------------------------------------------------------------------+----------------------+----------|
 
 ### DebugContext Object
 
@@ -518,6 +520,25 @@ The following sections outline the major event types captured by the system log.
 * `policy.evaluate_sign_on` provides context on the values used and evaluated in the context of the Okta sign on policy. For example, you can determine which network zones were matched for this event.
 * For `policy.lifecycle` and `policy.rule` events, the corresponding policy is listed in the target object.
 
+### System Events
+
+| Event              | Description                         |
+|:-------------------|:------------------------------------|
+| system.org.rate_limit.warning | An endpoint is near its [rate limit](/docs/api/getting_started/rate-limits).  |
+| system.org.rate_limit.violation | An endpoint has exceeded its [rate limit](/docs/api/getting_started/rate-limits). |
+
+Rate limit warnings are sent at different times, depending on the org type. For One App and Enterprise orgs, the warning is sent when the org is at 60% of its limit.
+
+> Note: For orgs created before 2018-05-17, the warning is sent at 90%.
+
+Rate limit violations are sent when a rate limit is exceeded.
+
+### Security Events
+
+| Event              | Description                         |
+|:-------------------|:------------------------------------|
+| security.request.blocked | A request was blocked due to a blacklist rule (such as an IP network zone or location rule). |
+
 ### User Events
 
 | Event                     | Description                                               |
@@ -535,11 +556,19 @@ The following sections outline the major event types captured by the system log.
 * `user.authentication.sso` doesn't capture whether the SSO attempt was successful or failed because Okta can't collect the subsequent authentication attempt status from the third-party service.
 
 
-## Event ID Correlation
+## Event Correlation
 
-Throughout a user's session many requests (transactions) can occur, such as logging into Okta or opening an application. Within a given request many events may be logged. To illustrate this principle, the table below shows 18 events produced from 13 transactions over 6 different sessions, all performed by one user.
+When looking through the System Log, it is often useful to be able to correlate events to understand the thread of events that happened at a particular time.
 
-| External Session ID       | Transaction ID              | Event ID                             | Event Type                                  | Display Message                   |
+The `LogResponse` object offers two identifiers in this respect:
+  - `authenticationContext.externalSessionId`: identifies events that occurred in the same user session.
+  - `transaction.id`: identifies events that occurred together as part of an operation (for example, a request to Okta's servers).
+
+### Event Correlation Example
+
+The table below shows 18 events produced from 13 transactions over 6 different sessions, all performed by one user. Note that `authenticationContext.externalSessionId` is abbreviated to `sessionId` in this table.
+
+| `sessionId`               | `transaction.id`             | `uuid`                             | `eventType`                                  | `displayMessage`                  |
 |:--------------------------|:----------------------------|:-------------------------------------|:--------------------------------------------|:----------------------------------|
 | trs5JnlvlaIQTOqOj9imLy7lA | WcKPxq1f8QLfFvv3UPHhhgAACGM | f24790d0-d324-47f8-aac5-c27a31ab928d | user.session.access_admin_app               | User accessing Okta administrator app     |
 |                           | WcKPxq1f8QLfFvv3UPHhhgAACGM | ed317758-8776-4240-a540-277c44dcb408 | application.lifecycle.update                | Update application                |
@@ -561,7 +590,7 @@ Throughout a user's session many requests (transactions) can occur, such as logg
 | *null*                    | Wm@-R2s5lEMbNIB03krtvAAACyo | 566671be-ec0b-400d-ad2e-6fc73ed12fb1 | user.session.start                          | User login to Okta                |
 {:.table .table-word-break}
 
-Note that, as evidenced by the `null` `External Session ID` field in the last row, neither `Transaction ID` nor `Event ID` maintain a many-to-one relationship with `External Session ID`. In this particular case, the `null` `External Session ID` field can be explained by a failed user login. Since the login failed, no session was granted back to the user's client.
+As evidenced by the `null` `authenticationContext.externalSessionId` field in the last row, neither `transaction.id` nor `uuid` maintain a many-to-one relationship with `authenticationContext.externalSessionId`. In this particular case, the `null` `authenticationContext.externalSessionId` field can be explained by a failed user login. There was no session granted to the user's client since the login failed.
 
 
 ## Operations
@@ -590,11 +619,50 @@ The table below summarizes the supported query parameters:
 | `limit`     | Sets the number of results returned in the response                                                   | Integer between 0 and 1000                                | 100                     |
 |-------------+-------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------|
 
+##### Request Types
+
+All requests to the `/api/v1/logs` endpoint fall into one of these two categories:
+  - [Polling Requests](#polling-requests)
+  - [Bounded Requests](#bounded-requests)
+
+###### Polling Requests
+Polling requests are for situations when you want to consume an ongoing stream of events from Okta.
+
+Example use cases include:
+  - [Ingesting System Log data into an external SIEM system](#transferring-data-to-a-separate-system).
+  - Utilizing System Log data for real-time monitoring.
+
+For a request to be a _polling_ request it must meet the following request parameter criteria:
+  - `until` must be unspecified.
+  - `sortOrder` must be `ASCENDING`.
+
+Polling requests to the `/api/v1/logs` API have the following semantics:
+  - They return every event that occurs in your organization.
+  - They may return events out of order according to the `published` field.
+  - They have an infinite number of pages. That is, a [`next` `Link` relation header](#next-link-response-header) is always present, even if there are no new events (the event list may be empty).
+
+###### Bounded Requests
+Bounded requests are for situations when you know the definite time period of logs you want to retrieve.
+
+Example use cases include:
+  - [Debugging or troubleshooting system behavior](#debugging).
+  - Auditing events that happened at a particular time.
+
+For a request to be a _bounded_ request it must meet the following request parameter criteria:
+  - `since` must be specified.
+  - `until` must be specified.
+
+Bounded requests to the `/api/v1/logs` API have the following semantics:
+  - The returned events are guaranteed to be in order according to the `published` field.
+  - They have a finite number of pages. That is, the last page does not contain a [`next` `Link` relation header](#next-link-response-header).
+  - Not all events for the specified time range may be present— events may be delayed. Such delays are rare but possible.
+
+
 ##### Filtering Results
 
 ###### Expression Filter
 
-An expression filter is useful for performing structured queries where constraints on LogEvent attribute values can be explicitly targeted.  
+An expression filter is useful for performing structured queries where constraints on LogEvent attribute values can be explicitly targeted.
 
 The following expressions are supported for events with the `filter` query parameter:
 
@@ -672,7 +740,7 @@ Link: <url>; rel="self"
 
 For example:
 ```
-Link: <https://{yourOktaDomain}.com/api/v1/logs?q=&sortOrder=DESCENDING&limit=20&until=2017-09-17T23%3A59%3A59%2B00%3A00&since=2017-06-10T00%3A00%3A00%2B00%3A00>; rel="self"
+Link: <https://{yourOktaDomain}/api/v1/logs?q=&sortOrder=DESCENDING&limit=20&until=2017-09-17T23%3A59%3A59%2B00%3A00&since=2017-06-10T00%3A00%3A00%2B00%3A00>; rel="self"
 ```
 
 ###### Next Link Response Header
@@ -685,7 +753,7 @@ Link: <url>; rel="next"
 
 For example:
 ```
-Link: <https://{yourOktaDomain}.com/api/v1/logs?q=&sortOrder=DESCENDING&limit=20&until=2017-09-17T15%3A41%3A12.994Z&after=349996bd-5091-45dc-a39f-d357867a30d7&since=2017-06-10T00%3A00%3A00%2B00%3A00>; rel="next"
+Link: <https://{yourOktaDomain}/api/v1/logs?q=&sortOrder=DESCENDING&limit=20&until=2017-09-17T15%3A41%3A12.994Z&after=349996bd-5091-45dc-a39f-d357867a30d7&since=2017-06-10T00%3A00%3A00%2B00%3A00>; rel="next"
 ```
 
 #### Timeouts
@@ -786,7 +854,7 @@ curl -v -X GET \
 -H "Accept: application/json" \
 -H "Content-Type: application/json" \
 -H "Authorization: SSWS ${api_token}" \
-"https://{yourOktaDomain}.com/api/v1/logs?q=Jane+Doe"
+"https://{yourOktaDomain}/api/v1/logs?q=Jane+Doe"
 ```
 
 You can also use this API to search for particular types of events:
@@ -796,7 +864,7 @@ curl -v -X GET \
 -H "Accept: application/json" \
 -H "Content-Type: application/json" \
 -H "Authorization: SSWS ${api_token}" \
-"https://{yourOktaDomain}.com/api/v1/logs?filter=event_type+eq+%22user.session.start%22"
+"https://{yourOktaDomain}/api/v1/logs?filter=event_type+eq+%22user.session.start%22"
 ```
 
 ### Transferring Data to a Separate System
@@ -807,9 +875,9 @@ curl -v -X GET \
 -H "Accept: application/json" \
 -H "Content-Type: application/json" \
 -H "Authorization: SSWS ${api_token}" \
-"https://{yourOktaDomain}.com/api/v1/logs?since=2017-10-01T00:00:00.000Z"
+"https://{yourOktaDomain}/api/v1/logs?since=2017-10-01T00:00:00.000Z"
 ```
 
 and retrieve the next page of events through the [`Link` response header](/docs/api/getting_started/design_principles#link-header) value with the `next` link relation. Continue this process until no events are returned.
 
-> Do not attempt to transfer data by manually paginating using `since` and `until` as this may lead to skipped or duplicated events. Instead, always follow the `next` links. 
+> Do not attempt to transfer data by manually paginating using `since` and `until` as this may lead to skipped or duplicated events. Instead, always follow the `next` links.
