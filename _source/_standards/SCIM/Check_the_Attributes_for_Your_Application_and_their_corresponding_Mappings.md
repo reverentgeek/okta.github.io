@@ -81,7 +81,7 @@ II. Adding Attributes
 
 4.  In the Profile Editor, click on **Add Attribute**.**\
     {% img media/image10.webp alt:"Add Attribute" width:"625px" %}
-    - **Enter the information for the new attribute that you’re adding
+    - **Enter the information for the new attribute that you're adding
     and then click **Save**. (**NOTE!** The Scope property determines
     whether the attribute you are adding can be assigned at a Group
     level or just per user. If you would like the ability for admins to
