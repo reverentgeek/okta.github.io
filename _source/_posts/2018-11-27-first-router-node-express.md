@@ -105,9 +105,10 @@ app.listen(port, () => console.log(`App listening on port ${port}`))
 
 This tells Express to use [Handlebars](https://handlebarsjs.com) (`hbs`) as a view engine. It uses Node's built-in `path` to tell it the directory containing the views. The `/` path is told to render the page using `index.hbs`, which will put the `content` in a paragraph (`p`) tag.
 
-To make sure Express has templates to render, create a new folder called `views`, then create a new file in there called `layout.hbs`. When you tell Express to render a view, it will first render `layout.hbs` and put the content of the view inside the `{{{body}}}` tag. This lets you set up a skeleton for the app. Here's some basic HTML using [Bootstrap](https://getbootstrap.com/) that will give you some nice styling without needing to write any CSS. This will also render the `title` passed into the context in your `/` route.
+To make sure Express has templates to render, create a new folder called `views`, then create a new file in there called `layout.hbs`. When you tell Express to render a view, it will first render `layout.hbs` and put the content of the view inside the {% raw %}`{{{body}}}`{% endraw %} tag. This lets you set up a skeleton for the app. Here's some basic HTML using [Bootstrap](https://getbootstrap.com/) that will give you some nice styling without needing to write any CSS. This will also render the `title` passed into the context in your `/` route.
 
 **views/layout.hbs**
+{% raw %}
 ```hbs
 <!doctype html>
 <html lang="en">
@@ -129,13 +130,16 @@ To make sure Express has templates to render, create a new folder called `views`
   </body>
 </html>
 ```
+{% endraw %}
 
 You'll also need to create a `index.hbs` view that will just be really basic for now:
 
 **views/index.hbs**
+{% raw %}
 ```hbs
 <p>{{content}}</p>
 ```
+{% endraw %}
 
 To make development a little easier, you can install `nodemon` with:
 
@@ -208,11 +212,12 @@ To tell the app to use this router, you'll have to add a few lines to `index.js`
      title: 'Hello, world!',
 ```
 
-Now for the `todo` template. It's a little larger, so I saved it for last. If you're familiar with HTML it shouldn't be too bad to follow. Handlebars adds a few features that let you access variables. In this case, you're using an `{{#if}}` block to render something special if there aren't any items, as well as an `{{#each}}` block to render each of the list items with minimal markup.
+Now for the `todo` template. It's a little larger, so I saved it for last. If you're familiar with HTML it shouldn't be too bad to follow. Handlebars adds a few features that let you access variables. In this case, you're using an {% raw %}`{{#if}}`{% endraw %} block to render something special if there aren't any items, as well as an {% raw %}`{{#each}}`{% endraw %} block to render each of the list items with minimal markup.
 
 The only JavaScript used here is for automatically submitting the form when you change something. If JavaScript were disabled, this would still work when pressing the "Enter" key on your keyboard, thanks to the hidden button labeled "Autosave".
 
 **views/todo.hbs**
+{% raw %}
 ```hbs
 <form method="post">
   <div class="row">
@@ -256,6 +261,7 @@ The only JavaScript used here is for automatically submitting the form when you 
   </style>
 </form>
 ```
+{% endraw %}
 
 Now go to `http://localhost:3000/todo` and enter some items into your todo list.
 
@@ -358,14 +364,17 @@ Now modify your `index.js` file. Here you'll be adding the session and OIDC midd
 To make things a little easier when a user logs out, add a link to the to-do list from the home page.
 
 **views/index.hbs**
+{% raw %}
 ```hbs
 <p>{{content}}</p>
 <a href="/todo">Go to To-Do List</a>
 ```
+{% endraw %}
 
 You can also add a welcome message and a log out button to your `layout.hbs`.
 
 **views/layout.hbs**
+{% raw %}
 ```diff
 @@ -12,6 +12,12 @@
    </head>
@@ -381,6 +390,7 @@ You can also add a welcome message and a log out button to your `layout.hbs`.
        {{{body}}}
      </main>
 ```
+{% endraw %}
 
 For that to work, you'll need to add `userinfo` to the context when rendering views.
 
