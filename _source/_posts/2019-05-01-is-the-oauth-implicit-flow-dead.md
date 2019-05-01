@@ -390,7 +390,7 @@ If you'd like to dig deeper into these topics, here are a few resources:
 * [Source code from this blog post](https://github.com/aaronpk/pkce-vanilla-js)
 * [Interactive demo of PKCE](https://www.oauth.com/playground/authorization-code-with-pkce.html)
 * [Interactive demo of Implicit](https://www.oauth.com/playground/implicit.html)
-* [Why API Keys aren't Safe in Mobile Apps](https://developer.okta.com/blog/2019/01/22/oauth-api-keys-arent-safe-in-mobile-apps)
+* [Why API Keys aren't Safe in Mobile Apps](/blog/2019/01/22/oauth-api-keys-arent-safe-in-mobile-apps)
 
 Like what you learned today? Follow us on [Twitter](https://twitter.com/oktadev), and subscribe to our [YouTube channel](https://www.youtube.com/channel/UC5AMiWqFVFxF1q9Ya1FuZ_Q) for more awesome content!
 
