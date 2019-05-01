@@ -27,7 +27,7 @@ Now that it is possible to use the Authorization Code flow from a browser, we st
 
 Thankfully, this problem has already been solved, since the same issue applies to mobile apps as well. As we've [seen in the past](https://www.youtube.com/watch?v=H6MxsFMAoP8), native apps also can't safely use a client secret. The OAuth working group solved this problem several years ago with the PKCE extension to the Authorization Code flow.
 
-The Authorization Code flow with PKCE adds an additional step which allows us to protect the authorization code so that even if it is stolen during the redirect it will be useless by itself. You can read more about how PKCE works in our blog post, [OAuth 2.0 for Native and Mobile Apps](https://developer.okta.com/blog/2018/12/13/oauth-2-for-native-and-mobile-apps).
+The Authorization Code flow with PKCE adds an additional step which allows us to protect the authorization code so that even if it is stolen during the redirect it will be useless by itself. You can read more about how PKCE works in our blog post, [OAuth 2.0 for Native and Mobile Apps](/blog/2018/12/13/oauth-2-for-native-and-mobile-apps).
 
 ## The OAuth 2.0 Implicit Flow for Existing Apps
 
