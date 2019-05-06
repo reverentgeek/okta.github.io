@@ -13,15 +13,15 @@ image: blog/featured/okta-php-headphones.jpg
 
 JSON Web Tokens (JWTs) have turned into the de-facto standard for stateless authentication of mobile apps, single-page web applications, and machine-to-machine communication. They have mostly superseded the traditional authentication method (server-side sessions) because of some key benefits:
 
-- they are decentralized and portable (you can request a token from a dedicated service, and then use it with multiple backends)
-- there is no need for server-side sessions - a JWT can contain all the required information about the user, and the information is protected against modification
-- they perform well and can scale easily
+- They are decentralized and portable (you can request a token from a dedicated service, and then use it with multiple backends)
+- There is no need for server-side sessions - a JWT can contain all the required information about the user, and the information is protected against modification
+- They perform well and can scale easily
 
 Before you start working with JWTs, it's important to understand that JWTs are encoded, and not encrypted - they do not hide the data contained inside, and the user can read it. You should not store any sensitive information inside a JWT.
 
 There are a large number of libraries designed to help you work with JWTs in your application. In this article, I will first walk you through building and verifying your own JWTs using the [firebase/php-jwt](https://github.com/firebase/php-jwt) package. Then I will show you how to create a machine-to-machine app in Okta, and use the Client Credentials Flow to get a JWT access token from your Okta server.
 
-The requirements for completing the examples are: Okta account (free), PHP, Composer, and openssl command line tools.
+The requirements for completing the examples are: Okta account (free), PHP, Composer, and `openssl` command line tools.
 
 ## Why Okta?
 
@@ -29,7 +29,7 @@ Okta is an API service that allows you to create, edit, and securely store user 
 
 There are different authentication flows in Okta, depending on if the client application is public or private and if there is a user involved or the communication is machine-to-machine only. The Client Credentials Flow that you'll implement is best suited for machine-to-machine communication where the client application is private (and can be trusted to hold a secret).
 
-## What Are JWTs
+## What Are JWTs?
 
 JWTs are base64-encoded strings. They are self-contained and cryptographically signed, which means that their content can be inspected and verified. JWTs can be signed using either a shared secret (with the HMAC algorithm) or a public/private key pair using RSA or ECDSA. If a malicious user changes the token contents, the JWT will fail the verification.
 
@@ -39,7 +39,7 @@ The header component contains information about the signing method. The payload 
 
 If you want to learn more about how to use JWTs securely, and how to build and verify them from scratch in PHP (without using any external libraries), you can check my previous article [Create and Verify JWTs in PHP with OAuth 2.0](https://developer.okta.com/blog/2019/02/04/create-and-verify-jwts-in-php)
 
-## Using JWTs with OAuth 2.0 and OpenID Connect
+## Using JWTs with OAuth 2.0 and OpenID Connect in PHP
 
 Before explaining the role of JWTs in OAuth 2.0 and OpenID Connect, it's important to clarify the concepts of authentication and authorization in information security.
 
@@ -58,7 +58,8 @@ The OIDC ID tokens include the following common claims:
 - The `iat` (issued at time) claim indicates when this ID token was issued
 - The `exp` (expiry time) claim is the time at which this token will expire
 - The `nonce` claim value should match whatever was passed when requesting the ID token
-## Creating and verifying JWTs
+
+## Creating and Verifying JWTs in PHP
 
 You'll use the `firebase/php-jwt` package to create and verify your own JWTs. I will also show you how to use base64 decoding to read the claims of the JWT and prove that it's simply encoded, and not encrypted (reminder: do not store any sensitive information in a JWT).
 
@@ -211,7 +212,7 @@ Array
 
 Note that when verifying a real JWT, you must also make sure that it's not expired or blacklisted. Also, make sure not to rely on the algorithm specified in the JWT, but use the same algorithm as the one used for signing the JWT! This is such an important topic that it requires some additional details in the next segment.
 
-## Security Attacks on the JWT Signing Algorithm
+## Security Attacks on the JWT Signing Algorithm in PHP
 
 If you look closely at the JWT header, you'll notice the `alg` field:
 
@@ -232,7 +233,7 @@ You can learn more about these (and other) attacks by reading
 
 Conclusion: always use the same algorithm for signing and verifying JWTs. Disregard the algorithm specified in the JWT header.
 
-## Creating a Machine-to-Machine Application in Okta
+## Create a Machine-to-Machine Application in PHP and Verify JWTs
 
 In this section, I'll show you how to create a machine-to-machine Application in Okta and how to use the `okta/jwt-verifier` library to get JWT access tokens from your Okta authorization server through the Client Credentials Flow.
 
@@ -258,7 +259,7 @@ Go to **Api > Authorization Servers**, take note of the `Issuer URI` field (you 
 
 You should've copied 4 values if you did everything correctly: `Client Id`, `Client Secret`, `Issuer URI`, and `Scope` (`token_auth`). 
 
-## Using the Client Credentials Flow to Generate Access Tokens 
+## Use the Client Credentials Flow to Generate JWT Access Tokens in PHP
 
 I'll show you how to get an access token from your Okta authorization server for your machine-to-machine application, and how to verify a token (if received by a third party). We'll use the `okta/jwt-verifier` library.
 
@@ -408,7 +409,7 @@ If the token is invalid or expired, you will see an error message.
 
 That's the gist of JWTs and Okta's Client Credentials Flow. There's much more to learn about these topics though, check the resources in the next section to find some useful links for further exploration.
 
-## Learn More About JWTs, OAuth 2.0, OpenID, Okta
+## Learn More About JWTs in PHP, OAuth 2.0, and OpenID Connect
 
 You can find the whole code example here: 
 [GitHub link](https://github.com/oktadeveloper/okta-php-core-token-auth)
