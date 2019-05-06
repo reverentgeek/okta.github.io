@@ -39,7 +39,7 @@ Once you've got your shiny new Okta account and you've logged into the dashboard
 
 ## Create an Okta Application
 
-The next thing you need to do is create an Okta application. Okta allows you to secure as many different websites, mobile apps, and API services as you want, so you'll need to create an application for each so you know which users can log into which apps. To do this, click the **Applications** tab at the top of the screen and then create **Add Application**. 
+The next thing you need to do is create an Okta application. Okta allows you to secure as many different websites, mobile apps, and API services as you want, so you'll need to create an application for each so you know which users can log into which apps. To do this, click the **Applications** tab at the top of the screen and then create **Add Application**.
 
 {% img blog/add-authentication-to-any-web-page-in-10-minutes/okta-create-app.gif alt:"Okta Create App" %}{: .center-image }
 
@@ -94,7 +94,7 @@ Now that you've got a simple web page, let's add authentication to it!
 
 The first thing you need to do is define a div in your HTML page that will eventually be transformed into a super stylish login form.
 
-You can do this by simply defining a `<div id="sign-in-container"></div>` anywhere in your page. In my case, I'm going to modify the simple web page above and drop the box in right below the big jumbotron element:
+You can do this by simply defining a `<div id="okta-login-container"></div>` anywhere in your page. In my case, I'm going to modify the simple web page above and drop the box in right below the big jumbotron element:
 
 ```html
 <!doctype html>
@@ -117,35 +117,19 @@ You can do this by simply defining a `<div id="sign-in-container"></div>` anywhe
         You are not logged in. Get outta here! Shoo! >:S
       </div>
       <!-- where the sign-in form will be displayed -->
-      <div id="sign-in-container"></div>
+      <div id="okta-login-container"></div>
     </div>
   </body>
 </html>
 ```
 
-After that, you'll need to copy the following JavaScript code into the `head` element of your page. This code will load the [Okta widget](https://github.com/okta/okta-signin-widget), which is what makes all this fancy authentication functionality work:
+After that, you'll need to copy the following JavaScript code into the `head` element towards the top of your page. This code will load the [Okta widget](https://github.com/okta/okta-signin-widget), which is what makes all this fancy authentication functionality work:
 
 ```html
-<head>    
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.
-css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin
-="anonymous">
-  <title>Simple Web Page</title>
-  <style>
-    h1 {
-      margin: 2em 0;
-    }
-  </style>
-  <!-- widget stuff here -->
-  <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.9.0/js/okta-sign-in.
-min.js" type="text/javascript"></script>
-  <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.9.0/css/okta-sign-in.
-min.css" type="text/css" rel="stylesheet"/>
-  <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.9.0/css/okta-theme.cs
-s" type="text/css" rel="stylesheet"/>
-</head>
+<!-- widget stuff here -->
+<script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/js/okta-sign-in.min.js" type="text/javascript"></script>
+<link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-sign-in.min.css" type="text/css" rel="stylesheet"/>
+<link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-theme.css" type="text/css" rel="stylesheet"/>
 ```
 
 Once you've got the Okta widget loaded up, the last thing you need to do is initialize the widget, give it some configuration data, and tell it what to do. Copy the code below into the bottom of your HTML page, directly above the closing `body` tag:
@@ -159,8 +143,8 @@ Once you've got the Okta widget loaded up, the last thing you need to do is init
     clientId: "{{ YOUR_APP_CLIENT_ID }}",
     authParams: {
       issuer: "{{ YOUR_ORG_URL }}/oauth2/default",
-      responseType: ["token", "id_token"],
-      display: "page"
+      responseType: ['token', 'id_token'],
+      display: 'page'
     }
   });
 
@@ -171,10 +155,10 @@ Once you've got the Okta widget loaded up, the last thing you need to do is init
         var accessToken = res[0];
         var idToken = res[1]
 
-        oktaSignIn.tokenManager.add("accessToken", accessToken);
-        oktaSignIn.tokenManager.add("idToken", idToken);
+        oktaSignIn.tokenManager.add('accessToken', accessToken);
+        oktaSignIn.tokenManager.add('idToken', idToken);
 
-        window.location.hash = "";
+        window.location.hash='';
         document.getElementById("messageBox").innerHTML = "Hello, " + idToken.claims.email + "! You just logged in! :)";
       },
       function error(err) {
@@ -188,10 +172,8 @@ Once you've got the Okta widget loaded up, the last thing you need to do is init
         document.getElementById("messageBox").innerHTML = "Hello, " + res.login + "! You are *still* logged in! :)";
         return;
       }
-
-      // If we get here, the user is not logged in, so we should show the sign-in form.
       oktaSignIn.renderEl(
-        { el: '#sign-in-container' },
+        { el: '#okta-login-container' },
         function success(res) {},
         function error(err) {
           console.error(err);
@@ -203,7 +185,7 @@ Once you've got the Okta widget loaded up, the last thing you need to do is init
 ```
 {% endraw %}
 
-**NOTE**: Don't forget to replace {% raw %}`{{ YOUR_ORG_URL }}`{% endraw %} and {% raw %}`{{ YOUR_CLIENT_ID}}`{% endraw %} with your **Org URL** and **Client ID** values that you copied down earlier when you set up Okta.
+**NOTE**: Don't forget to replace {% raw %}`{{ YOUR_ORG_URL }}`{% endraw %} and {% raw %}`{{ YOUR_APP_CLIENT_ID}}`{% endraw %} with your **Org URL** and **Client ID** values that you copied down earlier when you set up Okta.
 
 If you now go ahead and view the page again, you'll see a shiny new login form on your page:
 
