@@ -98,7 +98,6 @@ You can do this by simply defining a `<div id="sign-in-container"></div>` anywhe
 
 ```html
 <!doctype html>
-<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
