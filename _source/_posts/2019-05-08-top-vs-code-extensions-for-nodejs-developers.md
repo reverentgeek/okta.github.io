@@ -2,7 +2,7 @@
 layout: blog_post
 title: "Top 10 Visual Studio Code Extensions for Node.js"
 author: reverentgeek
-description: "Here are my recommendations for the essential Visual Studio Code extensions for Node.js developers."
+description: "Our recommendations for the essential Visual Studio Code extensions for Node.js developers."
 tags: [nodejs, vscode, javascript, extensions]
 tweets:
  - "VS @code is awesome for @nodejs development! Here are the top 10 VS Code extensions you need!"
