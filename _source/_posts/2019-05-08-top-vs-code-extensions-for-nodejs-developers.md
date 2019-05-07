@@ -5,19 +5,41 @@ author: reverentgeek
 description: "Here are my recommendations for the essential Visual Studio Code extensions for Node.js developers."
 tags: [nodejs, vscode, javascript, extensions]
 tweets:
-  - "VS @code is awesome for @nodejs development. Here are the top 10 VS code extensions you need!"
-  - ""
-  - ""
+ - "VS @code is awesome for @nodejs development! Here are the top 10 VS Code extensions you need!"
+ - "Are you a @nodejs developer new to VS @code? Check out the top 10 VS Code extensions you need!"
+ - "VS @code is quickly becoming one of the most popular code editors. Is it good for @nodejs development? Absolutely! Here are the top 10 VS Code extensions you need!"
 image: blog/vscode-extensions-for-nodejs/vscode-extensions-for-nodejs.jpg
 ---
 
-I am amazed at the adoption of [Visual Studio Code](https://code.visualstudio.com/) by developers from all platforms and languages. According to the [2019 Stack Overflow Developer Survey](https://insights.stackoverflow.com/survey/2019#technology-_-most-popular-development-environments), VS Code is dominating. The primary reasons I use VS Code are its great support for debugging JavaScript and Node.js code, and how easy it is to customize with free extensions available in [Visual Studio Marketplace](https://marketplace.visualstudio.com/VSCode).
+I am amazed at the adoption of Visual Studio Code by developers from all platforms and languages. According to the 2019 Stack Overflow Developer Survey, VS Code is dominating. The primary reasons I use VS Code are its great support for debugging JavaScript and Node.js code, and how easy it is to customize with free extensions available in Visual Studio Marketplace.
 
 However, there are thousands of extensions available! How do you know which ones are good to use?
 
 One way is to look at an extensions average rating and the number of downloads to gauge its popularity. Another way is to read personal opinion posts like this one. And here you are!
 
 Here are my top picks for Visual Studio Code extensions for Node.js developers.
+
+{% img blog/vscode-extensions-for-nodejs/vscode-extensions-for-nodejs.jpg alt:"Top 10 VS Code Extensions for Node.js" width:"648" %}{: .center-image }
+
+## Bracket Pair Colorizer 2
+
+I try to keep my code as simple as possible and not nest too many things. Unfortunately, sometimes it is unavoidable. [Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2) colorizes matching brackets, making it easier to visually see which opening and closing brackets, braces, or parentheses belong to each other.
+
+{% img blog/vscode-extensions-for-nodejs/bracket-pair-colorizer.gif alt:"npm intellisense module autocomplete" width:"648" %}{: .center-image }
+
+## npm
+
+The [npm](https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script) extension provides two features: running npm scripts defined in the `package.json` in the editor and validating the packages listed in the `package.json`.
+
+{% img blog/vscode-extensions-for-nodejs/npm-palette.gif alt:"Adds npm commands to Command Palette" width:"800" %}{: .center-image }
+
+{% img blog/vscode-extensions-for-nodejs/npm-validate.gif alt:"Validates package.json" width:"672" %}{: .center-image }
+
+## npm Intellisense
+
+The [npm Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense) extension introduces autocomplete behavior when you use `require()` to import modules into your code.
+
+{% img blog/vscode-extensions-for-nodejs/npm-intellisense.gif alt:"npm intellisense module autocomplete" width:"696" %}{: .center-image }
 
 ## ESLint
 
@@ -40,49 +62,29 @@ My current `.eslintrc.js` looks like the following.
 
 ```javascript
 module.exports = {
-  env: {
-    commonjs: true,
-    es6: true,
-    node: true
-  },
-  extends: "eslint:recommended",
-  globals: {},
-  parserOptions: {
-    ecmaVersion: 2018
-  },
-  rules: {
-    indent: [ "error", "tab" ],
-    "linebreak-style": [ "error", "unix" ],
-    quotes: [ "error", "double" ],
-    semi: [ "error", "always" ],
-    "array-bracket-spacing": [ "error", "always" ],
-    "object-curly-spacing": [ "error", "always" ],
-    "space-in-parens": [ "error", "always" ]
-  }
+ env: {
+   commonjs: true,
+   es6: true,
+   node: true
+ },
+ extends: "eslint:recommended",
+ globals: {},
+ parserOptions: {
+   ecmaVersion: 2018
+ },
+ rules: {
+   indent: [ "error", "tab" ],
+   "linebreak-style": [ "error", "unix" ],
+   quotes: [ "error", "double" ],
+   semi: [ "error", "always" ],
+   "array-bracket-spacing": [ "error", "always" ],
+   "object-curly-spacing": [ "error", "always" ],
+   "space-in-parens": [ "error", "always" ]
+ }
 };
 ```
 
 {% img blog/vscode-extensions-for-nodejs/eslint.gif alt:"ESLint extension automatically fixes issues on save" width:"800" %}{: .center-image }
-
-## npm
-
-The [npm](https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script) extension provides two features: running npm scripts defined in the `package.json` in the editor, and validating the packages listed in the `package.json`.
-
-{% img blog/vscode-extensions-for-nodejs/npm-palette.gif alt:"Adds npm commands to Command Palette" width:"800" %}{: .center-image }
-
-{% img blog/vscode-extensions-for-nodejs/npm-validate.gif alt:"Validates package.json" width:"672" %}{: .center-image }
-
-## npm Intellisense
-
-The [npm Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense) extension introduces autocomplete behavior when you use `require()` to import modules into your code.
-
-{% img blog/vscode-extensions-for-nodejs/npm-intellisense.gif alt:"npm intellisense module autocomplete" width:"696" %}{: .center-image }
-
-## Bracket Pair Colorizer 2
-
-I try to keep my code as simple as possible and not nest too many things. Unfortunately, sometimes it is unavoidable. [Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2) colorizes matching brackets, making it easier to visually see which opening and closing brackets, braces, or parentheses belong to each other.
-
-{% img blog/vscode-extensions-for-nodejs/bracket-pair-colorizer.gif alt:"npm intellisense module autocomplete" width:"648" %}{: .center-image }
 
 ## Code Spell Checker
 
@@ -122,15 +124,15 @@ The [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PK
 
 {% img blog/vscode-extensions-for-nodejs/material-icon-theme.png alt:"Material Icon Theme" width:"327" %}{: .center-image }
 
-## Honorable Mentions
+## Honorable Mention VS Code Extensions for Node.js
 
-These extensions didn’t make the top 10 list, but are still useful in some scenarios for Node.js developers!
+These extensions didn't make the top 10 list, but are still useful in some scenarios for Node.js developers!
 
 * [Encode Decode](https://marketplace.visualstudio.com/items?itemName=mitchdenny.ecdc) - Adds commands to quickly convert text to and from various formats, such as Base64, HTML entities, and JSON byte arrays.
 * [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) - Make HTTP requests directly from your editor and view the responses in a separate window. Great for testing and prototyping APIs.
 * [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments) - This extension helps you create more "human-friendly" comments by adding highlights to different types of comments.
 
-## Learn More about Building Secure Node Apps 
+## Learn More about Building Secure Node.js Apps in Visual Studio Code
 
 Want to learn more about building secure Node.js applications? Check out these other posts!
 
@@ -138,3 +140,9 @@ Want to learn more about building secure Node.js applications? Check out these o
 * [Create and Verify JWTs with Node](/blog/2018/11/13/create-and-verify-jwts-with-node)
 * [Modern Token Authentication in Node with Express](/blog/2019/02/14/modern-token-authentication-in-node-with-express)
 * [Build a REST API with Node and Postgres](/blog/2019/03/27/build-rest-api-with-node-and-postgres)
+
+Additional links you may find useful!
+
+* [Visual Studio Code](https://code.visualstudio.com/)
+* [Visual Studio Marketplace](https://marketplace.visualstudio.com/VSCode)
+* [2019 Stack Overflow Developer Survey](https://insights.stackoverflow.com/survey/2019#technology-_-most-popular-development-environments)
