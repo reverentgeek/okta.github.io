@@ -214,5 +214,5 @@ As always, we'd love to hear from you about this post, or really anything else! 
 
 **Changelog:**
 
-* 2019-05-17: The Lasso project was renamed to Vouch in 2019, so all references to Lasso in this post have been updated to Vouch
+* May 17, 2019: The Lasso project was renamed to Vouch in 2019, so all references to Lasso in this post have been updated to Vouch
 
