@@ -474,7 +474,7 @@ const context = async ({ req }) => {
 const server = new ApolloServer({ typeDefs, resolvers, context });
 ```
 
-To piece this all together, you can now throw an error in your add, edit, and delete mutations before actually performing any work, unless of course the user is properly logged in. In order to check for the user, you’ll need to add `context` as a third input parameter to the resolvers.
+To piece this all together, you can now throw an error in your add, edit, and delete mutations before actually performing any work, unless of course the user is properly logged in. In order to check for the user, you'll need to add `context` as a third input parameter to the resolvers.
 
 ```javascript
   addQuote: async (parent, quote, context) => {
