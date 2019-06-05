@@ -227,7 +227,7 @@ Transfer-Encoding: chunked
 
 Angular CLI is a command-line utility that can generate an Angular project for you. Not only can it create new projects, but it can also generate code. It's a convenient tool because it also offers commands that will build and optimize your project for production. It uses webpack under the covers for building.
 
-Install the latest version of Angular CLI (which is version v8.0.0-rc.3 at the time of this writing).
+Install the latest version of Angular CLI (which is version 8.0.1 at the time of this writing).
 
 ```bash
 npm i -g @angular/cli@8.0.1
@@ -944,15 +944,16 @@ Then update `client/src/app/home/home.component.html` to use Angular Material an
 ```
 {% endraw %}
 
-Since you're using Material components in `HomeComponent`, which is managed by the newly-added `client/src/app/auth-routing.module.ts`, you'll need to import `MatCardModule`.
+Since you're using Material components in `HomeComponent`, which is managed by the newly-added `client/src/app/auth-routing.module.ts`, you'll need to import `MatButtonModule` and `MatCardModule`.
 
 ```ts
-import { MatCardModule } from '@angular/material';
+import { MatButtonModule, MatCardModule } from '@angular/material';
 
 @NgModule({
   ...
   imports: [
     ...
+    MatButtonModule,
     MatCardModule
   ],
   ...
@@ -1006,4 +1007,4 @@ If you have any questions, please don't hesitate to leave a comment below, or as
 <a name="changelog"></a>
 **Changelog:**
 
-* Jun 4, 2019: Updated to use Angular CLI 8.0.1, Angular 8.0.1, and Angular Material 8.0.0. You can see the example app changes in https://github.com/oktadeveloper/okta-spring-boot-2-angular-8-example/pull/3[okta-spring-boot-2-angular-8-example#3]; changes to this post can be viewed in https://github.com/okta/okta.github.io/pull/2911[okta.github.io#2911].
+* Jun 4, 2019: Updated to use Angular CLI 8.0.1, Angular 8.0.1, and Angular Material 8.0.0. You can see the example app changes in [okta-spring-boot-2-angular-8-example#3](https://github.com/oktadeveloper/okta-spring-boot-2-angular-8-example/pull/3); changes to this post can be viewed in [okta.github.io#2911](https://github.com/okta/okta.github.io/pull/2911).
