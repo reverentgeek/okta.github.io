@@ -2,7 +2,7 @@
 layout: blog_post
 title: "7 Ways an OAuth Access Token is like a Hotel Key Card"
 author: aaronpk
-description: "Learn 7 things OAuth access tokens have in common with a hotel key card"
+description: "Learn 7 things OAuth 2.0 access tokens have in common with a hotel key card."
 tags: [ oauth, accesstoken ]
 tweets:
 - "Here's 7 ways an #oauth access token is like a hotel key card"
