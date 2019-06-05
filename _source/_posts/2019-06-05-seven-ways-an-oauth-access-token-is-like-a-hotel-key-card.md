@@ -58,7 +58,7 @@ When you're developing your own API, keep this in mind. Try to find places that 
 
 When you get a hotel key, it's not like a regular physical key that will always open a certain door. Hotel keys will stop working at the end of your stay because the expiration of the access is encoded into the card.
 
-An OAuth access token will expire after some amount of time defined by the authorization server. Access tokens can have a short lifetime, and applications will have to go back to the authorization server to get a new access token after their initial one expires. Using short-lived access tokens with long-lived refresh tokens provides a good balance between performance and security. You can read more about [access token lifetimes at oauth.com[(https://www.oauth.com/oauth2-servers/access-tokens/access-token-lifetime/).
+An OAuth access token will expire after some amount of time defined by the authorization server. Access tokens can have a short lifetime, and applications will have to go back to the authorization server to get a new access token after their initial one expires. Using short-lived access tokens with long-lived refresh tokens provides a good balance between performance and security. You can read more about [access token lifetimes at oauth.com](https://www.oauth.com/oauth2-servers/access-tokens/access-token-lifetime/).
 
 ## Learn More about OAuth 2.0 and API Security
 
