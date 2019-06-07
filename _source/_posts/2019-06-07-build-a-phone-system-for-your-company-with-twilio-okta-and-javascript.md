@@ -334,7 +334,7 @@ Twilio thought of this early on made it easy to solve this problem using environ
 
 Finally, you'll want to check the box next to **Enable ACCOUNT_SID and AUTH_TOKEN**. This setting is necessary for sending text messages to Twilio in our SMS forwarding function. This setting will make your Twilio API keys available as environment variables automatically.
 
-And… That's the last bit of setup on the Twilio side! You've now got your business phone system almost ready to go, all you need now is a way to purchase numbers, set them up to run the code you just wrote, and start running things in production!
+And... That's the last bit of setup on the Twilio side! You've now got your business phone system almost ready to go, all you need now is a way to purchase numbers, set them up to run the code you just wrote, and start running things in production!
 
 ## Use twilify to Provision Your Company Phone System
 
