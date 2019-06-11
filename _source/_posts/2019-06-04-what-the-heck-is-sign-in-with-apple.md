@@ -161,7 +161,7 @@ key_id = ''
 
 ecdsa_key = OpenSSL::PKey::EC.new IO.read key_file
 
-headers => {
+headers = {
   'kid' => key_id
 }
 
