@@ -6,6 +6,11 @@ TARGET_S3_BUCKET="s3://developer.okta.com-production"
 source "${0%/*}/setup.sh"
 source "${0%/*}/helpers.sh"
 
+# Don't attempt to publish pull requests
+if [[ "${TRAVIS_PULL_REQUEST}" != "false" ]]; then
+  exit ${BUILD_FAILURE}
+fi
+
 interject "Building HTML in $(pwd)"
 if ! generate_html;
 then
