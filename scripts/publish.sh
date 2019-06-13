@@ -6,9 +6,6 @@ TARGET_S3_BUCKET="s3://developer.okta.com-production"
 source "${0%/*}/setup.sh"
 source "${0%/*}/helpers.sh"
 
-# Get the Runscope trigger ID
-get_secret prod/tokens/runscope_trigger_id RUNSCOPE_TRIGGER_ID
-
 interject "Building HTML in $(pwd)"
 if ! generate_html;
 then
@@ -39,14 +36,5 @@ if [[ "${TRAVIS_BRANCH}" == "${DEPLOY_BRANCH}" ]]; then
     fi
 fi
 # ----- End (Permanent) Deploy to S3 -----
-
-# Trigger Runscope tests
-if [[ "${TRAVIS_BRANCH}" == "${DEPLOY_BRANCH}" ]]; then
-    STAGING_BASE_URL_RUNSCOPE="https://developer.trexcloud.com"
-else
-    STAGING_BASE_URL_RUNSCOPE="https://developer.okta.com"
-fi
-
-curl -I -X GET "https://api.runscope.com/radar/bucket/${RUNSCOPE_TRIGGER_ID}/trigger?base_url=${STAGING_BASE_URL_RUNSCOPE}"
 
 exit ${SUCCESS}
