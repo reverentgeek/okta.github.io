@@ -12,7 +12,9 @@ before_install:
 - bundle install
 - nvm install $(cat .nvmrc)
 script: "./scripts/travis.sh"
-after_script: "./scripts/stop-sauce-connect.sh"
+after_script:
+- "./scripts/stop-sauce-connect.sh"
+- "./scripts/publish.sh"
 dist: trusty
 env:
   global:

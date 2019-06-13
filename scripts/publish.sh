@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEPLOY_BRANCH="weekly"
+DEPLOY_BRANCH="source"
 DEPLOY_ENVIRONMENT=""
 TARGET_S3_BUCKET="s3://developer.okta.com-production"
 
