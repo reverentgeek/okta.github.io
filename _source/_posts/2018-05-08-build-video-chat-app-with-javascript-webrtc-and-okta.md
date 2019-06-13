@@ -21,8 +21,6 @@ By the time you've gone through this guide, you'll have a much better understand
 
 Let's get started.
 
-{% img blog/vchat-app/chatapp.orig.gif alt:"Chat App Demo" width:"800" %}{: .center-image }
-
 **NOTE**: Want to play around with the chat app in real-time? You can do so here: https://naughty-bhabha-908faa.netlify.com You can also view the source code for the app we'll be building [on GitHub](https://github.com/rdegges/chatapp).
 
 ## Create the Web Page
@@ -743,8 +741,6 @@ function handleLogin() {
 ```
 
 By calling `enableVideo` when appropriate above, everything should now be working nicely! You can test this out by opening your page and giving things a go:
-
-{% img blog/vchat-app/vchat-live-test.gif alt:"vchat live test" width:"800" %}{: .center-image }
 
 Not bad, right?
 
