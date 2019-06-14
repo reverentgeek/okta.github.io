@@ -391,9 +391,9 @@ Success! You can now move forward with adding support for more tokens.
 
 This post only scratches the surface of what Vue and VuePress can do. Want to learn more? Check out these other great posts!
 
-* [Build a Basic CRUD App with Vue.js and Node](https://developer.okta.com/blog/2018/02/15/build-crud-app-vuejs-node)
-* [Add Identity Management to Your Vue.js App](https://developer.okta.com/code/vue/)
-* [Add Authentication to Any Web Page in 10 Minutes](https://developer.okta.com/blog/2018/06/08/add-authentication-to-any-web-page-in-10-minutes)
-* [What the Heck is OAuth?](https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth)
+* [Build a Basic CRUD App with Vue.js and Node](/blog/2018/02/15/build-crud-app-vuejs-node)
+* [Add Identity Management to Your Vue.js App](/code/vue/)
+* [Add Authentication to Any Web Page in 10 Minutes](/blog/2018/06/08/add-authentication-to-any-web-page-in-10-minutes)
+* [What the Heck is OAuth?](/blog/2017/06/21/what-the-heck-is-oauth)
 
 You can find the complete project source code on [GitHub](https://github.com/oktadeveloper/okta-vuepress-authentication-personalization-example).
