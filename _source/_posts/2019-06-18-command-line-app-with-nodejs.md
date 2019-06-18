@@ -15,14 +15,15 @@ Command line applications (CLI) are often the core tools for automating tasks, s
 
 Node.js is a great solution for writing CLI apps. Node.js itself has built-in libraries for reading and writing files, launching other applications, and basic network communication. Beyond that, there are thousands of packages available on `npm` for just about any kind of task imaginable.
 
-In this tutorial, you will learn how to create a Command Line Application with Node.js that can be used on Windows, macOS, or Linux. You will also learn how to style the output of a Node.js CLI application, accept arguments (parameters), and how to authenticate an API from the command line using OAuth and PKCE.
+In this tutorial, you will learn how to create a Command Line Application with Node.js that can be used on Windows, macOS, or Linux. You will also learn how to style the output of a Node.js CLI application, accept arguments (parameters), and how to authenticate an API from the command line using OAuth 2.0 and PKCE.
 
 ## Build Your First Node.js Command Line Application
 
-First, let's make sure you have the tools required. You will need the following:
+First, let's make sure you have the tools required. To complete this tutorial, you will need the following:
 
 * A recent version of [Node.js](https://nodejs.org) downloaded and installed
 * A good text editor, such as [Visual Studio Code](https://code.visualstudio.com)
+* A [free Okta developer account](https://developer.okta.com/signup/)
 
 Next, open your computer's command prompt (Windows) or terminal (macOS/Linux). Change the current directory to the folder where you save your documents or projects. Enter the following commands to create a new project folder and initialize the project.
 
@@ -203,7 +204,7 @@ Hello, me!
 
 > Note: The value displayed for `--version` comes from the version number in the `package.json` file.
 
-## Call an API from the Command Line
+## Call Your Node.js API from the Command Line
 
 A common scenario in automating tasks is to call an API endpoint to get data or to send data to an API endpoint. In this part of the tutorial, you are going to fetch a random joke from a joke API and display it in the console.
 
@@ -241,7 +242,7 @@ axios.get(url, { headers: { Accept: "application/json" } })
 
 In addition to responding with a greeting, the CLI application will now retrieve a random joke using `axios` and display it immediately after the greeting.
 
-### Add a Search Argument to the Command Line Application
+### Add a Search Argument to Your Node.js Command Line Application
 
 You can take the CLI application one step further by supporting a search argument. Replace the contents of `bin/index.js` with the following code.
 
@@ -339,7 +340,7 @@ Next, click on the **Dashboard** link. At the top of the dashboard on the right 
 
 {% img blog/command-line-apps-with-nodejs/okta-07-org-url.png alt:"Your Okta Org URL" width:"785" %}{: .center-image }
 
-### Update the Node.js CLI Application
+### Update the Node.js Command Line Application
 
 To support the PKCE authentication flow, your CLI application needs a few more libraries. In this tutorial, you will use `hapi` to create a web server to handle the authentication callback. `dotenv` is used to read configuration settings from the `.env` file. You will use `open` to launch the default browser for login. And, `uuid` is used to help generate a unique private key to exchange with the authentication server.
 
@@ -362,7 +363,6 @@ const uuid = require( "uuid/v1" );
 const base64url = str => {
  return str.replace( /\+/g, "-" ).replace( /\//g, "_" ).replace( /=+$/, "" );
 };
-
  module.exports = ( { oktaOrgUrl, clientId, scopes, serverPort } ) => {
  if ( !oktaOrgUrl || !clientId || !scopes || !serverPort ) {
    throw new Error( "Okta organization URL, client ID, scopes, and server port are required." );
@@ -418,7 +418,6 @@ const base64url = str => {
      throw err;
    }
  };
-
   // Start server and begin auth flow
  const executeAuthFlow = () => {
    return new Promise( async ( resolve, reject ) => {
@@ -448,10 +447,9 @@ const base64url = str => {
 
      const codeChallenge = base64url( crypto.createHash( "sha256" ).update( codeVerifier ).digest( "base64" ) );
      const authorizeUrl = buildAuthorizeUrl( codeChallenge );
-     open( authorizeUrl ); 
+     open( authorizeUrl );
    } );
  };
-
   return {
    executeAuthFlow
  };
@@ -533,9 +531,9 @@ Now, you are ready to test your new CLI authentication! After logging in, you sh
 pkce-login
 ```
 
-## Learn More About Command Line Applications and PKCE
+## Learn More About Command Line Applications and PKCE in Node.js
 
-In this tutorial, you have learned the basics for creating command line applications using Node.js. You also have a valuable authentication module you can easily reuse with any OAuth PKCE flow. You can find all the source code for this tutorial on [GitHub](https://github.com/oktadeveloper/okta-node-cli-example).
+In this tutorial, you have learned the basics for creating command line applications using Node.js. You also have a valuable authentication module you can easily reuse with any OAuth 2.0 PKCE flow. You can find all the source code for this tutorial on [GitHub](https://github.com/oktadeveloper/okta-node-cli-example).
 
 * [OAuth 2.0 from the Command Line](https://developer.okta.com/blog/2018/07/16/oauth-2-command-line)
 * [Use Multi-factor Authentication from the Command Line](https://developer.okta.com/blog/2018/06/22/multi-factor-authentication-command-line)
