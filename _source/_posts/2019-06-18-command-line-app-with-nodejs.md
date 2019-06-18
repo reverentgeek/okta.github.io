@@ -51,7 +51,7 @@ Next, open the `package.json` file in the root of the project in your text edito
  }
 ```
 
-> Note: Don't forget to add a comma after the previous value. All key/value pairs are separated by commas. Often the most common mistake when editing a JSON file is leaving out a comma.
+> Note: Don't forget to add a comma after the previous value. All key/value pairs are separated by commas. The most common mistake when editing a JSON file is leaving out a comma.
 
 Your entire `package.json` file should look similar to the following.
 
@@ -463,12 +463,12 @@ The `authClient.js` module exports one function that accepts an object with the 
 Calling `executeAuthFlow` goes through the following steps:
 
 1. A new web server is created using `hapi` with one `/callback` route (e.g. `http://localhost:8080/callback`).
-1. The `codeChallenge` private key is generated.
+1. The `codeVerifier` private key is generated and hashed to create the `codeChallenge`.
 1. The function opens the default browser and navigates to the authorization server.
 1. If not already logged in, the user must log in to the authentication server.
 1. Once authenticated, the browser is redirected to the `/callback` URL with a code.
-1. The callback handler uses the code and the `codeChallenge` value to request an authentication token.
-1. The authorization server verifies the code and `codeChallenge` values and replies with an authentication token.
+1. The callback handler uses the code and the `codeVerifier` value to request an authentication token.
+1. The authorization server verifies the `code`, hashes the `codeVerifier` and compares it to the `codeChallenge` value it stored earlier and replies with an authentication token.
 1. The function uses the returned token to call another API endpoint to retrieve account information.
 1. The token and account information are returned to the caller that invoked `executeAuthFlow`.
 
