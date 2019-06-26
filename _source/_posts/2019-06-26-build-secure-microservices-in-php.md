@@ -116,7 +116,6 @@ Create the Controller file and `create()` method (for now, it will simply valida
 
 ```php
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -124,7 +123,7 @@ use Illuminate\Http\Request;
 class TranscriptionController extends Controller
 {
     public function create(Request $request)
-    
+    {
         $this->validate($request, [
             'email' => 'required|email',
             'audio-file-url' => 'required|url'
@@ -136,7 +135,7 @@ class TranscriptionController extends Controller
         ];
 
         return response()->json($message, 202);
-    
+    }
 }
 ```
 
@@ -167,7 +166,6 @@ Create a new file `/app/Http/Middleware/AuthenticateWithOkta.php` which will hol
 
 ```php
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -176,25 +174,25 @@ class AuthenticateWithOkta
 {
     /**
      * Handle an incoming request.
-     
+     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
-    
+    {
         if ($this->isAuthorized($request)) {
             return $next($request);
         } else {
             return response('Unauthorized.', 401);
-        
-    
+        }
+    }
 
     public function isAuthorized($request)
-    
+    {
         if (!$request->header('Authorization')) {
             return false;
-        
+        }
 
         $authType = null;
         $authData = null;
@@ -205,11 +203,10 @@ class AuthenticateWithOkta
         // If the Authorization Header is not a bearer type, return a 401.
         if ($authType != 'Bearer') {
             return false;
-        
+        }
 
         // Attempt authorization with the provided token
         try {
-
             // Setup the JWT Verifier
             $jwtVerifier = (new \Okta\JwtVerifier\JwtVerifierBuilder())
                 ->setAudience('api://default')
@@ -217,19 +214,19 @@ class AuthenticateWithOkta
                 ->setIssuer(getenv('ISSUER'))
                 ->build();
 
+
             // Verify the JWT from the Authorization Header.
             $jwt = $jwtVerifier->verify($authData);
         } catch (\Exception $e) {
-
             // We encountered an error, return a 401.
             return false;
-        
+        }
 
         return true;
-    
-
+    }
 }
 ```
+
 
 Register the middleware:
 
@@ -268,7 +265,9 @@ Now modify your original curl or Postman request to include the following header
 `Authorization: Bearer <put your access token here>`
 
 Now you should be able to run successful requests again, at least until your token expires (then you can simply get a new one).
+
 ## Put the Transcription Request on a Queue
+
 Things are about to get interesting! Your gateway receives requests but doesn't do anything with them yet. Let's put the requests on a queue and then you'll build a separate microservice to get jobs from the queue and perform the actual audio transcription (or pretend to do so).
 
 Sign up for a free AWS account, then find SQS in the menu:
@@ -321,7 +320,7 @@ use Aws\Sqs\SqsClient;
 class TranscriptionController extends Controller
 {
     public function create(Request $request)
-    
+    {
         $this->validate($request, [
             'email' => 'required|email',
             'audio-file-url' => 'required|url'
@@ -337,10 +336,11 @@ class TranscriptionController extends Controller
         $this->putMessageOnQueue($message);
 
         return response()->json($message, 202);
-    
+    }
+
 
     private function putMessageOnQueue($message)
-    
+    {
         $key = getenv('AWS_ACCESS_KEY_ID');
         $secret = getenv('AWS_SECRET_ACCESS_KEY');
 
@@ -358,8 +358,9 @@ class TranscriptionController extends Controller
         ));
 
         return $result;
-    
+    }
 }
+
 ```
 
 Test the `TranscriptionGateway` with Postman again and you should see a new message pop up on the `TRANSCRIBE` queue. You'll be able to see a dot appear in your AWS console under the **Monitoring** tab of the SQS queue.
@@ -395,10 +396,9 @@ Copy this file to `.env` and fill in your details (same as in the previous secti
     "require": {
         "aws/aws-sdk-php": "2.*",
         "vlucas/phpdotenv": "^3.3"
-    
+    }
 }
 ```
-
 
 `worker.php`
 
@@ -426,7 +426,6 @@ $client = SqsClient::factory([
 ]);
 
 while (true) {
-
     // wait for messages with 10 second long-polling
     $result = $client->receiveMessage([
         'QueueUrl'        => $queueUrl,
@@ -454,7 +453,7 @@ while (true) {
             'QueueUrl' => $queueUrl,
             'ReceiptHandle' => $receiptHandle,
         ]);
-    
+    }
 }
 ```
 
@@ -504,7 +503,7 @@ Copy this file to `.env` and fill in your details (same as in the previous secti
         "aws/aws-sdk-php": "2.*",
         "vlucas/phpdotenv": "^3.3",
         "swiftmailer/swiftmailer": "^6.0"
-    
+    }
 }
 ```
 
@@ -533,7 +532,6 @@ $client = SqsClient::factory([
 ]);
 
 while (true) {
-
     // wait for messages with 10 second long-polling
     $result = $client->receiveMessage([
         'QueueUrl'        => $notificationQueueUrl,
@@ -569,7 +567,7 @@ while (true) {
             'QueueUrl' => $notificationQueueUrl,
             'ReceiptHandle' => $receiptHandle,
         ]);
-    
+    }
 }
 ```
 
