@@ -21,7 +21,7 @@ It's not enough to code and build a project - it's important to do it *continuou
 
 If you are still manually doing things, take a look at the tools below that every ASP.NET / C# developer should know! They might make your life better.
 
-## Code Deployment & CI/CD Pipeline Automation
+## Code Deployment + CI/CD Pipeline Automation
 
 Here you'll find a few excellent tools to assist with deploying your code, and getting it integrated with your repository, to read any commits you have done and automatically push the changes.
 
@@ -31,7 +31,7 @@ The latest option from Microsoft is the fully integrated Azure DevOps offering, 
 
 [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/) 
 
-Part of Microsoft's Azure DevOps offering, Azure Pipelines is the traffic-cop style backbone of automation. It is platform and language agnostic, providing orchestration between any cloud provider, whether that's AWS or Azure itself. The pipeline itself is cloud-hosted, so there is no need to download and install anything. Lots of extensibility here, with a good built-in option for integrated testing and reporting. If you are just getting started with doing CI/CD in the .NET cloud-hosted world, the documentation is excellent and the workflows guide you the entire way.
+Azure Pipelines is the traffic-cop backbone of the Azure DevOps offerings. It is platform and language agnostic, providing orchestration between any cloud provider, whether that's AWS or Azure itself. The pipeline itself is cloud-hosted, so there is no need to download and install anything. Lots of extensibility here, with a good built-in option for integrated testing and reporting. If you are just getting started with doing CI/CD in the .NET cloud-hosted world, the documentation is excellent and the workflows guide you the entire way.
 
 [Kudu](https://github.com/projectkudu/kudu/wiki)
 
@@ -84,14 +84,16 @@ It can be difficult to quantify what "good" or "bad" code can be on a team proje
 [SonarC#](https://www.sonarsource.com/products/codeanalyzers/sonarcsharp.html)
 
 This is SonarSource's C# specific analyzer and works with Roslyn to create custom rule sets for your team project, including automating running tests. Prices vary depending on which of their tools you choose to use, but it is completely worth it. If you are looking for a quick way to level-up your developers and ensure code quality is always present, this is a great option. SonarC# lets your focus code reviews on important topics and eliminates the low-hanging fruit.
+
 ## DevOps Automation is a Key Skill for All .NET Developers
 
 These are just 5 of the top tools that many successful ASP.NET and .NET Core developers use to manage the growing needs for shipping code faster and more accurately. Now more than ever, developers should add DevOps experience to their resume, as it will become a natural requirement for jobs in the not-too-distant future.
 
 Do you have other DevOps automation tools that you love using? Share in the comments below!
+
 ## Learn More About ASP.NET and Secure User Management
 
-If you’d like to learn more about using secure OAuth 2.0 and user management in ASP.NET, we’ve also published a number of posts that might interest you:
+If you'd like to learn more about using secure OAuth 2.0 and user management in ASP.NET, we've also published a number of posts that might interest you:
 
 * [How to Secure Your .NET Web API with Token Authentication](/blog/2018/02/01/secure-aspnetcore-webapi-token-auth)
 * [Build a CRUD App with ASP.NET Framework 4.x Web API and Angular](/blog/2018/07/27/build-crud-app-in-aspnet-framework-webapi-and-angular)
