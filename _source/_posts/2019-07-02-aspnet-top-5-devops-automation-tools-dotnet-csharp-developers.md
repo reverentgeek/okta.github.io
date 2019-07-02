@@ -59,7 +59,7 @@ Code isn't the only thing that could use some automation. Often developers are a
 
 ### 4. Redgate SQL Toolbelt
 
-With some of the best headache-reducing products on the market for SQL databases, Redgate has created tools that assist developers with data scenarios that come up during software projects. I have personally reduced my SQL database troubleshooting down to a matter of hours instead of days by using their suite of products. The options below allow you get back to your code quicker with the helpfulness of database automation and analysis tooling. Redgate's products work with PowerShell, and have add-on extensions for Visual Studio and 
+With some of the best headache-reducing products on the market for SQL databases, Redgate has created tools that assist developers with data scenarios that come up during software projects. I have personally reduced my SQL database troubleshooting down to a matter of hours instead of days by using their suite of products. The options below allow you get back to your code quicker with the helpfulness of database automation and analysis tooling. Redgate's products work with PowerShell, and have add-on extensions for Visual Studio and VS Code.
 
 [SQL Change Automation](https://www.red-gate.com/products/sql-development/sql-change-automation/)
 
