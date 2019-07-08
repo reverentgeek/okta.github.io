@@ -13,7 +13,7 @@ image: blog/featured/okta-node-tile-books-mouse.jpg
 
 Every time I tell someone I am a software developer, they almost inevitably reply with, "You must be super smart, then." I don't feel any smarter than most other people. Truthfully, I feel dumber than most people I meet. To be fair, I do meet a lot of software developers.
 
-The preconception is that I am some sort of technical wiz, especially good at math. I assure you I am not. While I have a college degree, it is in Computer Information Systems (CIS) which was mostly a business degree with some programming classes mixed in. Actually, I started college as a music major. I've met many developers who also started off (or even graduated) as fine arts majors - music, art, philosophy, and theology. With so many “creative types” who have excelled in software development, why do people still consider software development a purely technical pursuit? And if software development **IS** a creative endeavor, why are computer science schools usually part of the math department?
+The preconception is that I am some sort of technical wiz, especially good at math. I assure you I am not. While I have a college degree, it is in Computer Information Systems (CIS) which was mostly a business degree with some programming classes mixed in. Actually, I started college as a music major. I've met many developers who also started off (or even graduated) as fine arts majors - music, art, philosophy, and theology. With so many "creative types" who have excelled in software development, why do people still consider software development a purely technical pursuit? And if software development **IS** a creative endeavor, why are computer science schools usually part of the math department?
 
 ## The Good Old Days
 
