@@ -687,7 +687,7 @@ To run your App, simply click **Run** in Visual Studio. You will be taken to the
 
 ## Learn More About Azure Cosmos DB + ASP.NET MVC + Okta
 
-You can find the complete source code on GitHub [here](https://github.com/SoftwareAssassin2000/ExpenseWebApp). Fail early. Keep it simple. Write clean code. Refactor, refactor, refactor. Test, test, test. Have fun coding!
+You can find the complete source code [on GitHub](https://github.com/oktadeveloper/azure-cosmosdb-example). Fail early. Keep it simple. Write clean code. Refactor, refactor, refactor. Test, test, test. Have fun coding!
 
 For further reading on the technologies covered in this tutorial, check out the following links:
 
