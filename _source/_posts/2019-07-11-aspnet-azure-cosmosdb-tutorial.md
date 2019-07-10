@@ -16,7 +16,7 @@ Cosmos DB is a planet-scale database capable of holding billions of records ("do
 To demonstrate their differences, check out a simple example query using both a relational database and Cosmos DB. When you query a relational database you get back a set of rows. All rows have the same columns and some may have relationships to other rows. Take a look:
 
 ```sql
-SELECT * FROM Items WHERE Name = ‘WebForm'
+SELECT * FROM Items WHERE Name = 'WebForm'
 ```
 
 **Record Found**
@@ -25,7 +25,7 @@ SELECT * FROM Items WHERE Name = ‘WebForm'
 When you query Azure Cosmos DB, you get back a CLOB - a character large object - in this case, a JSON file. In the example below `c` refers to the collection, determined by the URL being queried.
 
 ```sql
-SELECT * FROM c WHERE c.Name = ‘'
+SELECT * FROM c WHERE c.Name = ''
 ```
 
 **Record Found**
@@ -111,7 +111,7 @@ API = `Core (SQL)`
 
 Next click **Review + create**. Then on the subsequent screen click **Create**. You will be taken to a screen showing the status of your new Azure Cosmos DB - this may take a few minutes.
 
-When your Cosmos DB is ready to go, click **Go to resource** which will take you to the **Quick start** guide. For this tutorial, we'll use the `Items` container that Azure creates for you automatically, so go ahead and click **Create ‘Items' container**.
+When your Cosmos DB is ready to go, click **Go to resource** which will take you to the **Quick start** guide. For this tutorial, we'll use the `Items` container that Azure creates for you automatically, so go ahead and click **Create 'Items' container**.
 
 Finally, select a resource group. If you don't already have a resource group you want to put Cosmos DB into, feel free to create a new one.
 
