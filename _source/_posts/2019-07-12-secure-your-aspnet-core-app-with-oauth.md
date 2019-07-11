@@ -65,7 +65,7 @@ As you can see, notes are kept in a static list, which is initialized the first 
 
 Next you need to replace the contents of `Views\Home\Index.cshtml` with this code:
 
-```cshtml
+```cs
 @model List<string>
 @{
   ViewData["Title"] = "My Notes";
@@ -163,7 +163,6 @@ services.AddAuthentication(options =>
     }
   };
 });
-
 ```
 
 I added a lot of comments in the code you just pasted in to help you understand what the middleware is doing, but I'll also describe it step-by-step here.
@@ -205,8 +204,8 @@ On the next screen, you will see an overview of settings. Below the **General Se
 
 ```json
 "Okta": {
-  "ClientId": "{OktaClientId}",
-  "ClientSecret": "{OktaClientSecret}",
+  "ClientId": "{yourOktaClientId}",
+  "ClientSecret": "{yourOktaClientSecret}",
   "OktaDomain": "https://{yourOktaDomain}"
 }
 ```
@@ -231,10 +230,10 @@ To overcome the confusion of using OAuth for authentication without having a sha
 
 Interested in learning more about ASP.NET Core, Oauth 2.0, OpenID Connect, or building secure applications with Okta? Check out our [Product Documentation](https://developer.okta.com/use_cases/api_access_management/) or any of these great resources:
 
-* [What is OAuth?](https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth)
-* [OAuth 2.0 and OpenID Connect](https://developer.okta.com/docs/concepts/auth-overview/#authentication-api-vs-oauth-2-0-vs-openid-connect)
-* [OpenID Connect for User Authentication in ASP.NET Core](https://developer.okta.com/blog/2017/06/29/oidc-user-auth-aspnet-core)
-* [Create Login and Registration in Your ASP.NET Core MVC App](https://developer.okta.com/blog/2019/02/05/login-registration-aspnet-core-mvc)
-* [Add Login to Your ASP.NET Core MVC App](https://developer.okta.com/blog/2018/10/29/add-login-to-you-aspnetcore-app)
+* [What is OAuth?](/blog/2017/06/21/what-the-heck-is-oauth)
+* [OAuth 2.0 and OpenID Connect](/docs/concepts/auth-overview/#authentication-api-vs-oauth-2-0-vs-openid-connect)
+* [OpenID Connect for User Authentication in ASP.NET Core](/blog/2017/06/29/oidc-user-auth-aspnet-core)
+* [Create Login and Registration in Your ASP.NET Core MVC App](/blog/2019/02/05/login-registration-aspnet-core-mvc)
+* [Add Login to Your ASP.NET Core MVC App](/blog/2018/10/29/add-login-to-you-aspnetcore-app)
 
 As always, if you have comments or questions about this post, feel free to leave them in the comments below. Also, don't forget to follow us on [Twitter](https://twitter.com/oktadev) and [YouTube](https://www.youtube.com/channel/UC5AMiWqFVFxF1q9Ya1FuZ_Q) so that you never miss any of ur awesome content!
