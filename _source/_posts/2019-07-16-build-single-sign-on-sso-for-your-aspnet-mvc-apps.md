@@ -63,12 +63,12 @@ Now go back to the Okta admin panel and register this application.
 * In the top menu, click on **Applications**
 * Click on **Add Application**
 * Select **Web** and click **Next**
-* Enter `SSO Core MVC` for the **Name** 
+* Enter `SSO Core MVC` for the **Name**
 * Replace **Base URIs** with `https://localhost:5001/`
 * Replace **Login redirect URIs** with `https://localhost:5001/authorization-code/callback`
 * Click **Done**
 
-Once you’re done, you will see a **General Settings** tab for your app. On that tab click the **Edit** button and add an entry to the **Logout redirect URIs** as `https://localhost:5001/signout/callback`. Then click **Save**.
+Once you're done, you will see a **General Settings** tab for your app. On that tab click the **Edit** button and add an entry to the **Logout redirect URIs** as `https://localhost:5001/signout/callback`. Then click **Save**.
 
 Copy your **Client ID** and **Client Secret** from the **Client Credentials** section of the next page, and update the `appsettings.json` file in your application.
 
