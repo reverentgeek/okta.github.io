@@ -113,8 +113,8 @@ If you are passing any sensitive information in the identity token, be aware tha
 
 Interested in learning more about ASP.NET, single sign-on, or building secure applications with Okta? Check out our [Product Documentation](https://developer.okta.com/use_cases/api_access_management/) or any of these great resources:
 
-* [Build a CRUD App with ASP.NET MVC and Entity Framework](https://developer.okta.com/blog/2019/03/11/build-a-crud-app-with-aspnet-mvc-and-entity-framework)
-* [Build a CRUD App with ASP.NET Core 2.2 and Entity Framework Core](https://developer.okta.com/blog/2019/04/03/build-a-crud-app-with-aspnet-22-and-entity-framework)
-* [OpenID Connect for User Authentication in ASP.NET Core](https://developer.okta.com/blog/2017/06/29/oidc-user-auth-aspnet-core)
+* [Build a CRUD App with ASP.NET MVC and Entity Framework](/blog/2019/03/11/build-a-crud-app-with-aspnet-mvc-and-entity-framework)
+* [Build a CRUD App with ASP.NET Core 2.2 and Entity Framework Core](/blog/2019/04/03/build-a-crud-app-with-aspnet-22-and-entity-framework)
+* [OpenID Connect for User Authentication in ASP.NET Core](/blog/2017/06/29/oidc-user-auth-aspnet-core)
 
-As always, if you have any comments or questions about this post, feel free to comment below. Don't miss out on any of our cool content in the future by following us on [Twitter](https://twitter.com/oktadev) and [YouTube](https://www.youtube.com/channel/UC5AMiWqFVFxF1q9Ya1FuZ_Q).
+As always, if you have any comments or questions about this post, feel free to comment below. Don't miss out on any of our cool content in the future by following us on [Twitter](https://twitter.com/oktadev) and [YouTube](https://www.youtube.com/c/oktadev).
