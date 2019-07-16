@@ -31,7 +31,7 @@ In the `Web.config` file you'll find some app settings that the programmer used 
 <add key="okta:OktaDomain" value="https://{yourOktaDomain}" />
 ```
 
-For this tutorial, you'll need to switch these values over to your own Okta instance. Sign in to your Okta domain if you already have an account or [sign up now](https://developer.okta.com/signup/) for a forever-free developer account if you don't.
+For this tutorial, you'll need to switch these values over to your own Okta instance. Sign in to your Okta domain if you already have an account or [sign up now](/signup/) for a forever-free developer account if you don't.
 
 Once you're signed in to Okta, register your client application.
 
@@ -111,7 +111,7 @@ If you are passing any sensitive information in the identity token, be aware tha
 
 ## Learn More About Single Sign-on and ASP.NET
 
-Interested in learning more about ASP.NET, single sign-on, or building secure applications with Okta? Check out our [Product Documentation](https://developer.okta.com/use_cases/api_access_management/) or any of these great resources:
+Interested in learning more about ASP.NET, single sign-on, or building secure applications with Okta? Check out our [Product Documentation](/use_cases/api_access_management/) or any of these great resources:
 
 * [Build a CRUD App with ASP.NET MVC and Entity Framework](/blog/2019/03/11/build-a-crud-app-with-aspnet-mvc-and-entity-framework)
 * [Build a CRUD App with ASP.NET Core 2.2 and Entity Framework Core](/blog/2019/04/03/build-a-crud-app-with-aspnet-22-and-entity-framework)
