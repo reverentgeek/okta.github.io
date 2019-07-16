@@ -1,9 +1,9 @@
 ---
 layout: blog_post
-title: "Secure Your ASP.NET Core App with OAuth 2.0"
+title: "Build Single Sign-on for Your ASP.NET MVC App"
 author: ryanfoster
-description: "Learn how to use OAuth 2.0 to secure your ASP.NET Core Application."
-tags: [aspnet, asp.net, asp net, oauth, oauth 2.0]
+description: "Learn how to use Single Sign-On (SSO) to secure your ASP.NET MVC Application."
+tags: [aspnet, asp.net, asp net, sso, singlesignon, .net mvc, auth]
 tweets:
 - "If you need to build single sign-on (sso) into your @aspnetmvc app, check out this post!"
 - "Need to build SSO (single-sign-on) into your @aspnetmvc app? Check this out!"
