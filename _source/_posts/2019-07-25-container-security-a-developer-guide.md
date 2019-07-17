@@ -17,7 +17,7 @@ Looking to bootstrap an instant LAMP stack? You can save yourself the time and r
 
 ## Container Security Challenges 
 
-The problem with easy is there’s usually a downside. Containers may be portable and agile, but they are also insecure when misused. Their easy deployment makes it easy for developers to run them without proper security checks, and the use of layered images creates a large attack surface that can be hard to defend against. 
+The problem with easy is there's usually a downside. Containers may be portable and agile, but they are also insecure when misused. Their easy deployment makes it easy for developers to run them without proper security checks, and the use of layered images creates a large attack surface that can be hard to defend against. 
 
 Automating security controls on containers lets you speed up your development process while keeping your development and production environments safe.
 
@@ -74,4 +74,4 @@ What's secure today might not be secure tomorrow. Containers with unpatched soft
 
 Containers are hugely powerful, but with great power comes great responsibility. By implementing best practices and automating them with continuous integration (CI), you can save lots of time and deliver flexible, agile software. 
 
-To learn more about container security, read our [Developer’s Guide to Docker](/blog/2017/05/10/developers-guide-to-docker-part-1). For more awesome content, follow [@oktadev](https://twitter.com/oktadev) on Twitter, like us on [Facebook](https://www.facebook.com/oktadevelopers/), or subscribe to [our YouTube channel](https://www.youtube.com/c/oktadev).
+To learn more about container security, read our [Developer's Guide to Docker](/blog/2017/05/10/developers-guide-to-docker-part-1). For more awesome content, follow [@oktadev](https://twitter.com/oktadev) on Twitter, like us on [Facebook](https://www.facebook.com/oktadevelopers/), or subscribe to [our YouTube channel](https://www.youtube.com/c/oktadev).
