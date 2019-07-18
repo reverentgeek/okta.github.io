@@ -590,6 +590,8 @@ You should now see OIDC calls in the trace as well as the request and response c
 }
 ```
 
+All of the code in this post can be found on GitHub in the [okta-spring-boot-custom-actuator-example](https://github.com/oktadeveloper/okta-spring-boot-custom-actuator-example) repository.
+
 ## Learn More
 
 That's all there is to it! You just learned how to configure and extend the `httptrace` actuator endpoint for monitoring your OIDC application. For more insights about Spring Boot Actuator, Spring Boot in general, or user authentication, check out the links below:
