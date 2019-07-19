@@ -54,4 +54,4 @@ Postgres is built with extensibility, standards compliance, scalability, and dat
 
 These are only some of the factors a developer might want to consider when choosing a database. Additionally, your platform provider might have a preference, for instance Heroku prefers Postgres and offers operational benefits to running it. Your framework may also prefer one over the other by offering better drivers. And as ever, your coworkers may have opinions!
 
-If you have a view on database selection please add a comment below - we would love to hear your thoughts. If you liked this, you should [follow us on Twitter](https://twitter.com/oktadev). Check out our [YouTube channel](https://www.youtube.com/channel/UC5AMiWqFVFxF1q9Ya1FuZ_Q) where we publish screencasts and other videos.
+If you have a view on database selection please add a comment below - we would love to hear your thoughts. If you liked this, you should [follow us on Twitter](https://twitter.com/oktadev). Check out our [YouTube channel](https://www.youtube.com/c/oktadev) where we publish screencasts and other videos.
