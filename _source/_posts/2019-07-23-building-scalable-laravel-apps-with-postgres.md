@@ -454,6 +454,8 @@ The heroku deployment URL should open in a browser and you can test the Okta log
 
 ## Learn More About Laravel, Postgres and Heroku
 
+You can find the completed code example [on GitHub](https://github.com/oktadeveloper/okta-php-laravel-pg-demo).
+
 If you are interested in other Laravel tutorials that build a single-page application and use Okta for authentication (through the implicit flow method), check this series where you can build the same example application with an Angular, React or Vue frontend:
 
 * [Build a Basic CRUD App with Laravel and Angular](/blog/2018/10/23/php-laravel-angular-crud-app)
