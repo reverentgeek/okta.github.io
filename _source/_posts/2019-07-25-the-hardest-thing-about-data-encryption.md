@@ -18,7 +18,7 @@ Encrypting data is all about making sure that only the right people can view the
 
 While you can easily Google "symmetric encryption best practices" and figure out the best algorithms and developer libraries to use (more on this later) to encrypt and decrypt data, one thing *isn't so easy*: figuring out how to properly store and manage your data encryption keys.
 
-The hardest thing about encrypting data isn't the encryption, it's *key management*.
+The hardest thing about encrypting data isn't encryption, it's *key management*.
 
 ## Symmetric vs Asymmetric Encryption
 
