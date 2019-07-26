@@ -12,7 +12,7 @@ image: blog/featured/okta-dotnet-bottle-headphones.jpg
 ---
 **"It works on my machine."**
 
-If you're a developer, or you work with developers, you’ve heard this phrase one too many times. If you've been in the industry for a while, you may even have the coffee mug, tee shirt, or mouse pad. It's fair to say that if Bart Simpson decides to embark on a career in software, "It works on my machine" will be the new "Eat my shorts".
+If you're a developer, or you work with developers, you've heard this phrase one too many times. If you've been in the industry for a while, you may even have the coffee mug, tee shirt, or mouse pad. It's fair to say that if Bart Simpson decides to embark on a career in software, "It works on my machine" will be the new "Eat my shorts".
 
 Jokes aside, it represents a real problem. Developers work on code on their laptops, and when the time comes to unveil the finished product, things rarely go smoothly. Integration is hard and always takes longer than expected.
 
@@ -334,8 +334,8 @@ OR
 Note that you haven't pushed your changes to the remote repository yet. Before we do that, we want to hook up Jenkins.
 
 ## Use Jenkins to Deploy Your Code Continuously
-As mentioned earlier, continuous integration works by scanning your source control system for changes and then engaging a pipeline to incorporate those changes into your application. To make that work, you’ll need to configure Jenkins to talk to your source control system.
-Jenkins to talk to your source control system, you’ll need to provide credentials. Usually, this will be in the form of an SSH key, especially if you're using GitHub, but it's also possible to use a username and password. The process is pretty much the same regardless of the credential type:
+As mentioned earlier, continuous integration works by scanning your source control system for changes and then engaging a pipeline to incorporate those changes into your application. To make that work, you'll need to configure Jenkins to talk to your source control system.
+Jenkins to talk to your source control system, you'll need to provide credentials. Usually, this will be in the form of an SSH key, especially if you're using GitHub, but it's also possible to use a username and password. The process is pretty much the same regardless of the credential type:
 
 1. Go to the Jenkins admin console at http://localhost:8080
 2. Select **Credentials** from the menu on the left
