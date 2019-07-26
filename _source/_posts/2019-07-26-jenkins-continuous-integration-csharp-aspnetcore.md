@@ -186,7 +186,7 @@ Once you've created the application, click **Edit** to change a few settings.
 At the bottom of the page, you'll see **Client Credentials,** including a **ClientID** and a **Client secret**. Take a note of these values as we'll need them later.
  
 ## Add MVC Elements to Your ASP.NET Application
-So far so good, your application is now set up to authenticate users with Okta as the Identity Provider via OpenID Connect over OAuth2. However… the app doesn't do anything yet. You'll need to add some models, views, and controllers before the fun can begin! 
+So far so good, your application is now set up to authenticate users with Okta as the Identity Provider via OpenID Connect over OAuth2. However... the app doesn't do anything yet. You'll need to add some models, views, and controllers before the fun can begin! 
 
 In the `Controllers` folder, add a new controller called `AccountController.cs` with the following code:
 
@@ -249,7 +249,7 @@ In the header `navbar` add:
         	@*---End of additions*@
     	</div>
 	</nav>
-….
+....
 ```
 
 This UI change will show the name of the authenticated user. If there isn't an authenticated user, it will provide a login button that will call the `Login()` action that you added to the `AccountController`.
@@ -384,7 +384,7 @@ Also, you'll remember that earlier we stored our auth configuration for our ASP.
 2. Select **Manage Plugins**
 3. Select the **Available** tab and check the boxes next to `Artifact Deployer Plugin-in` and `Config File Provider Plugin`
 4. At the bottom of the page select **Install without restart**
-5. On the progress page select **Restart Jenkins ……**
+5. On the progress page select **Restart Jenkins ......**
 6. After a few minutes, the plugins will be downloaded and installed and Jenkins will restart.
 
 ### Setup the Auth configuration file
