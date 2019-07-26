@@ -25,20 +25,20 @@ However, all is not lost! It doesn't have to be this way. There is a growing rec
 
 ## Install the Jenkins Continuous Integration Server
 
-Jenkins is a Java-based application and as such can run on any platform that has the appropriate Java runtime. There are also installer packages for many major operating systems as well as virtual machine templates that you can deploy to your favourite cloud provider. The steps required will vary depending on your operating system, and you can find specific details at https://jenkins.io/doc/book/installing/
+Jenkins is a Java-based application and as such can run on any platform that has the appropriate Java runtime. There are also installer packages for many major operating systems as well as virtual machine templates that you can deploy to your favourite cloud provider. The steps required will vary depending on your operating system, and you can find specific details at `https://jenkins.io/doc/book/installing/`
 
 For the purposes of this walkthrough, we'll assume you're installing on Windows 10.
 
-Download the latest LTS version of Jenkins for Windows from https://jenkins.io/download/
-Unzip the downloaded zip file to obtain the windows installer (jenkins.msi) file
-Run the installer using the default options.
-When the installation has been completed, your browser will be opened and pointed to http://localhost:8080. On Windows systems it can take a minute or so before the Jenkins service starts so you may see a 404 error initially. If that happens, refresh the page until you see the 'Unlock Jenkins' page.
+* Download the latest LTS version of Jenkins for Windows from `https://jenkins.io/download/`
+* Unzip the downloaded zip file to obtain the windows installer (jenkins.msi) file
+* Run the installer using the default options.
+* When the installation has been completed, your browser will be opened and pointed to `http://localhost:8080`. On Windows systems it can take a minute or so before the Jenkins service starts so you may see a 404 error initially. If that happens, refresh the page until you see the 'Unlock Jenkins' page.
 
 > Note: It is possible to run Jenkins as a Docker container on your local machine. For this post,  we don't recommend that approach since it adds complexity to the configuration.
 
 ## Setup Jenkins Continuous Integration Server
 
-Once you have Jenkins installed and running, the configuration process will be the same regardless of the operating system you're using. You'll start by navigating to http://localhost:8080 and following the prompts to create a new admin user.  Installing on some platforms will require you to provide a system-generated admin password. If you're installing on Windows you can retrieve the unlock code using:
+Once you have Jenkins installed and running, the configuration process will be the same regardless of the operating system you're using. You'll start by navigating to `http://localhost:8080` and following the prompts to create a new admin user.  Installing on some platforms will require you to provide a system-generated admin password. If you're installing on Windows you can retrieve the unlock code using:
 
 ```sh
 type "C:\Program Files (x86)\Jenkins\secrets\initialAdminPassword"
@@ -102,12 +102,12 @@ git push -u origin master
 ### Visual Studio 2017
 
 You can use the *New Project Wizard* in Visual Studio to create a new MVC application.
-Select File > New > Visual C# > .NET Core > ASP.NET Core Web Application
-Check the *'Create new Git repository'* option
-Select the Web Application (Model-View-Controller) project type and ensure that 'Configure for HTTPS' is checked
-Type 'Control+E+C' to open the Team Explorer window
-Under 'Push to Remote Repository' enter your git https url. Example: `https://github.com/your-username/OktaJenkinsCI.git`.
-Enter your credentials if prompted and check in your first commit, then push it!
+* Select File > New > Visual C# > .NET Core > ASP.NET Core Web Application
+* Check the *'Create new Git repository'* option
+* Select the Web Application (Model-View-Controller) project type and ensure that 'Configure for HTTPS' is checked
+* Type 'Control+E+C' to open the Team Explorer window
+* Under 'Push to Remote Repository' enter your git https url. Example: `https://github.com/your-username/OktaJenkinsCI.git`.
+* Enter your credentials if prompted and check in your first commit, then push it!
 
 ## Add Authentication to Your ASP.NET Core App
 
@@ -198,8 +198,8 @@ Update the application settings to match the image below.
 
 Once you've created the application, click **Edit** to change a few settings.
 
-* **Logout redirect URIs:** <https://localhost:5001/signout-callback-oidc>
-* **Initiate login URI:** <https://localhost:5001/authorization-code/callback>
+* **Logout redirect URIs:** `https://localhost:5001/signout-callback-oidc`
+* **Initiate login URI:** `https://localhost:5001/authorization-code/callback`
 
 {% img blog/jenkins-csharp/okta-app-edit-settings.png alt:"Okta application settings" width:"800" %}{: .center-image }
 
