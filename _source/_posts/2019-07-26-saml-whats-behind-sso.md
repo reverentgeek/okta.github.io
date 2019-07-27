@@ -25,7 +25,7 @@ The SAML assertion is an XML file with three statement types: authentication, at
 
 ## How SAML Keeps Your Apps Secure
 
-Without SAML or other SSO technologies, applications would have to rely on passwords to verify their users, which is problematic. It's no secret that passwords are an easy target for attackers, particularly when people resort to commonly-used or easily-guessed options like “123456”, or reuse the same password across various applications. Because of this, it's costly and risky for organizations to store passwords on their own systems.
+Without SAML or other SSO technologies, applications would have to rely on passwords to verify their users, which is problematic. It's no secret that passwords are an easy target for attackers, particularly when people resort to commonly-used or easily-guessed options like "123456", or reuse the same password across various applications. Because of this, it's costly and risky for organizations to store passwords on their own systems.
 
 With SAML, SPs only have to store public keys, which are useless to attackers without the private keys held by the IdP. This shifts the responsibility of storing sensitive information or credentials to the IdP. So if an SP is hacked, or a disgruntled employee leaves their company with sensitive data, all they'll have access to are names—not passwords. In the same way, when an account is disabled, the user will no longer have access to their systems because they will be unable to create a SAML assertion to prove their identity.
 
