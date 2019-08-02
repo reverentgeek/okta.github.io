@@ -442,7 +442,7 @@ public class HomeController : Controller
 
 Now all your pages are secure and you will be forced to log in to view your app. You can allow access for new users by adding them as a user to your Okta account. Your new app is in a very basic starting point that you can continue adding to if you want. For example you may want to add the ability to add and edit tasks from the web page.
 
-## Learn More About working with .NET Core and MySQL
+## Learn More About Working with .NET Core and MySQL
 
 You can find the complete source code on GitHub [here](https://github.com/oktadeveloper/okta-aspnetcore-mysql-twilio-example). Fail early. Keep it simple. Write clean code. Refactor, refactor, refactor. Test, test, test. Have fun coding!
 
