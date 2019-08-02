@@ -16,31 +16,31 @@ In this article, we'll be building an MVC task management form with .NET Core 2.
 .NET Core and MySQL are both free and open source technologies. The new ASP.NET Core can run on Linux and in Linux Containers, and MySQL is one of the easiest databases to get started with. This makes the combination of ASP.NET Core and MySQL a pretty compelling combination. Let's take a look at what you'll need to get started.
 
 > Prerequisites
-> - [Free Okta Developer Account](https://developer.okta.com/signup/)
+> - A [Free Okta Developer Account](https://developer.okta.com/signup/)
 > - [MySQL installed](https://dev.mysql.com/downloads/windows/) and will need to know your host and access credentials momentarily.
-> - [Twilio Account](https://www.twilio.com/try-twilio)
+> - A [Twilio Account](https://www.twilio.com/try-twilio)
 
 ## Scaffold Your ASP.NET Core MVC App
 
-Let's get started with some basic scaffolding and dependencies. To start, open *Visual Studio* and create a new *ASP.NET Core Web Application* named `TextTasks` and select the *Web Application (Model-View-Controller)* template, configured for ASP.NET Core 2.2. Click the *Start Debugging* icon or hit F5 to start the application and keep track of the URL for use in a moment.
+Let's get started with some basic scaffolding and dependencies. To start, open Visual Studio and create a new **ASP.NET Core Web Application** named `TextTasks` and select the **Web Application (Model-View-Controller)** template, configured for ASP.NET Core 2.2. Click the **Start Debugging** icon or hit F5 to start the application and keep track of the URL for use in a moment.
 
 ### Install MySQL.Data Nuget Package
 
-Install the *MySql.Data* Nuget Package published by Oracle. This article uses version 8.0.17 - the latest version at the time of publication.
+Install the **MySql.Data** Nuget Package published by Oracle. This article uses version 8.0.17 - the latest version at the time of publication.
 
 ### Install Okta for User Management in Your ASP.NET Application
 
-Install the *Okta.Sdk* NuGet Package published by Okta, Inc. This article uses version 1.2.2 - the latest version at the time of publication.
+Install the **Okta.Sdk** NuGet Package published by Okta, Inc. This article uses version 1.2.2 - the latest version at the time of publication.
 
-Also install the *Okta.AspNetCore* NuGet Package published by Okta, Inc. This article uses version 1.2.0 - the latest version at the time of publication.
+Also install the **Okta.AspNetCore** NuGet Package published by Okta, Inc. This article uses version 1.2.0 - the latest version at the time of publication.
 
 We'll use Okta's Single Sign On (SSO) management for your MVC app. This will allow you to restrict access to your app to only those users you grant access to.
 
 If you don't already have one, [create a free Okta developer account](https://developer.okta.com/signup/). Okta is a developer service that securely stores user accounts and makes it simple to add common user management functionality. Once you have your Okta account, log in to your dashboard.
 
-Login and proceed to the *Dashboard*. From the Dashboard select *Applications* from the main menu and then select *Add Application*.
+Log in and select **Applications** from the main menu, then select **Add Application**.
 
-Select *Web* as your application type.
+Select **Web** as your application type.
 
 {% img blog/aspnetcore-mysql/okta-web-application.png alt:"Okta Web Application" width:"800" %}{: .center-image }
 
@@ -53,7 +53,7 @@ Next, you'll need the URL you saved earlier to your locally running MVC app. Con
   * Authorization Code
   * Implicit (Hybrid)
 
-After you save your settings, click *Edit* by *General Settings*, then check the following two checkboxes as shown in the screenshot below:
+After you save your settings, click **Edit** by **General Settings**, then check the following two checkboxes as shown in the screenshot below:
 
 {% img blog/aspnetcore-mysql/okta-app-settings.png alt:"Okta Application Settings" width:"800" %}{: .center-image }
 
@@ -61,15 +61,15 @@ Once your new application is created, scroll to the bottom and copy your *Client
 
 ## Setup Your MySQL Database
 
-Before we write our application to access our database, we need to get our database stood up and running. To do so we'll connect to our MySQL server and run some scripts. This article uses *MySQL Workbench* to connect to our database server, but any MySQL IDE will do!
+Before we write our application to access our database, we need to get our database stood up and running. To do so we'll connect to our MySQL server and run some scripts. This article uses MySQL Workbench to connect to our database server, but any MySQL IDE will do!
 
-Open up *MySQL Workbench* and go to `Database > Connect to Database`. Enter the hostname for your database server and your database credentials. Once connected, execute the following script to create your new `TextTasks` database:
+Open up MySQL Workbench and go to `Database > Connect to Database`. Enter the hostname for your database server and your database credentials. Once connected, execute the following script to create your new `TextTasks` database:
 
 ```sql
 CREATE DATABASE IF NOT EXISTS TextTasks;
 ```
 
-Next, you'll need to set up tables to store your tasks. In the query window, execute the following script to create the *Tasks* table that will hold all the tasks in our task list and create three tasks to test with:
+Next, you'll need to set up tables to store your tasks. In the query window, execute the following script to create the `Tasks` table that will hold all the tasks in our task list and create three tasks to test with:
 
 ```sql
 USE TextTasks;
@@ -90,8 +90,7 @@ INSERT INTO Tasks(Text,Created) VALUES ('Initial test task 3', STR_TO_DATE('2019
 
 ## Add  Code to Connect with MySQL from ASP.NET
 
-Now let's jump to the code!
-Right-click on the project and add a new class named *MySqlDatabase*. This class is a wrapper for the MySqlConnection dependency we'll be working with to query the MySQL database.
+Now let's jump to the code! Right-click on the project and add a new class named `MySqlDatabase`. This class is a wrapper for the `MySqlConnection` dependency we'll be working with to query the MySQL database.
 
 ```csharp
 using System;
@@ -117,7 +116,7 @@ namespace TextTasks
 }
 ```
 
-Next, add the following lines of code to the bottom of the `ConfigureServices` method of the *Startup.cs* file. Replace the server, username, and password with that of your own MySQL instance.
+Next, add the following lines of code to the bottom of the `ConfigureServices()` method of the `Startup.cs` file. Replace the server, username, and password with that of your own MySQL instance.
 
 ```csharp
 //MySql
@@ -128,7 +127,7 @@ Your database dependency has now been implemented so that an instance of the `My
 
 ## Build the ASP.NET Core Models
 
-We'll use the following two types to pass data about our entities between the layers of your new app. Add a new class to the *Models* folder named *Task*. Paste the following code into your new class:
+We'll use the following two types to pass data about our entities between the layers of your new app. Add a new class to the `Models` folder named `Task`. Paste the following code into your new class:
 
 ```csharp
 using System;
@@ -144,7 +143,7 @@ namespace TextTasks.Models
 }
 ```
 
-Create another new class in the *Models* folder named *TaskIdentifier* and paste the following code into your new class:
+Create another new class in the `Models` folder named `TaskIdentifier` and paste the following code into your new class:
 
 ```csharp
 using System;
@@ -162,7 +161,7 @@ namespace TextTasks.Models
 
 The `TasksController` will handle the creation of new records, as well as updating existing records to mark them as complete, incomplete, or archived.
 
-Add a new class named `TasksController` to the *Controllers* folder. Paste the code below into your new class. As you can see, the first parameter of the constructor is a `MySqlDatabase` type. This is the code that will receive the instance of the `MySqlDatabase` type we generated in the `ConfigureServices()` method of *Startup.cs*.
+Add a new class named `TasksController` to the `Controllers` folder. Paste the code below into your new class. As you can see, the first parameter of the constructor is a `MySqlDatabase` type. This is the code that will receive the instance of the `MySqlDatabase` type we generated in the `ConfigureServices()` method of `Startup.cs`.
 
 ```csharp
 using System;
@@ -243,14 +242,14 @@ namespace TextTasks.Controllers
 
 ### Build the Home Controller and Page
 
-Next we'll modify the `HomeController` to pass a `List<Task>` to the view. To start, add the following using statements:
+Next, modify the `HomeController` to pass a `List<Task>` to the view. To start, add the following using statements:
 
 ```csharp
 using MySql.Data.MySqlClient;
 using dto = TextTasks.Models;
 ```
 
-Next ,we'll add the following constructor declaring MySqlDatabase as a dependency and storing it for future use:
+Then, add the following constructor declaring `MySqlDatabase` as a dependency and storing it for future use:
 
 ```csharp
 private MySqlDatabase MySqlDatabase { get; set; }
@@ -260,7 +259,7 @@ public HomeController(MySqlDatabase mySqlDatabase)
 }
 ```
 
-Then we'll add the following private method to assist with loading the list of tasks from the database:
+Add the following private method to assist with loading the list of tasks from the database:
 
 ```csharp
 private async Task<List<dto.Task>> GetTasks()
@@ -296,7 +295,7 @@ public async Task<IActionResult> Index()
 }
 ```
 
-Finally, we'll modify the view to display the data in our form. Open up `Index.cshtml` and paste the following code into the file:
+Finally, modify the view to display the data in our form. Open up `Index.cshtml` and paste the following code into the file:
 
 ```html
 @{
@@ -369,9 +368,9 @@ Finally, we'll modify the view to display the data in our form. Open up `Index.c
 
 ## Add SMS Functionality to your ASP.NET Application with Twilio
 
-When you [created your Twilio account](https://www.twilio.com/try-twilio) it walked you through the process of setting up your first phone number. If when prompted you selected that you wanted to send and receive SMS messages with your phone number, it can be used in this article. If not you'll need to add a new phone number.
+When you [created your Twilio account](https://www.twilio.com/try-twilio), it walked you through the process of setting up your first phone number. If when prompted you selected that you wanted to send and receive SMS messages with your phone number, it can be used in this article. If not, you'll need to add a new phone number.
 
-Once your new phone number is setup go to the *All Services* menu and select *Phone Numbers*. Click on the phone number you just created in the list.
+Once your new phone number is setup go to the **All Services** menu and select **Phone Numbers**. Click on the phone number you just created in the list.
 
 Now that we're looking at the details for this new phone number, we want to modify the webhook settings for when a message comes in. Change the action to `HTTP POST` and then we're going to set the webhook URL to the `Sms` action of the `Tasks` controller. You're going to want to use the public URL for your MVC app so that Twilio can access it (replace "{yourPublicUrl}" with your actual public URL):
 
@@ -392,7 +391,7 @@ Prepare the following Postman request (replacing "{yourLocalUrl}" with your actu
 Add the following params:
 `Body` = `Hello world!`
 
-Click *Send* to test your service. "Hello world!" represents the copy that is texted into the system. The service will respond with either "OK" or "Sorry! I didn't get that." That response is the message that the sender of the original "Hello world" text will receive back.
+Click **Send** to test your service. "Hello world!" represents the copy that is texted into the system. The service will respond with either "OK" or "Sorry! I didn't get that." That response is the message that the sender of the original "Hello world" text will receive back.
 
 ## Add Authentication to Your ASP.NET Core MVC App
 
