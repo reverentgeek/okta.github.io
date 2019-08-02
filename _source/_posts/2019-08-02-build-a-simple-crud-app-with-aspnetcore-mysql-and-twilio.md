@@ -453,4 +453,4 @@ For other examples using .NET Core, MySQL, and Okta SSO check out the following 
 * [Build a CRUD App with ASP.NET Core 2.2 and SQL Server](/blog/2019/04/24/crud-app-aspnet-core-sql-server)
 * [Build a Simple CRUD App with ASP.NET Core and Vue](/blog/2018/08/27/build-crud-app-vuejs-netcore)
 
-As always, leave comments below and don’t forget to follow us on [Twitter](https://twitter.com/oktadev) and subscribe to our [YouTube](https://www.youtube.com/c/oktadev) channel.
+As always, leave comments below and don't forget to follow us on [Twitter](https://twitter.com/oktadev) and subscribe to our [YouTube](https://www.youtube.com/c/oktadev) channel.
