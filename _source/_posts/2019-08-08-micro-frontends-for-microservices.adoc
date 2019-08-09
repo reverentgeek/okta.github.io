@@ -8,7 +8,7 @@ tweets:
 - "How to Win at UI Development in the World of Microservices (spoiler: lazy-loading and micro front ends)"
 - "Web frameworks have been around for 20+ years. How do you use them in the world of microservices?"
 - "Let your UI developers use the frameworks they ❤️ by adopting micro front ends. @mraible shows you how!"
-image: blog/micro-frontends/win-at-ui-development-with-microservices.png
+image: blog/micro-frontends/win-at-ui-development.png
 ---
 :page-liquid:
 
