@@ -147,6 +147,7 @@ Here you'll create three new components:
 To start, add the header:
 
 **src/Header.js**
+{% raw %}
 ```jsx
 import React from 'react';
 import { connect } from 'react-redux';
@@ -172,6 +173,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(Header);
 ```
+{% endraw %}
 
 The `mapStateToProps` function allows you to take the state from the redux store and convert it to props to be passed into the component. The `connect` function wraps the component and does the work necessary to actually connect to the store and pass in those props.
 
@@ -240,6 +242,7 @@ This uses `mapStateToProps` again to get the list of users and the selected user
 Next, create a component to display the selected user:
 
 **src/SelectedUser.js**
+{% raw %}
 ```jsx
 import React from 'react';
 import { connect } from 'react-redux';
@@ -276,6 +279,7 @@ export default connect(
   mapDispatchToProps,
 )(SelectedUser);
 ```
+{% endraw %}
 
 This connects to the same pieces of state to know which user is selected. If none is selected, this simply won't render anything. Otherwise, you'll get a card showing the user. You'll also get a button to deselect the user, so you'll also need to subscribe to the `selectUser` action creator here.
 
@@ -288,6 +292,7 @@ import 'semantic-ui-css/semantic.min.css';
 Your `App.js` file now needs to reference the new components you just made. Your `App.js` file should end up looking like this:
 
 **src/App.js**
+{% raw %}
 ```jsx
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -315,6 +320,7 @@ export default () => (
   </Provider>
 );
 ```
+{% endraw %}
 
 Go ahead and give it a whirl! You should be able to search through a set of (fake) users, select one, choose another, etc.
 
@@ -656,6 +662,7 @@ import AuthHandler from './AuthHandler';
 Your final `App.js` file should now look like the following:
 
 **src/App.js**
+{% raw %}
 ```jsx
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -698,6 +705,7 @@ export default () => (
   </Provider>
 );
 ```
+{% endraw %}
 
 Now to take advantage of the extra content available for admins, add a few `Card.Meta` items to the `SelectedUser` component, just after the `Card.Header`, so that the existing `Card.Content` now looks like this:
 
@@ -714,6 +722,7 @@ Now to take advantage of the extra content available for admins, add a few `Card
 The last missing piece is to add some controls so that the user can log in and out without URL hacking. Add some code to your `Header` to display the currently logged in user.
 
 **src/Header.js**
+{% raw %}
 ```jsx
 import React from 'react';
 import { connect } from 'react-redux';
@@ -766,6 +775,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(Header);
 ```
+{% endraw %}
 
 When the app first loads, the user state starts out as `null` and Okta needs to do some work in the background to get you a token. In the meantime, you display a spinner with `<Loader active inline />`. If you're logged out, you get a link to sign in. If you're already logged in, it displays your name with a dropdown option to log back out. To help you out, if you're logged in as an Admin it'll tell you right in the header.
 
