@@ -23,11 +23,13 @@ In this post, we will integrate [Episerver CMS](https://www.episerver.com/) with
 >4. A free [Okta Developer](https://developer.okta.com/) account
 
 ## Install Visual Studio to Build Episerver Website
+
 First things first, you need to download and install [Visual Studio](https://visualstudio.microsoft.com/vs/). The community edition is perfectly fine for what we are going to do.
 
-
 {% img blog/episerver/VS2019getstarted.png alt:"Visual Studio get started" width:"800" %}{: .center-image }
+
 ## Install Episerver CMS Visual Studio Extension
+
 There are two ways to install the extension. The first  is via the link above and the other one is through the Visual Studio IDE, demonstrated below.
 
 On the Visual Studio 2019 landing screen shown above, click **Continue without code**.
@@ -37,7 +39,9 @@ On the Extensions Menu bar, click **Manage Extensions**. Finally, click **Online
 {% img blog/episerver/VS2019episerverextension.png alt:"Visual Studio Episerver extension" width:"800" %}{: .center-image }
 
 Install the extension and once done, restart Visual Studio.
+
 ## Create an Episerver CMS Template Project (Alloy)
+
 After re-launching Visual Studio, you should be back on the project landing page. Click **Create New Project**.
 
 Search for Episerver and you should see the Episerver Web Site Template. Select the template and click **Next**.
@@ -144,7 +148,7 @@ namespace EpiserverOkta
 
 Remove the entire `public void Configuration(IAppBuilder app)` and replace the content with this code on GitHub.
 
-Modified *Startup.cs* in github: https://github.com/hawjefferson/EpiserverCMSOkta/blob/master/Startup.cs
+Modified *Startup.cs* in github: `https://github.com/hawjefferson/EpiserverCMSOkta/blob/master/Startup.cs`
 
 {% img blog/episerver/githubepiserverstartup.png alt:"Github code for Startup.cs" width:"1000" %}{: .center-image }
 
@@ -203,7 +207,7 @@ internal static class OIDCInMemoryConfiguration
 
 ## Setup Okta for Authentication in Episerver
 
-If you haven't already, head on over to https://developer.okta.com/signup/ and create a free Okta org. 
+If you haven't already, head on over to `https://developer.okta.com/signup/` and create a free Okta org. 
 
 For this example, I'll be using my own Okta tenant: `https://identity.hawservers.com`. This tenant has been configured to use a vanity URL, which you can also setup by following [this guide](https://help.okta.com/en/prod/Content/Topics/Settings/custom-url-domain.htm).
 
@@ -213,7 +217,7 @@ This creates an OpenID Connect application representing your Episerver applicati
 
 {% img blog/episerver/oktaappconfig.png alt:"Okta application configuration" width:"1000" %}{: .center-image }
 
-You'll be presented with a screen to configure your Okta OpenID Connect application where you can change the name to Episerver Application. As for the *Login redirect URIs* field, this will be the url when you run your Episerver CMS instance (e.g. http://localhost:{port}).
+You'll be presented with a screen to configure your Okta OpenID Connect application where you can change the name to Episerver Application. As for the *Login redirect URIs* field, this will be the url when you run your Episerver CMS instance (e.g. `http://localhost:<port>`).
 
 Click **Done** when you're finished.
 
@@ -293,7 +297,7 @@ If you check your console log in Visual Studio, you should see something like th
 
 {% img blog/episerver/VS2019consolelog.png alt:"Visual Studio Episerver log output" width:"1000" %}{: .center-image }
 
-```
+```sh
 Authorization code received for sub: 00u1idscj2nfemnj92p7. 
 Received claims: [sub:00u1idscj2nfemnj92p7], [name:Jefferson Haw], 
 [locale:en-US], [email:jefferson.haw@okta.com], [ver:1], 
