@@ -1,8 +1,8 @@
 ---
 layout: blog_post
 title: Make Java Tests Groovy Again With Hamcrest
-description: 'A tutorial on testing Java with Groovy'
-tags: spring, oauth, oauth 2.0, java, spring boot, testing, hamcrest, groovy
+description: 'A tutorial on testing Java code with Groovy.'
+tags: [spring, oauth, oauth 2.0, java, spring boot, testing, hamcrest, groovy]
 author: bdemers
 Tweets:
 - "Make your test Groovy with @ApacheGroovy"
@@ -74,7 +74,7 @@ public String sayHello(String name, String greeting) {
 }
 ```
 
-The Groovy block is faster to write more concise.
+The Groovy block is faster to write and more concise.
 
 ## Optional Typing In Groovy
 When defining variables in Groovy the type definition is optional. Using the `def` keyword is a shorthand for defining a type as `Object`. This, combined with Groovy's duck typing means writing less code. 
@@ -348,7 +348,7 @@ Take note of the Client ID and Client Secret on the next page and update the  `s
 ```yaml
 okta:
   oauth2:
-    issuer: {yourOktaDomain}/oauth2/default
+    issuer: https://{yourOktaDomain}/oauth2/default
     client-id: {clientId}
     client-secret: {clientSecret}
 ```
