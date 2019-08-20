@@ -1,6 +1,6 @@
 ---
 layout: blog_post
-title: Make Java Tests Groovy Again With Hamcrest
+title: Make Java Tests Groovy With Hamcrest
 description: 'A tutorial on testing Java code with Groovy.'
 tags: [spring, oauth, oauth 2.0, java, spring boot, testing, hamcrest, groovy]
 author: bdemers
@@ -355,7 +355,7 @@ okta:
 
 Simply run `./mvnw`, open a new Incognito window and browse to `http://localhost:8080/`.  You will be prompted to log in -- use your new Okta credentials.
 
-{% img blog/make-java-tests-groovy-again/okta-signin-widget.png alt:"Okta Sign-in Widget" width:"400" %}{: .center-image }
+{% img blog/make-java-tests-groovy/okta-signin-widget.png alt:"Okta Sign-in Widget" width:"400" %}{: .center-image }
 
 Just those three properties are all it takes to secure your application with Okta and OAuth 2.0/OIDC.
 
