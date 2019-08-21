@@ -1,6 +1,6 @@
 ---
 layout: blog_post
-title: "Implement Authorization Code with PKCE flow"
+title: "Implement the OAuth 2.0 Authorization Code with PKCE flow"
 author: dogeared
 description: "This tutorial shows you how to migrate from the OAuth 2.0 Implicit flow to the more secure Authorization Code with PKCE flow"
 tags: [java, oauth2, tutorial, security, authorization, pkce]
@@ -17,11 +17,10 @@ Take browser history syncing, for example. That's a huge convenience for me as a
 
 Single Page Apps (SPAs) offer a great user experience in the browser. You can have very interactive applications that don't require full page transitions. Securing these types of apps is challenging since there may not be a backend (like a .NET or Spring Boot) app. The browser is an inherently insecure environment. If you are building an app that will have 1,000,000 users, it's likely - almost guaranteed - that some percentage of those users will have compromised machines to malware or viruses.
 
-So, how do you protect your SPA in such a hostile environment? [OAuth 2.0]() and its sister standard, [OpenID Connect]() (OIDC) offered an approach called the Implcit flow at a time when SPAs were new and browsers as well as providers were much more limited in their capabilities.
+So, how do you protect your SPA in such a hostile environment? [OAuth 2.0](https://oauth.net/2/) and its sister standard, [OpenID Connect](https://openid.net/connect/) (OIDC) offered an approach called the Implicit flow at a time when SPAs were new and browsers as well as providers were much more limited in their capabilities.
 
 OIDC is a thin identity layer for authentication and Single Sign-On that rides on top of OAuth 2.0, an authorization framework. In this post, you'll learn some foundational concepts on OIDC and OAuth2. You'll be guided through a simple SPA example written in
-[Vue.js](https://vuejs.org/) that starts with the older (now deprecated) Implicit flow and then shows the more secure 
-Authorization Code with Proof Key for Code Exchange (PKCE) flow.
+[Vue.js](https://vuejs.org/) that starts with the older (now deprecated) Implicit flow and then shows the more secure Authorization Code with Proof Key for Code Exchange (PKCE) flow.
  
 ## Three Minute Overview of OpenID Connect and OAuth 2.0
 
@@ -31,7 +30,7 @@ Sites like Yelp started wanting access to the contact information you had in you
 
 We needed an authorization framework that would allow you to grant access to certain information without you giving up your password. Cue OAuth.
 
-Three revisions later, we're at OAuth 2.0 (there was 1.0 and 1.0a before it) and all's right with the world. Now, an application like Yelp (a `Client Application`) can request an `Access Token` from a service like Google (an `Authorization Server`). You (the `Resource Owner`) log into Google with your credentials and give your `Consent` to Yelp to access your contacts (and only your contacts). `Access Token` in hand, Yelp makes a request of the Google Contacts API (the `Resource Server`) and gets your contacts. Yelp never sees your password and never has access to anything more than you've consented to. And, you can withdraw your consent at any time.
+Three revisions later, we're at OAuth 2.0 (there was 1.0 and 1.0a before it) and all's right with the world. Now, an application like Yelp (a **Client Application**) can request an **Access Token** from a service like Google (an **Authorization Server**). You (the **Resource Owner**) log into Google with your credentials and give your `Consent` to Yelp to access your contacts (and only your contacts). **Access Token** in hand, Yelp makes a request of the Google Contacts API (the **Resource Server**) and gets your contacts. Yelp never sees your password and never has access to anything more than you've consented to. And, you can withdraw your consent at any time.
 
 In this new world of consent and authorization, only one thing was missing: identity. Cue OpenID Connect. OIDC is a thin layer on top of OAuth 2.0 that introduces a new type of token: the Identity Token. Encoded within these cryptographically signed tokens in [JWT](https://developer.okta.com/docs/api/resources/oidc#access-token) format, is information about the authenticated user. This opened the door to a new level of interoperability and Single Sign-On.
 
@@ -50,7 +49,7 @@ OAuth (and by extension OIDC) use a number of defined `Flows` to manage the inte
 
 This flow is perfect for traditional web apps. Notice step 8 in the diagram. In addition to the code, Yelp must present a secret that has been pre-established with Google. This is essentially how Google validates Yelp as a client.
 
-It's not safe to store a secret in a SPA app, since anyone can view source code in the browser and gain access to that secret. In the early days of OAuth2, without better options, the Implicit flow was used to get ID and Access tokens from the Authorization server. There's a better way now, but let's first visit the Implicit flow to see why it's less secure.
+It's not safe to store a secret in a SPA app, since anyone can view source code in the browser and gain access to that secret. In the early days of OAuth 2.0, without better options, the Implicit flow was used to get ID and Access tokens from the Authorization server. There's a better way now, but let's first visit the Implicit flow to see why it's less secure.
 
 ## The Implicit flow and Why You Should Never Use it Again
 
@@ -60,27 +59,27 @@ Here's what the Implicit flow looks like:
 
 {% img blog/okta-authjs-pkce/implicit.svg alt:"Implicit Flow" width:"800" %}{: .center-image }
 
-Notice that after you authenticate, the Authorization Server (like Google) responds directly with tokens. This means that the tokens are in your browser's url address bar as a result of the redirect. That's problematic since Google can't definitively know that your browser (the intended recipient) actually received the response. It's also problematic because modern browsers can do browser history syncing and they support browser extensions that could be actively scanning for tokens in the browser address bar. Leaking tokens is a big security risk.
+Notice that after you authenticate, the Authorization Server (like Google) responds directly with tokens. This means that the tokens are in your browser's address bar as a result of the redirect. That's problematic since Google can't definitively know that your browser (the intended recipient) actually received the response. It's also problematic because modern browsers can do browser history syncing and they support browser extensions that could be actively scanning for tokens in the browser address bar. Leaking tokens is a big security risk.
 
 In the screenshot below, you can see that the execution is paused to capture the `id_token` in the browser address bar:
 
 {% img blog/okta-authjs-pkce/idtoken_url.png alt:"id token" width:"800" %}{: .center-image }
 
-These security issues led to a reaassesment of the value of the Implcit flow, and in November of 2018, new guidance was released that effectively deprecates the use of this flow. Additional specs that speak to [updated guidelines for security with OAuth 2.0]() in general and [security for web apps]() in particular were put forward this year as well.
+These security issues led to a reassessment of the value of the Implicit flow, and in November of 2018, new guidance was released that effectively deprecates the use of this flow. Additional specs that speak to [updated guidelines for security with OAuth 2.0](https://oauth.net/2/oauth-best-practice/) in general and [security for web apps](https://oauth.net/2/browser-based-apps/) in particular were put forward this year as well.
 
 If you can't (or shouldn't) use the Implicit flow, then what? It turns out there's an extension to the Authorization Code flow that's been in use for some time with Mobile and Native apps. That's Proof Key for Code Exchange or PKCE (pronounced "pixie").
 
 ## Use PKCE to Make Your SPA Apps More Secure
 
-PKCE has its own [specification](https://tools.ietf.org/html/rfc7636). It enables apps to use the most secure of the OAuth2 flows - the Authorizatio Code flow - in public or untrusted clients. It accomplishes this by doing some setup work before the flow and some verification at the end of the flow to effectively utilize a dynamically generated secret. This is crucial since it's not safe to have a fixed secret in a public client (like a SPA app in your browser).
+PKCE has its own [specification](https://tools.ietf.org/html/rfc7636). It enables apps to use the most secure of the OAuth 2.0 flows - the Authorization Code flow - in public or untrusted clients. It accomplishes this by doing some setup work before the flow and some verification at the end of the flow to effectively utilize a dynamically-generated secret. This is crucial since it's not safe to have a fixed secret in a public client (like a SPA app in your browser).
 
 The last update to the PKCE specification was in 2015. It was originally created for mobile and native applications because, at the time, both browsers and most providers were not capable of supporting PKCE. That is no longer the case, however.
 
-PKCE works by having the app generate a random value at the beginning of the flow called a Code Verifier. The app hashes the code verifier and the result is called the Code Challenge. The app then kicks off the flow in the normal way except that it includes the code challenge in the query string for the request to the Authorization Server.
+PKCE works by having the app generate a random value at the beginning of the flow called a Code Verifier. The app hashes the Code Verifier and the result is called the Code Challenge. The app then kicks off the flow in the normal way, except that it includes the Code Challenge in the query string for the request to the Authorization Server.
 
-The Authorization Server stores the hashed value (the code challenge) for later verification and, after the user authenticates, redirects back to the app with an authorization code.
+The Authorization Server stores the hashed value (the Code Challenge) for later verification and, after the user authenticates, redirects back to the app with an authorization code.
 
-The app makes the request to exchange the code for tokens, only it sends the code verifier instead of a fixed secret. Now the Authorization Server can hash the code verifier and compare it to the hashed value it stored earlier. This is an effective, dynamic stand-in for a fixed secret. Assuming the hashed value matches, the Authorization Server will return the tokens.
+The app makes the request to exchange the code for tokens, only it sends the Code Verifier instead of a fixed secret. Now the Authorization Server can hash the Code Verifier and compare it to the hashed value it stored earlier. This is an effective, dynamic stand-in for a fixed secret. Assuming the hashed value matches, the Authorization Server will return the tokens.
 
 Here's what this flow looks like:
 
@@ -108,7 +107,7 @@ _If you've never logged into your account before, you may need to click the **Ad
 - Click **Done**
 
 {% img blog/okta-authjs-pkce/oidc-app-settings.png alt:"OIDC Application" width:"600" %}{: .center-image }
-
+		
 Take note of the **Client ID** at the bottom of the page. You'll need these in the next section.
 
 > **NOTE:** The demo app uses _both_ the Implicit flow and the Authorization Code with PKCE flow for demonstration 
@@ -144,7 +143,7 @@ Let's see what's going on under the hood to better understand why the PKCE appro
 
 ## A Closer Look at the Implicit Flow
 
-Logout once again. Open the developer tools pane (CMD + option + i on mac) and click the **Sources** tab. Expand **webpack://** > **.** > **src** > **auth** > **index.js**. Set a breakpoint by clicking in the margin inside the `callback` function.
+Log out once again. Open the developer tools pane (CMD + option + i on mac) and click the **Sources** tab. Expand **webpack://** > **.** > **src** > **auth** > **index.js**. Set a breakpoint by clicking in the margin inside the `callback` function.
 
 {% img blog/okta-authjs-pkce/implicit_breakpoint.png alt:"implicit breakpoint" width:"800" %}{: .center-image }
 
@@ -175,7 +174,7 @@ id_token=eyJraWQiOiI3bFV0aGJyR2hWVmx...
 &state=SU8nskju26XowSCg3bx2LeZq7MwKcwnQ7h6vQY8twd9QJECHRKs14OwXPdpNBI58
 ```
 
-Both the `id_token` and the `access_token` values are right there. This means that they're in your browser history and any mischevious browser extensions could access these values.
+Both the `id_token` and the `access_token` values are right there. This means that they're in your browser history and any mischievous browser extensions could access these values.
 
 Click the button that looks like an old school tape recorder play icon to allow the browser to continue.
 
@@ -228,7 +227,7 @@ grant_type=authorization_code&
 code=AyfnwMyCi2S9-op2xToh
 ```
 
-The `client_id`, `code_verifier` (standin for a fixed secret) and `code` are validated by Okta and if everything checks, tokens are returned.
+The `client_id`, `code_verifier` (stand-in for a fixed secret) and `code` are validated by Okta and if everything checks, tokens are returned.
 
 Notice that the request is a `POST`. The response is returned on the same channel (as opposed to a redirect response with the Implicit flow) and, as such, that response will not be in your browser history.
 
@@ -326,13 +325,13 @@ The `grantType` is detected from the response url by looking for the presence of
 
 The call to `oktaAuth.token.parseFromUrl()` is what either extracts the tokens from the url in the case of the Implicit flow OR automatically calls the `/token` endpoint to exchange the `code` for tokens in the case of the Authorization Code with PKCE flow.
 
-Hoepfully it's now crystal clear why you would want to use the Authorization Code with PKCE flow over the (now deprecated) Implicit flow. The good news is that if you've already used the `okta-auth-js` library, a few tweaks to your existing code should be all that's required to switch flows.
+Hopefully it's now crystal clear why you would want to use the Authorization Code with PKCE flow over the (now deprecated) Implicit flow. The good news is that if you've already used the `okta-auth-js` library, a few tweaks to your existing code should be all that's required to switch flows.
 
 If you want to keep learning, here are some more links from the Okta blog to keep you going:
 
 - [Is the OAuth 2.0 Implicit Flow Dead?](/blog/2019/05/01/is-the-oauth-implicit-flow-dead)
 - [7 Ways an OAuth Access Token is like a Hotel Key Card](/blog/2019/06/05/seven-ways-an-oauth-access-token-is-like-a-hotel-key-card)
 - [What the Heck is Sign In with Apple?](/blog/2019/06/04/what-the-heck-is-sign-in-with-apple)
-- []()
+- [What's Going On with the Implicit Flow?](https://www.youtube.com/watch?v=CHzERullHe8) (video)
 
-If you have any questions about this post, please add a comment below. For more awesome content, follow  [@oktadev](https://twitter.com/oktadev)  on Twitter, like us  [on Facebook](https://www.facebook.com/oktadevelopers/), or subscribe to  [our YouTube channel](https://www.youtube.com/c/oktadev).
+If you have any questions about this post, please add a comment below. For more awesome content, follow  [@oktadev](https://twitter.com/oktadev)  on Twitter, like us [on Facebook](https://www.facebook.com/oktadevelopers/), or subscribe to [our YouTube channel](https://www.youtube.com/c/oktadev).
