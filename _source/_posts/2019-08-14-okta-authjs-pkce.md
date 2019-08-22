@@ -93,7 +93,7 @@ First, let's get an OpenID Connect application setup in Okta.
 
 Before you can run the code, you need to create an OIDC application on Okta. If you don't have an Okta developer account, create one at [developer.okta.com/signup](https://developer.okta.com/signup).
 
-From the [developer.okta.com dashboard](http://developer.okta.com), in the top menu, click on **Applications**.
+From your Okta admin console, in the top menu, click on **Applications**.
 
 {% img blog/okta-authjs-pkce/okta-applications.png alt:"Add OIDC Application" width:"800" %}{: .center-image }
 
