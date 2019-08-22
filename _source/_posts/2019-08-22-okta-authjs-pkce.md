@@ -1,12 +1,12 @@
 ---
 layout: blog_post
-title: "Implement the OAuth 2.0 Authorization Code with PKCE flow"
+title: "Implement the OAuth 2.0 Authorization Code with PKCE Flow"
 author: dogeared
-description: "This tutorial shows you how to migrate from the OAuth 2.0 Implicit flow to the more secure Authorization Code with PKCE flow"
+description: "This tutorial shows you how to migrate from the OAuth 2.0 Implicit flow to the more secure Authorization Code with PKCE flow."
 tags: [java, oauth2, tutorial, security, authorization, pkce]
 tweets:
 - "The OAuth 2.0 Implicit flow for SPAs is (effectively) deprecated. @afitnerd shows you how to easily switch to PKCE for secure SPAs"
-- "Implement the OAuth 2.0 Authorization Code with PKCE flow with Javascript and Okta"
+- "Implement the OAuth 2.0 Authorization Code with PKCE flow with JavaScript and Okta"
 - "Say goodbye to Implicit and hello to PKCE for SPAs using OAuth 2.0"
 image: blog/featured/okta-vue-tile-books-mouse.jpg
 ---
@@ -53,7 +53,7 @@ This flow is great for web apps, but it's not safe to store a secret in a SPA ap
 
 ## Why You Should Never Use the Implicit Flow Again
 
-The OAuth 2.0 specification included the Implicit Flow at a time when browser support for SPAs was much more limited. In particular, Javascript did not have access to browser history or local storage. Also, most providers did not allow cross-site POST requests to a `/token` endpoint, which is a requirement of the Authorization Code flow.
+The OAuth 2.0 specification included the Implicit Flow at a time when browser support for SPAs was much more limited. In particular, JavaScript did not have access to browser history or local storage. Also, most providers did not allow cross-site POST requests to a `/token` endpoint, which is a requirement of the Authorization Code flow.
 
 Here's what the Implicit flow looks like:
 
