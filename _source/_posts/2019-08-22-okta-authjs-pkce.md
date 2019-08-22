@@ -17,11 +17,11 @@ Take browser history syncing for example. I can start a session with my bank on 
 
 Single Page Apps (SPAs) offer a great user experience in the browser as they enable interactivity without full page transitions. But securing SPAs is challenging since there may not be a backend (like a .NET or Spring Boot) app and the browser is an inherently insecure environment. If you are building an app that will have 1,000,000 users, it's likely - almost guaranteed - that some percentage of those users will have compromised machines to malware or viruses.
 
-So, how do you protect your SPA in such a hostile environment? When SPAs were new and browsers as well as providers were more limited in their capabilities, [OAuth 2.0](https://oauth.net/2/) and its sister standard, [OpenID Connect](https://openid.net/connect/) (OIDC) offered an approach called the Implicit flow. This flow has always had problems inherent to it and these problems are exacerbated by the advanced capabilities focused on user experience in browsers. Today, Prood Key for Code Exchange (PKCE) provides a modern solution for protecting SPAs.
+So, how do you protect your SPA in such a hostile environment? When SPAs were new and browsers as well as providers were more limited in their capabilities, [OAuth 2.0](https://oauth.net/2/) and its sister standard, [OpenID Connect](https://openid.net/connect/) (OIDC) offered an approach called the Implicit flow. This flow has always had problems inherent to it and these problems are exacerbated by the advanced capabilities focused on user experience in browsers. Today, Proof Key for Code Exchange (PKCE) provides a modern solution for protecting SPAs.
 
 OIDC is a thin identity layer for authentication and Single Sign-On that rides on top of OAuth 2.0, an authorization framework. In this post, you'll learn some foundational concepts of OIDC and OAuth2. You'll be guided through a simple SPA example written in
 [Vue.js](https://vuejs.org/) that starts with the older (now deprecated) Implicit flow and then shows the more secure Authorization Code with PKCE flow.
- 
+
 ## OpenID Connect and OAuth 2.0 Overview
 
 In the beginning, there were siloed web sites that didn't talk to each other, and it was sad.
@@ -99,7 +99,7 @@ From your Okta admin console, in the top menu, click on **Applications**.
 
 _If you've never logged into your account before, you may need to click the **Admin** button to get to the developer dashboard._
 
-- Click the green **Add Application** button 
+- Click the green **Add Application** button
 - Select **Single-Page App** application, and click **Next**
 - Give the app a **Name**. Any name. I used `My SPA`.
 - Change the value for **Login redirect URIs**  to `http://localhost:8080/callback`
@@ -107,11 +107,10 @@ _If you've never logged into your account before, you may need to click the **Ad
 - Click **Done**
 
 {% img blog/okta-authjs-pkce/oidc-app-settings.png alt:"OIDC Application" width:"600" %}{: .center-image }
-		
+
 Take note of the **Client ID** at the bottom of the page. You'll need these in the next section.
 
-> **NOTE:** The demo app uses _both_ the Implicit flow and the Authorization Code with PKCE flow for demonstration purposes. For your production app, you would uncheck the **Implicit** checkbox and check the 
-**Authorization Code** checkbox.
+> **NOTE:** The demo app uses _both_ the Implicit flow and the Authorization Code with PKCE flow for demonstration purposes. For your production app, you would uncheck the **Implicit** checkbox and check the **Authorization Code** checkbox.
 
 That's it on the Okta side. You just configured an OAuth 2.0 + OIDC identity provider. Congrats!
 
@@ -177,6 +176,7 @@ Both the `id_token` and the `access_token` values are right there. This means th
 Click the button that looks like an old school tape recorder play icon to allow the browser to continue.
 
 Let's see how the Authorization Code with PKCE flow gives you a better security footing.
+
 ## Replace Implicit Flow with PKCE
 
 Logout again and repeat the process, only this time, click on **Profile (pkce)**. Locate the `/authorize` call again on the network tab. It will look something like this:
@@ -280,7 +280,7 @@ export function validateAccess(to, from, next) {
             var grantParam = to.path.substring(to.path.lastIndexOf('/') + 1);
             var grantType = (responseTypes[grantParam]) ? grantParam : AUTH_CODE_GRANT_TYPE
             loginOkta(grantType);
-        }          
+        }
     })
     .catch(console.error);
 }
@@ -307,7 +307,7 @@ The last little bit of trickery is in the `callback` function with these lines o
 ```javascript
 export function callback() {
     // detect code
-    var grantType = (window.location.href.indexOf('code=') > 0) ? 
+    var grantType = (window.location.href.indexOf('code=') > 0) ?
         AUTH_CODE_GRANT_TYPE : IMPLICIT_GRANT_TYPE;
     oktaAuth.token.parseFromUrl()
     .then((tokens) => {
