@@ -2,7 +2,7 @@
 layout: blog_post
 title: "Combat Side-Channel Attacks with Cross-Origin Read Blocking"
 author: tom-abbott
-description: "Find out what those CORB errors mean and how CORB protects your application from hardware-layer vulnerabilities"
+description: "Find out what those CORB errors mean and how CORB protects your application from hardware-layer vulnerabilities."
 tags: [CORB, appsec, spectre, vulnerabilities, security, meltdown]
 tweets:
   - "Have you ever wondered why you started seeing CORB errors? Find out all about Cross-Origin Read Blocking!"
@@ -75,9 +75,9 @@ CORB enables the browser to do the heavy lifting for the developer. Okta is glad
 
 For more information about browser development and security, check out these other posts from the Okta Developer blog:
 
-* [Bootiful Development with Spring Boot and React  ](/blog/2017/12/06/bootiful-development-with-spring-boot-and-react)
-* [10 Excellent Ways to Secure Your Spring Boot Application ](/blog/2018/07/30/10-ways-to-secure-spring-boot)
-* [Build a Web App with Spring Boot and Spring Security in 15 Minutes ](/blog/2018/09/26/build-a-spring-boot-webapp)
+* [Bootiful Development with Spring Boot and React](/blog/2017/12/06/bootiful-development-with-spring-boot-and-react)
+* [10 Excellent Ways to Secure Your Spring Boot Application](/blog/2018/07/30/10-ways-to-secure-spring-boot)
+* [Build a Web App with Spring Boot and Spring Security in 15 Minutes](/blog/2018/09/26/build-a-spring-boot-webapp)
 
-Leave a comment below, find more from the Okta team on [Twitter](https://twitter.com/oktadev), and watch us on [YouTube](https://www.youtube.com/channel/UC5AMiWqFVFxF1q9Ya1FuZ_Q)!
+Leave a comment below, find more from the Okta team on [Twitter](https://twitter.com/oktadev), and watch us on [YouTube](https://www.youtube.com/c/oktadev)!
 
