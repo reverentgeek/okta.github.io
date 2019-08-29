@@ -115,7 +115,7 @@ Bonus: You don't have to switch devices as the phone is the primary.
 
 ## Jet, set, go
 
-Got any other travel tips for us? Comment below to share with the rest of us geeks. Happy trails!
+You are well on your way to travel like the pros! Got any other travel tips for us? Comment below to share with the rest of us geeks. Happy trails!
 
 ## Learn More Development Tips from Okta
 
