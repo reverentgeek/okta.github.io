@@ -8,7 +8,7 @@ tweets:
 - "Are you a software engineer jet-setting to a destination? Check out these travel tips →"
 - "Developers! We've got the BEST travel tips for you →"
 - "Traveling for work or to a conference? Make your journey a breeze with these tips →"
-image: blog/best-travel-tips/OktaBestTravelTipsSocial.png
+image: blog/best-travel-tips/the-best-travel-tips-for-people-in-tech.png
 ---
 
 Here on the Okta Developer Relations team, we travel a lot (like, a lot) and we've learned a few things to make it easy. We've tried out countless suggestions over the years and I've rounded up the very best ones from my team to share with software developers getting their travel groove on. It's all about making the trip less stressful and more enjoyable, and these tips are sure to get you well on your way - wherever your final destination may be. Without further ado, here are the best travel tips for people in tech!
