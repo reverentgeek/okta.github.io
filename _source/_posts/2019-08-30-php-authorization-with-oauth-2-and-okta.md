@@ -57,11 +57,11 @@ Enter a title for your token, copy the value of the token, and store it safely. 
 Go back to your application directory, edit the `.env` file and fill in your Okta details like this:
 
 ```
-CLIENT_ID=<Your Client Id from the Application settings>
+CLIENT_ID=<Your Client ID from the Application settings>
 CLIENT_SECRET=<Your Client Secret from the Application settings>
 REDIRECT_URI=http://localhost:8080/
-METADATA_URL=<Your Okta URL>/oauth2/default/.well-known/oauth-authorization-server
-API_URL_BASE=<Your Okta URL>/api/v1/
+METADATA_URL=https://{yourOktaDomain}/oauth2/default/.well-known/oauth-authorization-server
+API_URL_BASE=https://{yourOktaDomain}/api/v1/
 API_TOKEN=<the value of the token you created>
 ```
 
