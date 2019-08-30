@@ -5,8 +5,8 @@ author: krasimir
 description: "Learn how to use groups and roles to control who has access to your application"
 tags: [ php, groups, roles, authorization, permissions ]
 tweets:
-- ""
-- ""
+- "Learn how to use groups and roles to control who can access your #PHP applications!"
+- "Now that you've got simple login working, how do you decide who can access the app? Okta's groups and roles make it easy!"
 image: blog/featured/okta-php-headphones.jpg
 ---
 
