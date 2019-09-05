@@ -394,6 +394,8 @@ Reload the home page and if you are logged in, you will see the 'Personal Home P
 
 That's how easy it is to create a new Laravel application with secure user authentication via Okta!
 
+You can find the completed project [on GitHub](https://github.com/oktadeveloper/okta-php-laravel-auth).
+
 ## Learn More About Laravel, Authentication, and Okta
 
 If you find any issues, please add a comment below, and we'll do our best to help. If you liked this tutorial, you should[follow us on Twitter](https://twitter.com/oktadev). Follow us on [YouTube](https://www.youtube.com/c/oktadev) to find our screencasts and other videos.
