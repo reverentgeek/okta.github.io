@@ -14,9 +14,6 @@ fold npm_install npm install
 # Run markdown Lint check
 fold npm_markdown_lint npm run markdown-lint
 
-# Build site and Run tests
-fold npm_test npm test
-
 # Run External Link Check ONLY on Travis Cron Jobs
 if [ "$TRAVIS_EVENT_TYPE" == "cron" ];
 then
