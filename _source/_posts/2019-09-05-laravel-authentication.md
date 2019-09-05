@@ -24,8 +24,8 @@ In this article, I'll show you how to get started with Laravel and quickly build
 
 Laravel's architecture is based on the Model-View-Controller (MVC) pattern. MVC emerged from research of the development of graphical user interfaces and it's not particularly suited to Web applications which are based on a request-response cycle with a noticeable latency and a strict delineation between the frontend and backend. There are certain shortcomings of the pattern when applied to the Web:
 
-* there is some debate in the community about the proper way to handle data validation, user authentication/authorization, session management and other specifics of a Web application in a traditional MVC model;
-* the MVC model needs to be expanded (usually with an additional Service layer) if you want to separate the business logic of the application cleanly while maintaining lean controllers and pure models.
+* There is some debate in the community about the proper way to handle data validation, user authentication/authorization, session management and other specifics of a Web application in a traditional MVC model.
+* The MVC model needs to be expanded (usually with an additional Service layer) if you want to separate the business logic of the application cleanly while maintaining lean controllers and pure models.
 
 However, MVC is a very popular pattern in many web-related languages and frameworks and it has some merit since it does allow you to separate the application's internal representation of data from the UI presentation and the request/response control code.
 
@@ -47,7 +47,7 @@ Okta is an API Identity service that allows you to create, edit, and securely st
 
 To complete this tutorial, you'll need to [register for a forever-free developer account](https://developer.okta.com/signup/). 
 
-You'll replace some of the Laravel boilerplate code in your application so it uses Okta to authenticate users. The Socialite package for Laravel will help make it easier - it can handle integration with a large number of social login providers (including Octa) out-of-the-box.
+You'll replace some of the Laravel boilerplate code in your application so it uses Okta to authenticate users. The Socialite package for Laravel will help make it easier - it can handle integration with a large number of social login providers (including Okta) out-of-the-box.
 
 ## Laravel Project Setup
 
@@ -60,29 +60,29 @@ php artisan make:auth
 php artisan serve
 ```
 
-Load http://localhost:8000/ and you'll see the default Laravel page with Login and Register links. However, these links will not work yet because you haven't run the database migrations yet, and the boilerplate code uses the local database for user registration/authorization.
+Load `http://localhost:8000/` and you'll see the default Laravel page with Login and Register links. However, these links will not work yet because you haven't run the database migrations yet, and the boilerplate code uses the local database for user registration/authorization.
 
 In the next two sections, you'll set up a new Okta account/web application and connect Okta to the Laravel project so you can use it for authentication.
 
 ## Add Authentication to Laravel with Okta
 
-Before you proceed, you need to log into your Okta account (or [create a new one for free](https://developer.okta.com/signup/)) and create an OAuth application. You'll need to get a client ID and a client secret for your application.
+Before you proceed, you need to log into your Okta account (or [create a new one for free](https://developer.okta.com/signup/)) and create a new application to get a client ID and a client secret to use with Laravel.
 
-Start by going to the Applications menu item and clicking the 'Add Application' button:
+Start by going to the **Applications** menu item and clicking the **Add Application** button:
 
-{% img blog/php-laravel-authentication/image2.png alt:"Add Application button" width:"300" %}{: .center-image }
+{% img blog/php-laravel-authentication/add-application-button.png alt:"Add Application button" width:"300" %}{: .center-image }
 
-Select 'Web' and click 'Next'.
+Select **Web** and click **Next**.
 
-{% img blog/php-laravel-authentication/image7.png alt:"Select Web from the list of application types" width:"800" %}{: .center-image }
+{% img blog/php-laravel-authentication/create-new-application-menu.png alt:"Select Web from the list of application types" width:"800" %}{: .center-image }
   
-Enter a title, set http://localhost:8000/ as the Base URI and http://localhost:8000/login/okta/callback as the Login Redirect URI, then click Done. You can leave the rest of the settings as they are.
+Enter a title, set `http://localhost:8000/` as the Base URI and `http://localhost:8000/login/okta/callback` as the Login Redirect URI, then click Done. You can leave the rest of the settings as they are.
 
-Copy the **Client ID** and **Client Secret** values from the application settings. Go to **Api > Authorization Servers**, and copy just the hostname part of the `Issuer URI` field (without the `/oauth2/default` part) - this is your Okta Base URL (it looks like `https://{{yourOktaDomain}}`).
+Copy the **Client ID** and **Client Secret** values from the application settings. Go to **API** > **Authorization Servers**, and copy just the hostname part of the `Issuer URI` field (without the `/oauth2/default` part) - this is your Okta Base URL (it looks like `https://{{yourOktaDomain}}`).
 
 ## Connect Okta to the Laravel Project
 
-Edit .env.example and add the following:
+Edit `.env.example` and add the following:
 
 ```
 OKTA_CLIENT_ID=
@@ -91,9 +91,11 @@ OKTA_BASE_URL=
 OKTA_REDIRECT_URI=http://localhost:8000/login/okta/callback
 ```
 
+Copy `.env.example` to `.env` to start filling out your own details.
+
 Edit `.env`, add the Okta keys and input the values you copied in the previous section.
 
-Next, add the Laravel Socialite and SocialiteProviders/Okta packages to the project:
+Next, add the Laravel Socialite and `socialiteproviders/okta` packages to the project:
 
 ```bash
 composer require laravel/socialite socialiteproviders/okta
@@ -168,7 +170,7 @@ class User extends Authenticatable
 }
 ```
 
-Let's use sqlite as the database engine (it's perfectly fine for this tutorial). Update `.env` and set the database connection to sqlite:
+You can use sqlite as the database engine (it's perfectly fine for this tutorial). Update `.env` and set the database connection to sqlite:
 
 ```
 DB_CONNECTION=sqlite
@@ -317,7 +319,7 @@ Run the development web server again with `php artisan serve` and load up `http:
 
 ### Modify Home Page For Logged-in Users
 
-Open `resources/views/welcome.blade.php` and update the section that contains the 'Laravel' text so it shows some additional information is a user's logged in:
+Open `resources/views/welcome.blade.php` and update the section that contains the 'Laravel' text so it shows some additional information if a user is logged in:
 
 ```php
 <div class="title m-b-md">
@@ -328,11 +330,11 @@ Open `resources/views/welcome.blade.php` and update the section that contains th
 </div>
 ```
 
-Go back to the home page at `http://localhost:8000/` and if you're logged in, you will see the text with your name in it.
+Go back to the home page at `http://localhost:8000/`. If you're logged in, you will see the text with your name in it.
 
 ## Add a Page For Logged-in Users Only
 
-Next, create a new route and controller method in HomeController for a new personal home page that will only be accessible to logged-in users.
+Next, create a new route and controller method in `HomeController` for a new personal home page that will only be accessible to logged-in users.
 
 `routes/web.php`
 
@@ -353,6 +355,7 @@ public function personal()
 
 Create a new file `resources/views/personal.blade.php`
 
+{% raw %}
 ```php
 @extends('layouts.app')
 
@@ -372,9 +375,11 @@ Create a new file `resources/views/personal.blade.php`
 </div>
 @endsection
 ```
+{% endraw %}
 
 Add a link to the home page that will only show to logged-in users in the Links section of `resources/views/welcome.blade.php`:
 
+{% raw %}
 ```php
 <div class="links">
     @auth
@@ -389,16 +394,15 @@ Add a link to the home page that will only show to logged-in users in the Links 
     <a href="https://github.com/laravel/laravel">GitHub</a>
 </div>
 ```
+{% endraw %}
 
-Reload the home page and if you are logged in, you will see the 'Personal Home Page' link. Click on it to see the new page which displays your name and email address from Okta.
+Reload the home page and you will see the **Personal Home Page** link. Click on it to see the new page which displays your name and email address from Okta.
 
 That's how easy it is to create a new Laravel application with secure user authentication via Okta!
 
 You can find the completed project [on GitHub](https://github.com/oktadeveloper/okta-php-laravel-auth).
 
 ## Learn More About Laravel, Authentication, and Okta
-
-If you find any issues, please add a comment below, and we'll do our best to help. If you liked this tutorial, you should[follow us on Twitter](https://twitter.com/oktadev). Follow us on [YouTube](https://www.youtube.com/c/oktadev) to find our screencasts and other videos.
 
 If you are interested in other Laravel tutorials that build a single-page application and use Okta for authentication, check out this series and build an example application with an Angular, React, or Vue frontend:
 
@@ -407,4 +411,4 @@ If you are interested in other Laravel tutorials that build a single-page applic
 * [Build a Basic CRUD App with Laravel and Vue](/blog/2019/01/15/crud-app-laravel-vue)
 * [Build Simple Login in PHP](/blog/2018/12/28/simple-login-php)
 
-If you find any issues or have questions, please add a comment below! And if you liked this tutorial,[follow us on Twitter](https://twitter.com/oktadev) or our [YouTube channel](https://www.youtube.com/c/oktadev) where we publish screencasts and other videos.
+If you find any issues or have questions, please add a comment below! And if you liked this tutorial, [follow us on Twitter](https://twitter.com/oktadev) or our [YouTube channel](https://www.youtube.com/c/oktadev) where we publish screencasts and other videos.
