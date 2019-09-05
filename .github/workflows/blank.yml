@@ -27,9 +27,11 @@ jobs:
         gem install bundler
         bundle install
 
-    # Testing
+    # Build the blog
     - name: Run a one-line script
-      run: jekyll
+      run: npm run build-prod
+
+    # Testing
     - name: Run a multi-line script
       run: |
         echo Add other actions to build,
