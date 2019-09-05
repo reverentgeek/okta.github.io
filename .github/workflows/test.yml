@@ -27,6 +27,10 @@ jobs:
         gem install bundler
         bundle install
 
+    # Build the blog
+    - name: Build the blog
+      run: npm run build-prod
+
     # Testing
     - name: Run tests
       run: ./scripts/travis.sh
