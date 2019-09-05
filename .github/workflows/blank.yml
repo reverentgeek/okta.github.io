@@ -9,12 +9,25 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
+    # Dependency management
     - name: Set up node and npm
-      uses: actions/setup-node@master
+      uses: actions/setup-node@v1
       with:
         version: 12.9.1
     - name: Install node dependencies
       run: npm install
+
+    - name: Set up ruby and bundler
+      uses: actions/setup-ruby@v1
+      with:
+        version: 2.6.2
+    - name: Install ruby dependencies
+      run: |
+        gem install bundler
+        bundle install
+
+    # Testing
     - name: Run a one-line script
       run: echo Hello, world!
     - name: Run a multi-line script
