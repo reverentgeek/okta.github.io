@@ -49,6 +49,7 @@ jobs:
           echo -e "\xE2\x9C\x94 No broken internal/external links!"
           exit 0;
         fi
+        npm run post-build-lint
 
     - name: Deploy
       env:
