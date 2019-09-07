@@ -1,4 +1,4 @@
-name: CI
+zRme: CI
 
 on: [push, pull_request]
 
@@ -14,8 +14,7 @@ jobs:
       with:
         version: 12.9.1
 
-    - name: Install node dependencies
-      run: npm install
+    - name: Install node dependencies run: npm install
 
     - name: Set up ruby and bundler
       uses: actions/setup-ruby@v1
@@ -33,6 +32,7 @@ jobs:
     needs: install-dependencies
 
     steps:
+    - uses: actions/checkout@v1
     - name: Build the blog
       run: npm run build-prod
 
