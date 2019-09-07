@@ -3,18 +3,16 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  build:
-
+  install-dependencies:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
 
-    # Dependency management
     - name: Set up node and npm
       uses: actions/setup-node@v1
       with:
         version: 12.9.1
+
     - name: Install node dependencies
       run: npm install
 
@@ -22,15 +20,20 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         version: 2.6
+
     - name: Install ruby dependencies
       run: |
         gem install bundler
         bundle install
 
-    # Build the blog
+  build-blog:
+    needs: install-dependencies
+
     - name: Build the blog
       run: npm run build-prod
 
-    # Testing
+  test-blog:
+    needs: build-blog
+
     - name: Run tests
       run: ./scripts/travis.sh
