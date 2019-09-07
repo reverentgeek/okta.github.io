@@ -30,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: install-dependencies
 
+    steps:
     - name: Build the blog
       run: npm run build-prod
 
@@ -37,5 +38,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-blog
 
+    steps:
     - name: Run tests
       run: ./scripts/travis.sh
