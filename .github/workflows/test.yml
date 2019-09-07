@@ -14,7 +14,8 @@ jobs:
       with:
         version: 12.9.1
 
-    - name: Install node dependencies run: npm install
+    - name: Install node dependencies
+      run: npm install
 
     - name: Set up ruby and bundler
       uses: actions/setup-ruby@v1
