@@ -27,12 +27,14 @@ jobs:
         bundle install
 
   build-blog:
+    runs-on: ubuntu-latest
     needs: install-dependencies
 
     - name: Build the blog
       run: npm run build-prod
 
   test-blog:
+    runs-on: ubuntu-latest
     needs: build-blog
 
     - name: Run tests
