@@ -28,7 +28,8 @@ jobs:
 
     - name: Set up python and pip
       uses: actions/setup-python@v1
-      with: version: 3.7
+      with:
+        version: 3.7
         architecture: x64
 
     - name: Install AWS CLI
