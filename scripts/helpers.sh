@@ -123,13 +123,6 @@ function require_env_var() {
     fi
 }
 
-function check_for_quickstart_pages_in_sitemap() {
-    if grep "quickstart/[^<]" dist/sitemap.xml;
-    then
-        exit 1
-    fi
-}
-
 function fold() {
     local name=$1
     local command="${@:2}"

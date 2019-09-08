@@ -2,14 +2,6 @@
 
 source "${0%/*}/helpers.sh"
 
-if ! check_for_quickstart_pages_in_sitemap ;
-then
-    echo "Sitemap contains quickstart fragments, use sitemap.exclude=\"yes\" in your fragment metadata to exclude this fragment"
-    exit 1
-else
-    echo -e "\xE2\x9C\x94 Passed quickstart sitemap check"
-fi
-
 if ! url_consistency_check ;
 then
     echo "Failed checking for proper prefixes ('/api/v1', '/oauth2', etc) in example URLs"
