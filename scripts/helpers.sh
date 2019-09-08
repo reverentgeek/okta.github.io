@@ -9,21 +9,16 @@ export GENERATED_SITE_LOCATION="dist"
 # SETUP
 ###############################################################################
 
-# Print an easily visible line, useful for log files.
-function interject() {
-    echo "----- ${1} -----"
-}
-
 function generate_html() {
-    interject 'Using Jekyll to generate HTML'
+    echo 'Using Jekyll to generate HTML'
 
     if [ ! -d $GENERATED_SITE_LOCATION ]; then
         bundle exec jekyll build
         local status=$?
-        interject 'Done generating HTML'
+        echo 'Done generating HTML'
         return $status
     else
-        interject 'HTML already generated'
+        echo 'HTML already generated'
         return 0
     fi
 }
