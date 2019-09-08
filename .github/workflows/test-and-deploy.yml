@@ -39,14 +39,30 @@ jobs:
       run: npm run build-prod
 
     - name: Run tests
-      run: ./scripts/travis.sh
+      run: |
+        npm run markdown-lint
+        if ! bundle exec ./scripts/htmlproofer.rb;
+        then
+          echo "Failed HTML link validation."
+          exit 1;
+        else
+          echo -e "\xE2\x9C\x94 No broken internal/external links!"
+          exit 0;
+        fi
+
+    - name: Prep for Deploy
+      run: npm run prep-for-deploy
 
     - name: Deploy
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
       if: success() && github.event_name == 'push' && github.ref == 'refs/heads/source'
       run: |
+        echo "aws s3 sync --content-type 'text/html' --sse --size-only --acl public-read dist/blog s3://$AWS_S3_BUCKET/blog"
+        #aws s3 sync --content-type 'text/html' --sse --size-only --acl public-read dist/blog s3://$AWS_S3_BUCKET/blog
+        #aws s3 sync --exclude 'blog' --sse --size-only --acl public-read dist s3://$AWS_S3_BUCKET
         echo "event name ${{ github.event_name }}"
         echo "ref ${{ github.ref }}"
         echo "head_ref ${{ github.head_ref }}"

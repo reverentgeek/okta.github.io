@@ -16,6 +16,7 @@
     "markdown-lint": "node scripts/lint",
     "find-missing-slashes": "node scripts/find-missing-slashes",
     "post-build-lint": "bash scripts/post-build-lint.sh",
+    "prep-for-deploy": "bash scripts/prep-for-deploy.sh",
     "update-event-types": "bash scripts/update-event-types.sh"
   },
   "pre-push": [
