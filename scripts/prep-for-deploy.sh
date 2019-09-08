@@ -25,5 +25,5 @@ do
     cp "$f" "${f%.html}";
     path=`echo ${f%.html} | sed "s/.\/dist//g"`
     sed "s+{{ page.redirect.to | remove: 'index' }}+$path+g" ./_source/_layouts/redirect.html > $f
-    echo "Removed .html extensions and prepped for deploy!"
 done
+echo "Removed .html extensions and prepped for deploy!"
