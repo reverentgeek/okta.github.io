@@ -411,4 +411,4 @@ If you are interested in other Laravel tutorials that build a single-page applic
 * [Build a Basic CRUD App with Laravel and Vue](/blog/2019/01/15/crud-app-laravel-vue)
 * [Build Simple Login in PHP](/blog/2018/12/28/simple-login-php)
 
-If you find any issues or have questions, please add a comment below! And if you liked this tutorial, [follow us on Twitter](https://twitter.com/oktadev) or our [YouTube channel](https://www.youtube.com/c/oktadev) where we publish screencasts and other videos. =)
+If you find any issues or have questions, please add a comment below! And if you liked this tutorial, [follow us on Twitter](https://twitter.com/oktadev) or our [YouTube channel](https://www.youtube.com/c/oktadev) where we publish screencasts and other videos.
