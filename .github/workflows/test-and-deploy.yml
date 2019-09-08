@@ -49,7 +49,9 @@ jobs:
           echo -e "\xE2\x9C\x94 No broken internal/external links!"
           exit 0;
         fi
-        npm run prep-for-deploy
+
+    - name: Prep for Deploy
+      run: npm run prep-for-deploy
 
     - name: Deploy
       env:
