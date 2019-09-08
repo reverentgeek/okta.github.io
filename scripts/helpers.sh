@@ -123,18 +123,6 @@ function require_env_var() {
     fi
 }
 
-# Check for broken markdown headers
-function header_checker() {
-    local dir=$(pwd)
-    local allheaders=$( grep -EoR "##" --include="*.html" $dir --exclude-dir={node_modules,scripts,tests,dist,_source,vendor} | sort | uniq )
-    if [ "$allheaders" ];
-    then
-        echo $allheaders
-        echo "Files contain broken headers."
-        return 1
-    fi
-}
-
 function check_for_quickstart_pages_in_sitemap() {
     if grep "quickstart/[^<]" dist/sitemap.xml;
     then
