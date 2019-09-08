@@ -14,18 +14,10 @@ function interject() {
     echo "----- ${1} -----"
 }
 
-function check_for_npm_dependencies() {
-    interject 'Checking NPM dependencies'
-    command -v npm > /dev/null 2>&1 || { echo "This script requires 'npm', which is not installed"; exit 1; }
-    npm install
-    interject 'Done checking NPM dependencies'
-}
-
 function generate_html() {
     interject 'Using Jekyll to generate HTML'
 
     if [ ! -d $GENERATED_SITE_LOCATION ]; then
-        check_for_npm_dependencies
         bundle exec jekyll build
         local status=$?
         interject 'Done generating HTML'
