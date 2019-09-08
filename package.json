@@ -6,8 +6,6 @@
     "dist"
   ],
   "scripts": {
-    "clean": "node scripts/clean",
-    "pregenerate": "npm run clean",
     "generate": "cross-env-shell PID_FINDER=okta_github_io JEKYLL_ENV=production bundle exec jekyll",
     "build-prod": "npm run generate build -- --verbose",
     "start": "npm run generate serve -- --incremental --future",
