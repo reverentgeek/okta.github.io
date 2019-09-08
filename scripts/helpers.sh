@@ -5,13 +5,6 @@
 ###############################################################################
 export GENERATED_SITE_LOCATION="dist"
 
-function duplicate_slug_in_url() {
-    output_file=`mktemp`
-    find $GENERATED_SITE_LOCATION -iname '*.html' | xargs grep '/api/v1/api/v1' | tee $output_file
-    # Return "True" if the file is empty
-    return `[ ! -s $output_file ]`
-}
-
 ###############################################################################
 # SETUP
 ###############################################################################
