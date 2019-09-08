@@ -46,13 +46,6 @@ function fold() {
     echo -en "travis_fold:end:${name}\\r"
 }
 
-function send_promotion_message() {
-    curl -H "Authorization: Bearer ${TESTSERVICE_SLAVE_JWT}" \
-      -H "Content-Type: application/json" \
-      -X POST -d "[{\"artifactId\":\"$1\",\"repository\":\"npm-okta\",\"artifact\":\"$2\",\"version\":\"$3\",\"promotionType\":\"ARTIFACT\"}]" \
-      -k "${APERTURE_BASE_URL}/v1/artifact-promotion/createPromotionEvent"
-}
-
 function removeHTMLExtensions() {
     # Removing all generated .html files (excludes the main 'index.html' in the dir) and
     # create 302 redirects to extensionless pages
