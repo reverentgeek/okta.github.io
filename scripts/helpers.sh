@@ -28,15 +28,6 @@ function generate_html() {
     fi
 }
 
-function require_env_var() {
-    local env_var_name=$1
-    eval env_var=\$$env_var_name
-    if [[ -z "${env_var}" ]]; then
-        echo "Environment variable '${env_var_name}' must be defined, but isn't.";
-        exit 1
-    fi
-}
-
 function removeHTMLExtensions() {
     # Removing all generated .html files (excludes the main 'index.html' in the dir) and
     # create 302 redirects to extensionless pages
