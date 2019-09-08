@@ -2,8 +2,7 @@ name: Test & Deploy
 
 on: [push, pull_request]
 jobs:
-  test-and-deploy:
-    name: Test & Deploy
+  test-and-deploy: name: Test & Deploy
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -49,7 +48,7 @@ jobs:
           echo -e "\xE2\x9C\x94 No broken internal/external links!"
           exit 0;
         fi
-        npm run post-build-lint
+        npm run prep-for-deploy
 
     - name: Deploy
       env:
