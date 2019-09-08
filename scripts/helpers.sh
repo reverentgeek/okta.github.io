@@ -37,15 +37,6 @@ function require_env_var() {
     fi
 }
 
-function fold() {
-    local name=$1
-    local command="${@:2}"
-    echo -en "travis_fold:start:${name}\\r"
-    echo "\$ ${command}"
-    ${command}
-    echo -en "travis_fold:end:${name}\\r"
-}
-
 function removeHTMLExtensions() {
     # Removing all generated .html files (excludes the main 'index.html' in the dir) and
     # create 302 redirects to extensionless pages

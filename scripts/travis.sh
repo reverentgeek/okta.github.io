@@ -9,10 +9,10 @@ then
 fi
 
 # Run the npm install to pull in test dependencies
-fold npm_install npm install
+npm install
 
 # Run markdown Lint check
-fold npm_markdown_lint npm run markdown-lint
+npm run markdown-lint
 
 npm run build-prod
 
@@ -30,4 +30,4 @@ then
 fi
 
 # Run /dist lint checker
-fold npm_post_build_lint npm run post-build-lint
+npm run post-build-lint
