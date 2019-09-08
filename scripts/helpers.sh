@@ -5,31 +5,6 @@
 ###############################################################################
 export GENERATED_SITE_LOCATION="dist"
 
-function url_consistency_check() {
-    if [ ! -d "$GENERATED_SITE_LOCATION" ]; then
-       echo "Directory ${GENERATED_SITE_LOCATION} not found";
-       return 1;
-    fi
-
-    url_consistency_check_file=`mktemp`
-    # Search the dist directory for all files (-type f) ending in .html (-iname '*.html')
-    find $GENERATED_SITE_LOCATION -type f -iname '*.html' | \
-        # 'grep' all found files for 'api-uri-template', printing line numbers on output
-        xargs grep -n api-uri-template | \
-        # Search for the 'api/v' string, so we match "api/v1", "api/v2", etc
-        grep -v "{baseUrl}\?</strong>\/v" | grep -v /api/v | grep -v /oauth2 | grep -v /.well-known | \
-        # The 'sed' command below pulls out the filename (\1), the line number (\2) and the URL path (\3)
-        # For example, this:
-        # dist/docs/api/resources/authn.html:2278:<p><span class="api-uri-template api-uri-post"><span class="api-label">POST</span> /api/v1/authn</span></p>
-        # becomes this:
-        # dist/docs/api/resources/authn.html:2278:/api/v1/authn
-        sed -e 's/^\([^:]*\):\([^:]*\).*<\/span> \(.*\)<\/span>.*/\1:\2:\3/' | \
-        # Write the results to STDOUT and the $url_consistency_check_file
-        tee $url_consistency_check_file
-    # Return "True" if the file is empty
-    return `[ ! -s $url_consistency_check_file ]`
-}
-
 function duplicate_slug_in_url() {
     output_file=`mktemp`
     find $GENERATED_SITE_LOCATION -iname '*.html' | xargs grep '/api/v1/api/v1' | tee $output_file

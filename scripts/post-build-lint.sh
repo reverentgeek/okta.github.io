@@ -2,14 +2,6 @@
 
 source "${0%/*}/helpers.sh"
 
-if ! url_consistency_check ;
-then
-    echo "Failed checking for proper prefixes ('/api/v1', '/oauth2', etc) in example URLs"
-    exit 1
-else
-    echo -e "\xE2\x9C\x94 Passed URL consistency check"
-fi
-
 if ! duplicate_slug_in_url ;
 then
     echo "Duplicate slugs: /api/v1 exist"
