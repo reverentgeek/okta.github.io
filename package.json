@@ -16,8 +16,7 @@
   "pre-push": [
     "markdown-lint"
   ],
-  "repository": {
-    "type": "git",
+  "repository": { "type": "git",
     "url": "git+https://github.com/oktadeveloper/okta.github.io.git"
   },
   "author": "Joel Franusic <joel.franusic@okta.com>",
@@ -27,16 +26,9 @@
   },
   "homepage": "https://github.com/oktadeveloper/okta.github.io#readme",
   "devDependencies": {
-    "chai": "4.2.0",
-    "chai-as-promised": "*",
     "chalk": "2.4.2",
     "cross-env": "5.2.0",
-    "if-env": "1.0.4",
-    "mocha": "6.1.4",
     "pre-push": "0.1.1",
-    "protractor": "5.4.2",
-    "recursive-readdir": "2.2.2",
-    "remove": "0.1.5",
-    "wait-on": "3.2.0"
+    "recursive-readdir": "2.2.2"
   }
 }
