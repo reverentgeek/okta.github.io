@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'github-pages'
 gem 'jekyll-assets', '2.3.2'
 gem 'jekyll-redirect-from'
 gem 'jekyll-include-cache'
