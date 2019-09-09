@@ -1,6 +1,6 @@
 name: Delete PR Branches on Merge
 
-on: pull_request
+on: push
 jobs:
   cleanup:
     name: Cleanup
