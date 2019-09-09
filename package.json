@@ -9,7 +9,6 @@
     "generate": "cross-env-shell PID_FINDER=okta_github_io JEKYLL_ENV=production bundle exec jekyll",
     "build-prod": "npm run generate build -- --verbose",
     "start": "npm run generate serve -- --incremental --future",
-    "pretest": "npm run generate serve -- --no-watch & wait-on http://localhost:4000 && npm run test:update-web-driver",
     "posttest": "npm run stop",
     "markdown-lint": "node scripts/lint",
     "find-missing-slashes": "node scripts/find-missing-slashes",
