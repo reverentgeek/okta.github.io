@@ -12,8 +12,7 @@
     "posttest": "npm run stop",
     "markdown-lint": "node scripts/lint",
     "find-missing-slashes": "node scripts/find-missing-slashes",
-    "prep-for-deploy": "bash scripts/prep-for-deploy.sh",
-    "update-event-types": "bash scripts/update-event-types.sh"
+    "prep-for-deploy": "bash scripts/prep-for-deploy.sh"
   },
   "pre-push": [
     "markdown-lint"
