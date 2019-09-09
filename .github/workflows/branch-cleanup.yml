@@ -1,0 +1,12 @@
+name: Delete PR Branches on Merge
+
+on: pull_request
+jobs:
+  cleanup:
+    name: Cleanup
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: jessfraz/branch-cleanup-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
