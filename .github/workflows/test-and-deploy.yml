@@ -60,6 +60,5 @@ jobs:
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
       if: success() && github.event_name == 'push' && github.ref == 'refs/heads/source'
       run: |
-        rm ./dist/.nojekyll
         aws s3 sync --content-type 'text/html' --sse --size-only --acl public-read dist/blog s3://$AWS_S3_BUCKET/blog
         aws s3 sync --exclude 'blog' --sse --size-only --acl public-read dist s3://$AWS_S3_BUCKET
