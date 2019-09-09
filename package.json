@@ -9,18 +9,14 @@
     "generate": "cross-env-shell PID_FINDER=okta_github_io JEKYLL_ENV=production bundle exec jekyll",
     "build-prod": "npm run generate build -- --verbose",
     "start": "npm run generate serve -- --incremental --future",
-    "pretest": "npm run generate serve -- --no-watch & wait-on http://localhost:4000 && npm run test:update-web-driver",
-    "posttest": "npm run stop",
     "markdown-lint": "node scripts/lint",
     "find-missing-slashes": "node scripts/find-missing-slashes",
-    "prep-for-deploy": "bash scripts/prep-for-deploy.sh",
-    "update-event-types": "bash scripts/update-event-types.sh"
+    "prep-for-deploy": "bash scripts/prep-for-deploy.sh"
   },
   "pre-push": [
     "markdown-lint"
   ],
-  "repository": {
-    "type": "git",
+  "repository": { "type": "git",
     "url": "git+https://github.com/oktadeveloper/okta.github.io.git"
   },
   "author": "Joel Franusic <joel.franusic@okta.com>",
@@ -30,16 +26,9 @@
   },
   "homepage": "https://github.com/oktadeveloper/okta.github.io#readme",
   "devDependencies": {
-    "chai": "4.2.0",
-    "chai-as-promised": "*",
     "chalk": "2.4.2",
     "cross-env": "5.2.0",
-    "if-env": "1.0.4",
-    "mocha": "6.1.4",
     "pre-push": "0.1.1",
-    "protractor": "5.4.2",
-    "recursive-readdir": "2.2.2",
-    "remove": "0.1.5",
-    "wait-on": "3.2.0"
+    "recursive-readdir": "2.2.2"
   }
 }
