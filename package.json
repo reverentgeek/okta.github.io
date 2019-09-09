@@ -6,20 +6,14 @@
     "dist"
   ],
   "scripts": {
-    "clean": "node scripts/clean",
-    "pregenerate": "npm run clean",
     "generate": "cross-env-shell PID_FINDER=okta_github_io JEKYLL_ENV=production bundle exec jekyll",
     "build-prod": "npm run generate build -- --verbose",
     "start": "npm run generate serve -- --incremental --future",
     "pretest": "npm run generate serve -- --no-watch & wait-on http://localhost:4000 && npm run test:update-web-driver",
-    "test-only": "protractor tests/selenium/conf.js",
-    "test:update-web-driver": "./node_modules/protractor/bin/webdriver-manager update --versions.standalone 3.141.59 --gecko false",
-    "test": "npm run test-only || (npm run stop && exit 1)",
     "posttest": "npm run stop",
-    "stop": "if-env CI=true && exit 0 || (pkill -SIGINT -f 'okta_github_io|webdriver-manager/selenium')",
     "markdown-lint": "node scripts/lint",
     "find-missing-slashes": "node scripts/find-missing-slashes",
-    "post-build-lint": "bash scripts/post-build-lint.sh",
+    "prep-for-deploy": "bash scripts/prep-for-deploy.sh",
     "update-event-types": "bash scripts/update-event-types.sh"
   },
   "pre-push": [
