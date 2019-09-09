@@ -11,9 +11,13 @@
     "start": "npm run generate serve -- --incremental --future",
     "markdown-lint": "node scripts/lint",
     "find-missing-slashes": "node scripts/find-missing-slashes",
-    "prep-for-deploy": "bash scripts/prep-for-deploy.sh"
+    "prep-for-deploy": "bash scripts/prep-for-deploy.sh",
+    "dev": "node scripts/dev-clean && npm run start",
+    "dev-restore": "node scripts/dev-restore",
+    "post": "node scripts/post"
   },
   "pre-push": [
+    "dev-restore",
     "markdown-lint"
   ],
   "repository": {
@@ -28,8 +32,11 @@
   "homepage": "https://github.com/oktadeveloper/okta.github.io#readme",
   "devDependencies": {
     "chalk": "2.4.2",
-    "cross-env": "5.2.1",
+    "cross-env": "5.2.0",
+    "fs-extra": "^8.1.0",
     "pre-push": "0.1.1",
-    "recursive-readdir": "2.2.2"
+    "recursive-readdir": "2.2.2",
+    "simple-git": "^1.126.0",
+    "yargs": "^14.0.0"
   }
 }
