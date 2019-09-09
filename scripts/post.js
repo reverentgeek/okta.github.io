@@ -60,10 +60,10 @@ const stampPost = async ( date ) => {
         const files = await fs.readdir( postsPath );
         files.sort();
         const lastPost = files[files.length - 1];
-        const newName = `${ date }${ lastPost.substr(10) }`
-        if ( lastPost !== newName ) {
-            console.log( `updating last post [${lastPost}] to [${newName}]...`);
-            return await fs.rename( path.join(postsPath, lastPost), path.join(postsPath, newName));
+        const updatedFileName = `${ date }${ lastPost.substr(10) }`
+        if ( lastPost !== updatedFileName ) {
+            console.log( `updating last post [${lastPost}] to [${updatedFileName}]...`);
+            return await fs.rename( path.join(postsPath, lastPost), path.join(postsPath, updatedFileName));
         }
         console.log(`No need to rename ${ lastPost }`);
     } catch( err ) {
