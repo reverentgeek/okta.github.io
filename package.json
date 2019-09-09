@@ -16,7 +16,8 @@
   "pre-push": [
     "markdown-lint"
   ],
-  "repository": { "type": "git",
+  "repository": {
+    "type": "git",
     "url": "git+https://github.com/oktadeveloper/okta.github.io.git"
   },
   "author": "Joel Franusic <joel.franusic@okta.com>",
@@ -27,7 +28,7 @@
   "homepage": "https://github.com/oktadeveloper/okta.github.io#readme",
   "devDependencies": {
     "chalk": "2.4.2",
-    "cross-env": "5.2.0",
+    "cross-env": "5.2.1",
     "pre-push": "0.1.1",
     "recursive-readdir": "2.2.2"
   }
